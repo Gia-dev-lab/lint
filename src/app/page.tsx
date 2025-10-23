@@ -18,6 +18,7 @@ import {
 import { QuoteRequestForm } from "@/components/quote-request-form";
 import Link from "next/link";
 import { useState } from "react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const heroImage = placeholderImages.find(img => img.id === 'hero-background');
 
@@ -176,6 +177,71 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Testimonials Section */}
+        <section id="testimonials" className="py-16 lg:py-24 bg-background">
+          <div className="container">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold">La Parola ai Nostri Clienti</h2>
+              <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
+                Scopri perché i professionisti di tutta Italia si affidano a Lint per le loro attrezzature.
+              </p>
+            </div>
+            <Carousel
+              opts={{
+                align: "start",
+              }}
+              className="w-full max-w-4xl mx-auto"
+            >
+              <CarouselContent>
+                {testimonials.map((testimonial) => (
+                  <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/3">
+                    <Card className="h-full flex flex-col">
+                      <CardContent className="p-6 flex-grow">
+                        <p className="italic">"{testimonial.quote}"</p>
+                      </CardContent>
+                      <CardHeader className="pt-0 flex-row items-center gap-4">
+                        <div className="relative h-12 w-12 rounded-full overflow-hidden">
+                          <Image
+                            src={testimonial.image.imageUrl}
+                            alt={testimonial.name}
+                            fill
+                            className="object-cover"
+                            data-ai-hint={testimonial.image.imageHint}
+                          />
+                        </div>
+                        <div>
+                          <CardTitle className="text-base">{testimonial.name}</CardTitle>
+                          <CardDescription>{testimonial.company}</CardDescription>
+                        </div>
+                      </CardHeader>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
+        </section>
+
+        {/* Final CTA Section */}
+        <section id="kit-configurator" className="py-16 lg:py-24 bg-secondary">
+            <div className="container grid md:grid-cols-2 gap-12 items-center">
+                <div className="space-y-4">
+                    <h2 className="text-3xl md:text-4xl font-bold">Non Sai da Dove Iniziare?</h2>
+                    <p className="text-muted-foreground text-lg">
+                        Rispondi a poche semplici domande e il nostro configuratore intelligente ti suggerirà il kit di prodotti perfetto per le tue esigenze specifiche. Che tu gestisca un autolavaggio, un'impresa di pulizie o un hotel, abbiamo la soluzione su misura per te.
+                    </p>
+                    <p className="text-muted-foreground">
+                        Inizia ora e scopri come ottimizzare il tuo lavoro con le attrezzature giuste.
+                    </p>
+                </div>
+                <div>
+                    <KitConfigurator />
+                </div>
+            </div>
+        </section>
+
       </main>
     </div>
   );
@@ -248,7 +314,3 @@ function ProductCard({ product }: { product: Product }) {
     </Card>
   )
 }
-
-    
-
-    
