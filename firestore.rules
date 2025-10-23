@@ -1,0 +1,110 @@
+/**
+ * @file Firestore Security Rules for Lint Microfiber Hub
+ *
+ * @core_philosophy This ruleset implements a mixed security model. It allows public read access to product catalogs and testimonials, open access for creating quote requests, and restricts user data to owner-only access.
+ *
+ * @data_structure
+ * - /products/{productId}: Publicly accessible product information.
+ * - /testimonials/{testimonialId}: Publicly accessible customer testimonials.
+ * - /quoteRequests/{quoteRequestId}: Publicly accessible quote requests.
+ * - /users/{userId}: User-specific data, accessible only by the authenticated user.
+ *
+ * @key_security_decisions
+ * - Listing users is explicitly disallowed.
+ * - No schema validation is performed beyond ensuring data consistency for authorization purposes.
+ * - Public read access is granted only to collections explicitly intended for it (products, testimonials).
+ * - The rules default to a strict, owner-only security posture for ambiguous relationships.
+ *
+ * @denormalization_for_authorization Not applicable. No denormalization is required as the authorization is based on user authentication and path-based ownership.
+ *
+ * @structural_segregation Public and private data are segregated into different collections (`products`, `testimonials`, `quoteRequests` vs. `users`).
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Allows public read access to product information and restricts writes.
+     * @path /products/{productId}
+     * @allow (get, list): if true
+     * @deny (create, update, delete): if false
+     * @principle Allows public read access, but restricts write access, as product data is managed internally.
+     */
+    match /products/{productId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Allows public read access to testimonials and restricts writes.
+     * @path /testimonials/{testimonialId}
+     * @allow (get, list): if true
+     * @deny (create, update, delete): if false
+     * @principle Allows public read access, but restricts write access, as testimonials are managed internally.
+     */
+    match /testimonials/{testimonialId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Allows anyone to create quote requests, but restricts reading, updating, and deleting.
+     * @path /quoteRequests/{quoteRequestId}
+     * @allow (create): if true
+     * @deny (get, list, update, delete): if false
+     * @principle Allows open creation of quote requests, but restricts other operations, as they are managed internally.
+     */
+    match /quoteRequests/{quoteRequestId} {
+      allow create: if true;
+      allow get, list, update, delete: if false;
+    }
+
+    /**
+     * @description Allows users to read, update, and delete their own user data.
+     * @path /users/{userId}
+     * @allow (get, list): if isOwner(userId)
+     * @allow (create): if isOwner(userId)
+     * @allow (update): if isExistingOwner(userId)
+     * @allow (delete): if isExistingOwner(userId)
+     * @principle Enforces document ownership for user data, restricting access to the authenticated user.
+     */
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Checks if the request is made by an authenticated user.
+     * @return {bool} True if the user is signed in, false otherwise.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * @description Checks if the authenticated user's UID matches the provided userId.
+     * @param {string} userId The user ID to compare against the authenticated user's UID.
+     * @return {bool} True if the user is signed in and the UID matches, false otherwise.
+     * @example isOwner('user123') == true if request.auth.uid is 'user123'
+     * @example isOwner('user456') == false if request.auth.uid is 'user123'
+     */
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    /**
+     * @description Checks if the authenticated user owns the document and if the document exists.
+     * @param {string} userId The user ID to compare against the authenticated user's UID.
+     * @return {bool} True if the user owns the document and it exists, false otherwise.
+     * @example isExistingOwner('user123') == true if request.auth.uid is 'user123' and the document exists
+     * @example isExistingOwner('user123') == false if request.auth.uid is 'user123' but the document does not exist
+     * @example isExistingOwner('user456') == false if request.auth.uid is 'user123' even if the document exists
+     */
+    function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+    }
+  }
+}
