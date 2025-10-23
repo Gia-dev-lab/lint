@@ -41,7 +41,7 @@ export default function Home() {
                 priority
             />
            )}
-           <div className="absolute inset-0 bg-background/60 -z-10" />
+           <div className="absolute inset-0 bg-background/60 backdrop-blur-sm -z-10" />
           <div className="z-10 container max-w-4xl space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
               Attrezzature per Pulizia Professionale
@@ -52,7 +52,7 @@ export default function Home() {
             <div className="flex gap-4 justify-center">
                <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
                 <DialogTrigger asChild>
-                  <Button size="lg" variant="default">Contattaci per una Consulenza</Button>
+                  <Button size="lg" variant="default" className="transition-all duration-300 hover:scale-105 hover:shadow-lg">Contattaci per una Consulenza</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                   <DialogHeader>
@@ -195,7 +195,7 @@ export default function Home() {
               <CarouselContent>
                 {testimonials.map((testimonial) => (
                   <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/3">
-                    <Card className="h-full flex flex-col">
+                    <Card className="h-full flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                       <CardContent className="p-6 flex-grow">
                         <p className="italic">"{testimonial.quote}"</p>
                       </CardContent>
@@ -249,7 +249,7 @@ export default function Home() {
 
 function SolutionCard({ title, description, link, linkLabel, product }: { title: string, description: string, link: string, linkLabel: string, product?: Product }) {
   return (
-    <Card className="flex flex-col text-center items-center p-6 hover:shadow-xl transition-shadow">
+    <Card className="flex flex-col text-center items-center p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
       {product && (
         <div className="relative h-32 w-32 mb-4 rounded-full overflow-hidden border-4 border-background shadow-md">
           <Image
@@ -268,7 +268,7 @@ function SolutionCard({ title, description, link, linkLabel, product }: { title:
         <p className="text-muted-foreground">{description}</p>
       </CardContent>
       <div className="mt-4">
-        <Button asChild variant="secondary">
+        <Button asChild variant="secondary" className="transition-transform duration-300 hover:scale-105">
           <Link href={link}>{linkLabel}</Link>
         </Button>
       </div>
@@ -279,13 +279,13 @@ function SolutionCard({ title, description, link, linkLabel, product }: { title:
 
 function ProductCard({ product }: { product: Product }) {
   return (
-    <Card className="overflow-hidden flex flex-col group">
-      <div className="relative h-48 w-full">
+    <Card className="overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+      <div className="relative h-48 w-full overflow-hidden">
         <Image
           src={product.image.imageUrl}
           alt={product.name}
           fill
-          className="object-cover transition-transform group-hover:scale-105"
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
           data-ai-hint={product.image.imageHint}
         />
       </div>
@@ -309,8 +309,10 @@ function ProductCard({ product }: { product: Product }) {
         </ul>
       </CardContent>
       <div className="p-6 pt-0 mt-auto">
-        <Button variant="outline" className="w-full">Vedi Dettagli</Button>
+        <Button variant="outline" className="w-full transition-colors duration-300 hover:bg-primary hover:text-primary-foreground">Vedi Dettagli</Button>
       </div>
     </Card>
   )
 }
+
+    
