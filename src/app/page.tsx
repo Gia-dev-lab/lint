@@ -28,12 +28,23 @@ export default function Home() {
     <div className="flex flex-col">
       <main>
         {/* Sezione Eroe */}
-        <section className="relative w-full h-[60vh] flex items-center justify-center text-center bg-background text-foreground">
+        <section className="relative w-full h-[60vh] flex items-center justify-center text-center text-foreground">
+           {heroImage && (
+            <Image
+                src={heroImage.imageUrl}
+                alt={heroImage.description}
+                fill
+                className="object-cover -z-10"
+                data-ai-hint={heroImage.imageHint}
+                priority
+            />
+           )}
+           <div className="absolute inset-0 bg-background/60 -z-10" />
           <div className="z-10 container max-w-4xl space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
               Attrezzature per Pulizia Professionale
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground">
+            <p className="text-lg md:text-xl text-foreground/80">
               Da Lint, sappiamo che per un professionista ogni componente dell’attrezzatura è cruciale per l’efficienza e il risultato finale. Per questo abbiamo creato un ecosistema completo di attrezzature per pulizia professionale, che va oltre i singoli prodotti per offrirti una soluzione integrata e performante.
             </p>
             <div className="flex gap-4 justify-center">
@@ -64,7 +75,7 @@ export default function Home() {
                 title="Panni in Microfibra"
                 description="Il cuore di ogni intervento di pulizia. Dalla car detailing all'Ho.Re.Ca, la nostra selezione garantisce prestazioni superiori."
                 link="#products"
-                linkLabel="Esplora i Panni"
+                linkLabel="Esplora i Panni in Microfibra"
                 product={products.find(p => p.category === 'Panni')}
               />
               <SolutionCard 
@@ -120,14 +131,14 @@ export default function Home() {
                     <CheckCircle2 className="text-primary mt-1 flex-shrink-0" /> 
                     <div>
                         <h4 className="font-semibold">Efficienza Operativa</h4>
-                        <p className="text-muted-foreground">Le nostre attrezzature lavorano in sinergia, ottimizzando tempi e riducendo sprechi.</p>
+                        <p className="text-muted-foreground">Le nostre attrezzature sono pensate per lavorare in sinergia, ottimizzando tempi e riducendo sprechi.</p>
                     </div>
                 </li>
                  <li className="flex items-start gap-3">
                     <CheckCircle2 className="text-primary mt-1 flex-shrink-0" /> 
                     <div>
                         <h4 className="font-semibold">Supporto Completo</h4>
-                        <p className="text-muted-foreground">Consulenza specializzata e listini dedicati a rivenditori e grandi utilizzatori.</p>
+                        <p className="text-muted-foreground">Offriamo consulenza specializzata per aiutarti a costruire il kit di pulizia perfetto per le tue esigenze, con listini dedicati a rivenditori e grandi utilizzatori.</p>
                     </div>
                 </li>
               </ul>
