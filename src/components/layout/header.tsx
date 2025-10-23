@@ -16,10 +16,15 @@ import {
 import { Menu, Search, Phone, Mail, Sparkles } from "lucide-react";
 import { Logo } from "@/components/icons";
 import { QuoteRequestForm } from "../quote-request-form";
+import { useUser } from "@/firebase";
+import { UserNav } from "../auth/user-nav";
+import { AuthForm } from "../auth/auth-form";
 
 export default function Header() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, isUserLoading } = useUser();
   
   const navLinks = [
     { href: "#solutions", label: "Soluzioni" },
@@ -78,6 +83,22 @@ export default function Header() {
                 <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
                 </DialogContent>
             </Dialog>
+
+            {!isUserLoading && (
+              user ? (
+                <UserNav user={user} />
+              ) : (
+                <Dialog open={isAuthOpen} onOpenChange={setIsAuthOpen}>
+                  <DialogTrigger asChild>
+                    <Button variant="outline">Accedi</Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <AuthForm onSuccess={() => setIsAuthOpen(false)} />
+                  </DialogContent>
+                </Dialog>
+              )
+            )}
+
 
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
