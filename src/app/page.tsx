@@ -18,22 +18,37 @@ import {
 } from "@/components/ui/dialog";
 import { QuoteRequestForm } from "@/components/quote-request-form";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
 const heroImage = placeholderImages.find(img => img.id === 'hero-background');
 
+const animatedHeadlines = [
+  "Efficienza Ineguagliabile.",
+  "Qualità Professionale.",
+  "Supporto Dedicato.",
+];
+
 export default function Home() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const selectedProducts = products.slice(0, 4);
+  const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHeadlineIndex((prevIndex) => (prevIndex + 1) % animatedHeadlines.length);
+    }, 3000); // Cambia ogni 3 secondi
+    return () => clearInterval(interval);
+  }, []);
+
 
   return (
     <div className="flex flex-col">
       <main>
         {/* Sezione Eroe */}
-        <section className="relative w-full h-[60vh] flex items-center justify-center text-center text-foreground overflow-hidden">
+        <section className="relative w-full h-[70vh] flex items-center justify-center text-center text-foreground overflow-hidden">
            {heroImage && (
             <Image
                 src={heroImage.imageUrl}
@@ -56,14 +71,24 @@ export default function Home() {
               particleColor="hsl(var(--foreground))"
             />
           </div>
-          <div className="z-10 container max-w-4xl space-y-6">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-foreground">
-              Attrezzature per Pulizia Professionale
+          <AnimateOnScroll className="z-10 container max-w-5xl">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
+              Lint: L'Ecosistema Completo per la Pulizia Professionale.
             </h1>
-            <p className="text-lg md:text-xl text-foreground/80">
-              Da Lint, sappiamo che per un professionista ogni componente dell’attrezzatura è cruciale per l’efficienza e il risultato finale. Per questo abbiamo creato un ecosistema completo di attrezzature per pulizia professionale, che va oltre i singoli prodotti per offrirti una soluzione integrata e performante. Che tu abbia bisogno di panni tecnici ad alte prestazioni, di accessori per ottimizzare il lavoro o di ricambi per garantire la continuità operativa, qui troverai la qualità e l’affidabilità che il tuo business merita.
+            <div className="text-3xl md:text-5xl font-semibold text-primary mt-4 h-16 relative">
+              {animatedHeadlines.map((text, index) => (
+                <span
+                  key={index}
+                  className={`absolute w-full left-0 transition-all duration-500 ease-in-out ${index === currentHeadlineIndex ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5'}`}
+                >
+                  {text}
+                </span>
+              ))}
+            </div>
+            <p className="mt-6 text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto">
+              Dalla microfibra tecnica ai ricambi essenziali, ti offriamo soluzioni integrate per elevare l'efficienza e il risultato del tuo lavoro.
             </p>
-            <div className="flex gap-4 justify-center">
+            <div className="mt-8 flex gap-4 justify-center">
                <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
                 <DialogTrigger asChild>
                   <Button size="lg" variant="default" className="transition-all duration-300 hover:scale-105 hover:shadow-lg">Contattaci per una Consulenza</Button>
@@ -75,8 +100,11 @@ export default function Home() {
                   <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
                 </DialogContent>
               </Dialog>
+              <Button size="lg" variant="outline" asChild className="transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                <Link href="#solutions">Esplora le Soluzioni</Link>
+              </Button>
             </div>
-          </div>
+          </AnimateOnScroll>
         </section>
         
         {/* Sezione Nuova Soluzioni Professionali */}
@@ -339,5 +367,4 @@ function ProductCard({ product }: { product: Product }) {
   )
 }
 
-    
     
