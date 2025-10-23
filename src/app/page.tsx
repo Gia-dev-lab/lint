@@ -45,7 +45,7 @@ export default function Home() {
               Attrezzature per Pulizia Professionale
             </h1>
             <p className="text-lg md:text-xl text-foreground/80">
-              Da Lint, sappiamo che per un professionista ogni componente dell’attrezzatura è cruciale per l’efficienza e il risultato finale. Per questo abbiamo creato un ecosistema completo di attrezzature per pulizia professionale, che va oltre i singoli prodotti per offrirti una soluzione integrata e performante.
+              Da Lint, sappiamo che per un professionista ogni componente dell’attrezzatura è cruciale per l’efficienza e il risultato finale. Per questo abbiamo creato un ecosistema completo di attrezzature per pulizia professionale, che va oltre i singoli prodotti per offrirti una soluzione integrata e performante. Che tu abbia bisogno di panni tecnici ad alte prestazioni, di accessori per ottimizzare il lavoro o di ricambi per garantire la continuità operativa, qui troverai la qualità e l’affidabilità che il tuo business merita.
             </p>
             <div className="flex gap-4 justify-center">
                <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
@@ -73,24 +73,45 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
               <SolutionCard 
                 title="Panni in Microfibra"
-                description="Il cuore di ogni intervento di pulizia. Dalla car detailing all'Ho.Re.Ca, la nostra selezione garantisce prestazioni superiori."
+                description="Il cuore di ogni intervento di pulizia. La nostra selezione include panni professionali per ogni applicazione: dall’asciugatura ultra-rapida alla pulizia senza aloni."
                 link="#products"
-                linkLabel="Esplora i Panni in Microfibra"
+                linkLabel="Esplora i Panni"
                 product={products.find(p => p.category === 'Panni')}
               />
               <SolutionCard 
                 title="Accessori per la Pulizia"
-                description="Gli strumenti giusti che fanno la differenza. Spugne, supporti e applicatori per massimizzare l’efficienza."
+                description="Gli strumenti giusti che fanno la differenza. In questa sezione troverai spugne, supporti, applicatori e tutto ciò che serve per massimizzare l’efficienza."
                 link="#products"
                 linkLabel="Scopri gli Accessori"
                 product={products.find(p => p.category === 'Accessori')}
               />
               <SolutionCard 
                 title="Ricambi Professionali"
-                description="Non lasciare che un dettaglio fermi il tuo lavoro. La nostra gamma di ricambi ti assicura la massima continuità operativa."
+                description="Non lasciare che un dettaglio fermi il tuo lavoro. La nostra gamma di ricambi ti assicura la massima continuità operativa e performance ottimali."
                 link="#products"
                 linkLabel="Trova i Ricambi"
                 product={products.find(p => p.category === 'Parti di Ricambio')}
+              />
+              <SolutionCard
+                title="Panni per Autolavaggio"
+                description="Panni specifici per autolavaggi, ad alta resistenza e capacità di assorbimento per un self-service di qualità e un detailing impeccabile."
+                link="#products"
+                linkLabel="Esplora i Panni"
+                product={products.find(p => p.category === 'Panni per Autolavaggio')}
+              />
+              <SolutionCard
+                title="Detergenti per Pulizia"
+                description="Prodotti chimici professionali per una pulizia profonda. Formule ecologiche ed efficaci per ogni tipo di superficie e sporco."
+                link="#products"
+                linkLabel="Scopri i Detergenti"
+                product={products.find(p => p.category === 'Detergenti')}
+              />
+              <SolutionCard
+                title="Kit di Pulizia e Detailing"
+                description="Kit pronti all'uso per professionisti. Soluzioni complete che includono tutto il necessario per iniziare subito a lavorare con efficienza."
+                link="#products"
+                linkLabel="Vedi i Kit"
+                product={products.find(p => p.category === 'Kit')}
               />
             </div>
           </div>
@@ -106,7 +127,8 @@ export default function Home() {
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
-                {products.filter(p => p.category !== 'Panni' && p.category !== 'Accessori' && p.category !== 'Parti di Ricambio').map(product => <ProductCard key={product.id} product={product} />)}
+                {products.filter(p => !['Panni', 'Accessori', 'Parti di Ricambio', 'Panni per Autolavaggio', 'Detergenti', 'Kit'].includes(p.category)).map(product => <ProductCard key={product.id} product={product} />)}
+                {products.length === 0 && <p>Nessun prodotto da mostrare in questa sezione.</p>}
             </div>
           </div>
         </section>
@@ -124,14 +146,14 @@ export default function Home() {
                     <CheckCircle2 className="text-primary mt-1 flex-shrink-0" /> 
                     <div>
                         <h4 className="font-semibold">Qualità Selezionata</h4>
-                        <p className="text-muted-foreground">Ogni articolo è testato per garantire standard elevati di performance e durata.</p>
+                        <p className="text-muted-foreground">Ogni articolo, dal panno più tecnico al più piccolo ricambio, è testato per garantire standard elevati di performance e durata.</p>
                     </div>
                 </li>
                  <li className="flex items-start gap-3">
                     <CheckCircle2 className="text-primary mt-1 flex-shrink-0" /> 
                     <div>
                         <h4 className="font-semibold">Efficienza Operativa</h4>
-                        <p className="text-muted-foreground">Le nostre attrezzature sono pensate per lavorare in sinergia, ottimizzando tempi e riducendo sprechi.</p>
+                        <p className="text-muted-foreground">Le nostre attrezzature per pulizia professionale sono pensate per lavorare in sinergia, ottimizzando i tempi e riducendo gli sprechi di prodotto e di energia.</p>
                     </div>
                 </li>
                  <li className="flex items-start gap-3">
@@ -229,3 +251,5 @@ function ProductCard({ product }: { product: Product }) {
     </Card>
   )
 }
+
+    
