@@ -5,8 +5,8 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 
 export const metadata: Metadata = {
-  title: 'Lint Microfibra - Forniture Professionali in Microfibra',
-  description: 'Il tuo fornitore unico per prodotti di pulizia professionali in microfibra per autolavaggi e settore Ho.Re.Ca.',
+  title: 'Lint Professional Cleaning - Attrezzature per Pulizia Professionale',
+  description: 'Soluzioni integrate e performanti per professionisti del pulito: panni tecnici, accessori e ricambi per imprese, autolavaggi e Ho.Re.Ca.',
   icons: {
     icon: '/favicon.ico',
   },

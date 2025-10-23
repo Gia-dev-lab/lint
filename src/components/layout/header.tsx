@@ -22,9 +22,9 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const navLinks = [
+    { href: "#solutions", label: "Soluzioni" },
     { href: "#products", label: "Prodotti" },
-    { href: "#configurator", label: "Configuratore Kit" },
-    { href: "#testimonials", label: "Testimonianze" },
+    { href: "#why-lint", label: "Perché Lint" },
   ];
 
   return (
@@ -50,7 +50,7 @@ export default function Header() {
         <div className="flex flex-1 items-center justify-end gap-2 sm:gap-4">
             <div className="hidden w-full max-w-xs md:flex relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="Cerca prodotti, ricambi..." className="pl-9" />
+                <Input placeholder="Cerca attrezzature, ricambi..." className="pl-9" />
             </div>
 
             <div className="hidden items-center gap-4 lg:flex">
@@ -58,22 +58,22 @@ export default function Header() {
                     <Phone size={16} />
                     <span>+39 02 1234567</span>
                 </a>
-                <a href="mailto:vendite@lintmicrofibra.it" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
+                <a href="mailto:vendite@lintpro.it" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
                     <Mail size={16} />
-                    <span>vendite@lintmicrofibra.it</span>
+                    <span>vendite@lintpro.it</span>
                 </a>
             </div>
 
             <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
                 <DialogTrigger asChild>
-                <Button variant="accent" className="hidden sm:flex shrink-0">
+                <Button variant="default" className="hidden sm:flex shrink-0">
                     <Sparkles className="mr-2 h-4 w-4" />
-                    Richiedi Preventivo
+                    Richiedi Consulenza
                 </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Richiedi un Preventivo Personalizzato</DialogTitle>
+                    <DialogTitle>Richiedi una Consulenza o un Preventivo</DialogTitle>
                 </DialogHeader>
                 <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
                 </DialogContent>
@@ -104,18 +104,18 @@ export default function Header() {
                         ))}
                     </nav>
                     <div className="mt-auto flex flex-col gap-4 border-t pt-4">
-                        <Button variant="accent" onClick={() => { setIsMobileMenuOpen(false); setIsQuoteOpen(true);}}>
+                        <Button variant="default" onClick={() => { setIsMobileMenuOpen(false); setIsQuoteOpen(true);}}>
                             <Sparkles className="mr-2 h-4 w-4" />
-                            Richiedi un Preventivo
+                            Richiedi Consulenza
                         </Button>
                         <div className="flex flex-col gap-4 items-center text-sm font-medium text-muted-foreground">
                             <a href="tel:+39021234567" className="flex items-center gap-2">
                                 <Phone size={16} />
                                 <span>+39 02 1234567</span>
                             </a>
-                            <a href="mailto:vendite@lintmicrofibra.it" className="flex items-center gap-2">
+                            <a href="mailto:vendite@lintpro.it" className="flex items-center gap-2">
                                 <Mail size={16} />
-                                <span>vendite@lintmicrofibra.it</span>
+                                <span>vendite@lintpro.it</span>
                             </a>
                         </div>
                     </div>

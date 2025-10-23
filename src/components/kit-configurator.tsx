@@ -42,13 +42,13 @@ export function KitConfigurator() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Sparkles className="text-accent" />
-          Configuratore Kit Personalizzato
+          Configuratore Kit Intelligente
         </CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <Textarea
-            placeholder="Descrivi le tue esigenze di pulizia, es: 'detailing auto a domicilio' o 'cucina di hotel affollata'."
+            placeholder="Descrivi la tua attività, es: 'impresa di pulizie per uffici' o 'centro car detailing'."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={5}
@@ -59,10 +59,10 @@ export function KitConfigurator() {
             {isPending ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Genero Suggerimenti...
+                Analisi in corso...
               </>
             ) : (
-              "Ottieni Suggerimenti dall'IA"
+              "Trova la Soluzione Ideale"
             )}
           </Button>
         </form>
@@ -76,7 +76,7 @@ export function KitConfigurator() {
 
         {suggestions.length > 0 && (
           <div className="mt-6">
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2"><Lightbulb className="text-accent"/> Consigliato per te:</h3>
+            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2"><Lightbulb className="text-accent"/> Kit consigliato per te:</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {suggestions.map((suggestion) => {
                 const product = products.find(p => p.id === suggestion.id);

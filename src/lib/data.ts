@@ -24,11 +24,13 @@ const findImage = (id: string): ImagePlaceholder => {
   return image;
 };
 
+export type ProductCategory = 'Panni' | 'Accessori' | 'Parti di Ricambio' | 'Panni per Autolavaggio' | 'Detergenti' | 'Kit';
+
 export type Product = {
   id: string;
   name: string;
   description: string;
-  category: 'Panni' | 'Accessori' | 'Parti di Ricambio' | 'Kit';
+  category: ProductCategory;
   image: ImagePlaceholder;
   details: string[];
 };
@@ -37,31 +39,15 @@ export const products: Product[] = [
   {
     id: 'p1',
     name: 'Panno Pro Anti-Pelucchi',
-    description: 'Panno in microfibra ad alto assorbimento e anti-alone per tutte le superfici.',
+    description: 'Il cuore di ogni intervento di pulizia. Microfibra professionale per asciugatura ultra-rapida e pulizia senza aloni.',
     category: 'Panni',
     image: findImage('product-cloth-1'),
     details: ['300 GSM', 'Dimensioni 40x40 cm', 'Bordi tagliati a ultrasuoni'],
   },
   {
-    id: 'p2',
-    name: 'Panni per Pulizia Profonda (5 pz)',
-    description: 'Doppio lato per strofinare e lucidare. Ideale per lo sporco difficile.',
-    category: 'Panni',
-    image: findImage('product-cloth-2'),
-    details: ['Codifica a colori per compiti diversi', 'Resistenti e di lunga durata', 'Lavabili in lavatrice'],
-  },
-  {
-    id: 'p3',
-    name: 'Spruzzino con Impugnatura Ergonomica',
-    description: 'Spruzzino professionale da 1L con ugello regolabile.',
-    category: 'Accessori',
-    image: findImage('product-accessory-1'),
-    details: ['Materiali resistenti agli agenti chimici', 'Design ergonomico', 'Indicatori di misura laterali'],
-  },
-  {
     id: 'p4',
     name: 'Tergivetro Professionale 45cm',
-    description: 'Tergivetro in acciaio inox per vetri perfetti e senza aloni.',
+    description: 'Accessori selezionati per un lavoro impeccabile. Tergivetro in acciaio inox per vetri perfetti.',
     category: 'Accessori',
     image: findImage('product-accessory-2'),
     details: ['Lama in gomma sostituibile', 'Manico con impugnatura comoda', 'Adatto a prolunghe standard'],
@@ -69,18 +55,34 @@ export const products: Product[] = [
   {
     id: 'p5',
     name: 'Gruppo Filtro per Modello X-100',
-    description: 'Filtro di ricambio OEM per la lavasciuga pavimenti serie X-100.',
+    description: 'Ricambi per la massima continuità operativa. Filtro di ricambio OEM per lavasciuga pavimenti serie X-100.',
     category: 'Parti di Ricambio',
     image: findImage('product-equipment-1'),
     details: ['Codice #EQP-45-2B', 'Filtrazione di classe HEPA', 'Facile da installare'],
   },
   {
+    id: 'p7',
+    name: 'Panni in Microfibra Linea Self Car Wash',
+    description: 'Panni specifici per autolavaggi, ad alta resistenza e capacità di assorbimento per un self-service di qualità.',
+    category: 'Panni per Autolavaggio',
+    image: findImage('product-cloth-2'),
+    details: ['Ultra resistenti ai lavaggi', 'Asciugatura rapida', 'Non graffiano la carrozzeria'],
+  },
+  {
+    id: 'p8',
+    name: 'Detergente Universale Concentrato',
+    description: 'Prodotti chimici professionali per una pulizia profonda. Formula ecologica ed efficace su tutte le superfici.',
+    category: 'Detergenti',
+    image: findImage('product-accessory-1'),
+    details: ['Tanica da 5L', 'Diluizione 1:100', 'Profumazione neutra'],
+  },
+  {
     id: 'p6',
-    name: 'Kit Iniziale per Detailing Auto',
-    description: 'Tutto il necessario per iniziare con il detailing professionale di auto.',
+    name: 'Kit Detailing Auto Completo',
+    description: 'Kit pronti all\'uso per professionisti. Include tutto il necessario per iniziare con il detailing di auto.',
     category: 'Kit',
     image: findImage('product-kit-1'),
-    details: ['Include 5 tipi di panni', 'Include guanto e panno per asciugatura', 'Perfetto per clienti B2B'],
+    details: ['Include 5 tipi di panni', 'Guanto e panno per asciugatura', 'Perfetto per clienti B2B'],
   },
 ];
 
@@ -95,25 +97,25 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     id: 't1',
-    name: 'Mario Rossi',
-    company: 'Autolavaggio Splendido S.r.l.',
-    quote: 'Lint Microfibra ha trasformato la nostra efficienza. I loro panni durano più a lungo e hanno prestazioni migliori di qualsiasi altro marchio che abbiamo provato. Il processo di ordine B2B è impeccabile.',
+    name: 'Marco Ferri',
+    company: 'Impresa Pulizie Brillante',
+    quote: 'Lint Professional Cleaning ha rivoluzionato la nostra efficienza. Le loro attrezzature sono robuste, performanti e ci permettono di ottimizzare i tempi. Il supporto B2B è eccezionale.',
     image: findImage('testimonial-1'),
   },
   {
     id: 't2',
-    name: 'Giulia Bianchi',
-    company: 'Hotel Magnifico',
-    quote: 'La qualità dei prodotti in microfibra è eccezionale. Il nostro personale delle pulizie è entusiasta e i nostri ospiti notano la differenza. Altamente raccomandato per qualsiasi attività Ho.Re.Ca.',
+    name: 'Sofia Neri',
+    company: 'Grand Hotel Excelsior',
+    quote: 'La qualità dei prodotti è ineguagliabile. Il nostro personale è più efficiente e gli ospiti notano la differenza nella pulizia delle stanze e delle aree comuni. Un partner affidabile per l\'Ho.Re.Ca.',
     image: findImage('testimonial-2'),
   },
   {
     id: 't3',
-    name: 'Carlos Rodriguez',
-    company: 'Detailing Auto di Lusso',
-    quote: 'Mi affido ai loro kit di detailing per tutti i miei clienti di alta gamma. I risultati sono costantemente impeccabili. Il configuratore di kit personalizzato è una svolta per trovare gli strumenti giusti.',
+    name: 'Luca Esposito',
+    company: 'Car Detailing Milano',
+    quote: 'Mi affido ai loro kit e panni tecnici per i miei clienti più esigenti. I risultati sono sempre perfetti e la durata dei materiali è un grande vantaggio economico.',
     image: findImage('testimonial-1'),
   },
 ];
 
-export const productCategories = ['Panni', 'Accessori', 'Parti di Ricambio', 'Kit'] as const;
+export const productCategories: ProductCategory[] = ['Panni', 'Accessori', 'Parti di Ricambio', 'Panni per Autolavaggio', 'Detergenti', 'Kit'];

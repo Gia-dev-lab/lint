@@ -4,9 +4,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { products, testimonials, productCategories, type Product } from "@/lib/data";
+import { products, testimonials, type Product } from "@/lib/data";
 import { placeholderImages } from "@/lib/data";
 import { CheckCircle2 } from 'lucide-react';
 import { KitConfigurator } from "@/components/kit-configurator";
@@ -30,31 +28,18 @@ export default function Home() {
     <div className="flex flex-col">
       <main>
         {/* Sezione Eroe */}
-        <section className="relative w-full h-[60vh] flex items-center justify-center text-center text-white">
-          {heroImage && (
-            <Image
-              src={heroImage.imageUrl}
-              alt={heroImage.description}
-              fill
-              className="z-0 object-cover brightness-50"
-              priority
-              data-ai-hint={heroImage.imageHint}
-            />
-          )}
-          <div className="z-10 container max-w-4xl space-y-4">
+        <section className="relative w-full h-[60vh] flex items-center justify-center text-center bg-background text-foreground">
+          <div className="z-10 container max-w-4xl space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
-              Soluzioni Professionali in Microfibra
+              Attrezzature per Pulizia Professionale
             </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/80">
-              La fonte definitiva per prodotti di pulizia di alta qualità per Autolavaggi e industrie Ho.Re.Ca.
+            <p className="text-lg md:text-xl text-muted-foreground">
+              Da Lint, sappiamo che per un professionista ogni componente dell’attrezzatura è cruciale per l’efficienza e il risultato finale. Per questo abbiamo creato un ecosistema completo di attrezzature per pulizia professionale, che va oltre i singoli prodotti per offrirti una soluzione integrata e performante.
             </p>
             <div className="flex gap-4 justify-center">
-              <Button asChild size="lg" variant="default">
-                <Link href="#products">Sfoglia Prodotti</Link>
-              </Button>
-              <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
+               <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
                 <DialogTrigger asChild>
-                  <Button size="lg" variant="accent">Richiedi un Preventivo</Button>
+                  <Button size="lg" variant="default">Contattaci per una Consulenza</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                   <DialogHeader>
@@ -66,91 +51,135 @@ export default function Home() {
             </div>
           </div>
         </section>
+        
+        {/* Sezione Nuova Soluzioni Professionali */}
+        <section id="solutions" className="py-16 lg:py-24 bg-secondary">
+          <div className="container text-center">
+            <h2 className="text-3xl md:text-4xl font-bold">Esplora le Nostre Soluzioni Professionali</h2>
+            <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">
+              Trova rapidamente ciò di cui hai bisogno. Le nostre linee di attrezzature per pulizia professionale sono state selezionate per rispondere alle esigenze specifiche di ogni professionista del pulito.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+              <SolutionCard 
+                title="Panni in Microfibra"
+                description="Il cuore di ogni intervento di pulizia. Dalla car detailing all'Ho.Re.Ca, la nostra selezione garantisce prestazioni superiori."
+                link="#products"
+                linkLabel="Esplora i Panni"
+                product={products.find(p => p.category === 'Panni')}
+              />
+              <SolutionCard 
+                title="Accessori per la Pulizia"
+                description="Gli strumenti giusti che fanno la differenza. Spugne, supporti e applicatori per massimizzare l’efficienza."
+                link="#products"
+                linkLabel="Scopri gli Accessori"
+                product={products.find(p => p.category === 'Accessori')}
+              />
+              <SolutionCard 
+                title="Ricambi Professionali"
+                description="Non lasciare che un dettaglio fermi il tuo lavoro. La nostra gamma di ricambi ti assicura la massima continuità operativa."
+                link="#products"
+                linkLabel="Trova i Ricambi"
+                product={products.find(p => p.category === 'Parti di Ricambio')}
+              />
+            </div>
+          </div>
+        </section>
 
-        {/* Sezione Catalogo Prodotti */}
+        {/* Sezione Catalogo Prodotti Rimanenti */}
         <section id="products" className="py-16 lg:py-24 bg-background">
           <div className="container">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold">Il Nostro Catalogo Prodotti</h2>
-              <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-                Esplora la nostra gamma completa di panni in microfibra, accessori e kit specializzati.
+               <h2 className="text-3xl md:text-4xl font-bold">Le Nostre Linee di Prodotti</h2>
+               <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
+                Dalla microfibra specializzata per autolavaggi ai kit di detailing completi, abbiamo la soluzione per te.
               </p>
             </div>
-            <Tabs defaultValue="Tutti" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 mb-8">
-                <TabsTrigger value="Tutti">Tutti</TabsTrigger>
-                {productCategories.map(cat => <TabsTrigger key={cat} value={cat}>{cat}</TabsTrigger>)}
-              </TabsList>
-              
-              <TabsContent value="Tutti">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {products.map(product => <ProductCard key={product.id} product={product} />)}
-                </div>
-              </TabsContent>
-
-              {productCategories.map(cat => (
-                 <TabsContent key={cat} value={cat}>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                      {products.filter(p => p.category === cat).map(product => <ProductCard key={product.id} product={product} />)}
-                    </div>
-                </TabsContent>
-              ))}
-            </Tabs>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+                {products.filter(p => p.category !== 'Panni' && p.category !== 'Accessori' && p.category !== 'Parti di Ricambio').map(product => <ProductCard key={product.id} product={product} />)}
+            </div>
           </div>
         </section>
         
-        {/* Sezione Configuratore Kit */}
-        <section id="configurator" className="py-16 lg:py-24 bg-secondary">
+        {/* Sezione Perché Scegliere Lint */}
+        <section id="why-lint" className="py-16 lg:py-24 bg-secondary">
           <div className="container grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl font-bold">Non Trovi il Kit Giusto?</h2>
-              <p className="text-muted-foreground text-lg">
-                Lascia che il nostro assistente basato su IA crei un kit personalizzato per te. Descrivi la tua attività e le tue esigenze di pulizia, e ti suggeriremo la combinazione perfetta di prodotti.
+              <h2 className="text-3xl md:text-4xl font-bold">Perché Scegliere Lint come Fornitore di Attrezzature per Pulizia Professionale</h2>
+               <p className="text-muted-foreground text-lg">
+                Affidarsi a Lint significa scegliere un partner che comprende le sfide del mondo professionale.
               </p>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2"><CheckCircle2 className="text-primary" /> Su misura per il tuo settore (Autolavaggio, Hotel, ecc.)</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="text-primary" /> Ottimizza per efficienza e convenienza.</li>
-                <li className="flex items-center gap-2"><CheckCircle2 className="text-primary" /> Raccomandazioni istantanee, pronte per un preventivo.</li>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                    <CheckCircle2 className="text-primary mt-1 flex-shrink-0" /> 
+                    <div>
+                        <h4 className="font-semibold">Qualità Selezionata</h4>
+                        <p className="text-muted-foreground">Ogni articolo è testato per garantire standard elevati di performance e durata.</p>
+                    </div>
+                </li>
+                 <li className="flex items-start gap-3">
+                    <CheckCircle2 className="text-primary mt-1 flex-shrink-0" /> 
+                    <div>
+                        <h4 className="font-semibold">Efficienza Operativa</h4>
+                        <p className="text-muted-foreground">Le nostre attrezzature lavorano in sinergia, ottimizzando tempi e riducendo sprechi.</p>
+                    </div>
+                </li>
+                 <li className="flex items-start gap-3">
+                    <CheckCircle2 className="text-primary mt-1 flex-shrink-0" /> 
+                    <div>
+                        <h4 className="font-semibold">Supporto Completo</h4>
+                        <p className="text-muted-foreground">Consulenza specializzata e listini dedicati a rivenditori e grandi utilizzatori.</p>
+                    </div>
+                </li>
               </ul>
             </div>
-            <KitConfigurator />
+             <div className="space-y-4 rounded-lg bg-background p-8 shadow-lg">
+                <h3 className="text-2xl font-bold">Ci Rivolgiamo ai Professionisti di Diversi Settori:</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-primary/80" /> Imprese di Pulizia e Facility Management</li>
+                    <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-primary/80" /> Centri di Car Detailing e Autolavaggi</li>
+                    <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-primary/80" /> Settore Ho.Re.Ca. (Hotel, Ristoranti, Catering)</li>
+                    <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-primary/80" /> Industria e Manifattura</li>
+                    <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-primary/80" /> Rivenditori di Prodotti e Attrezzature Professionali</li>
+                </ul>
+                <p className="pt-4">Sei pronto a elevare la qualità del tuo lavoro? <a href="#" onClick={(e) => { e.preventDefault(); setIsQuoteOpen(true); }} className="text-primary font-semibold hover:underline">Contattaci per una consulenza</a> e scopri le nostre soluzioni B2B.</p>
+             </div>
           </div>
         </section>
 
-        {/* Sezione Testimonianze */}
-        <section id="testimonials" className="py-16 lg:py-24 bg-background">
-          <div className="container">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold">Scelto dai Leader del Settore</h2>
-              <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-                Leggi cosa dicono i nostri clienti B2B dei prodotti Lint Microfibra.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {testimonials.map((testimonial) => (
-                <Card key={testimonial.id} className="flex flex-col">
-                  <CardContent className="pt-6 flex-grow">
-                    <p className="italic text-muted-foreground">"{testimonial.quote}"</p>
-                  </CardContent>
-                  <CardHeader className="flex-row items-center gap-4">
-                    <Avatar>
-                      <AvatarImage src={testimonial.image.imageUrl} alt={testimonial.name} data-ai-hint={testimonial.image.imageHint} />
-                      <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <CardTitle className="text-base">{testimonial.name}</CardTitle>
-                      <CardDescription>{testimonial.company}</CardDescription>
-                    </div>
-                  </CardHeader>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
       </main>
     </div>
   );
 }
+
+function SolutionCard({ title, description, link, linkLabel, product }: { title: string, description: string, link: string, linkLabel: string, product?: Product }) {
+  return (
+    <Card className="flex flex-col text-center items-center p-6 hover:shadow-xl transition-shadow">
+      {product && (
+        <div className="relative h-32 w-32 mb-4 rounded-full overflow-hidden border-4 border-background shadow-md">
+          <Image
+            src={product.image.imageUrl}
+            alt={title}
+            fill
+            className="object-cover"
+            data-ai-hint={product.image.imageHint}
+          />
+        </div>
+      )}
+      <CardHeader className="p-0">
+        <CardTitle className="text-xl">{title}</CardTitle>
+      </CardHeader>
+      <CardContent className="p-0 mt-2 flex-grow">
+        <p className="text-muted-foreground">{description}</p>
+      </CardContent>
+      <div className="mt-4">
+        <Button asChild variant="secondary">
+          <Link href={link}>{linkLabel}</Link>
+        </Button>
+      </div>
+    </Card>
+  );
+}
+
 
 function ProductCard({ product }: { product: Product }) {
   return (

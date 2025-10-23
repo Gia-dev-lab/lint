@@ -17,10 +17,10 @@ export async function handleQuoteRequest(data: QuoteFormValues) {
     const validatedData = formSchema.parse(data);
     // In una vera applicazione, salveresti questi dati in un database (es. Firebase)
     // e invieresti una notifica email.
-    console.log("Nuova Richiesta di Preventivo:", validatedData);
+    console.log("Nuova Richiesta di Consulenza/Preventivo:", validatedData);
     return { success: true };
   } catch (error) {
-    console.error("Validazione richiesta di preventivo fallita:", error);
+    console.error("Validazione richiesta fallita:", error);
     if (error instanceof z.ZodError) {
       return { success: false, error: "Validazione fallita. Controlla i dati inseriti." };
     }
@@ -43,20 +43,20 @@ export async function getKitSuggestions(input: { description: string }) {
     const lowercasedDescription = input.description.toLowerCase();
     let suggestions: { id: string; name: string }[] = [];
 
-    if (lowercasedDescription.includes("auto") || lowercasedDescription.includes("macchina")) {
-      suggestions.push({ id: 'p6', name: 'Kit Iniziale per Detailing Auto' });
-      suggestions.push({ id: 'p1', name: 'Panno Pro Anti-Pelucchi' });
-    } else if (lowercasedDescription.includes("hotel") || lowercasedDescription.includes("vetri")) {
-      suggestions.push({ id: 'p4', name: 'Tergivetro Professionale 45cm' });
-      suggestions.push({ id: 'p2', name: 'Panni per Pulizia Profonda (5 pz)' });
+    if (lowercasedDescription.includes("auto") || lowercasedDescription.includes("macchina") || lowercasedDescription.includes("detailing")) {
+      suggestions.push({ id: 'p6', name: 'Kit Detailing Auto Completo' });
+      suggestions.push({ id: 'p7', name: 'Panni in Microfibra Linea Self Car Wash' });
+    } else if (lowercasedDescription.includes("hotel") || lowercasedDescription.includes("ristorante") || lowercasedDescription.includes("horeca")) {
+       suggestions.push({ id: 'p4', name: 'Tergivetro Professionale 45cm' });
+       suggestions.push({ id: 'p8', name: 'Detergente Universale Concentrato' });
     } else {
        suggestions.push({ id: 'p1', name: 'Panno Pro Anti-Pelucchi' });
-       suggestions.push({ id: 'p3', name: 'Spruzzino con Impugnatura Ergonomica' });
+       suggestions.push({ id: 'p5', name: 'Gruppo Filtro per Modello X-100' });
     }
 
     return { success: true, suggestions };
 
   } catch (error) {
-    return { success: false, error: "Fornisci una descrizione più dettagliata." };
+    return { success: false, error: "Fornisci una descrizione più dettagliata delle tue necessità." };
   }
 }

@@ -40,7 +40,7 @@ export function Logo(props: HTMLAttributes<HTMLDivElement>) {
                 strokeLinejoin="round"
             />
         </svg>
-      <span className="text-xl font-bold text-foreground">Lint<span className="text-primary">Microfiber</span></span>
+      <span className="text-xl font-bold text-foreground">Lint <span className="font-normal">Professional Cleaning</span></span>
     </div>
   );
 }

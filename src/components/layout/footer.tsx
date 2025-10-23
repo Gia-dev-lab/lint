@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <Logo />
             <p className="text-sm text-muted-foreground">
-              Soluzioni premium in microfibra per professionisti del lavaggio auto e Ho.Re.Ca.
+              Attrezzature per pulizia professionale. Soluzioni integrate per risultati impeccabili.
             </p>
             <div className="flex gap-4">
                 <Link href="#" aria-label="Github" className="text-muted-foreground hover:text-foreground"><Github size={20}/></Link>
@@ -22,8 +22,8 @@ export default function Footer() {
             <h4 className="font-semibold">Prodotti</h4>
             <Link href="#products" className="text-sm text-muted-foreground hover:text-foreground">Panni in Microfibra</Link>
             <Link href="#products" className="text-sm text-muted-foreground hover:text-foreground">Accessori</Link>
-            <Link href="#products" className="text-sm text-muted-foreground hover:text-foreground">Parti di Ricambio</Link>
-            <Link href="#products" className="text-sm text-muted-foreground hover:text-foreground">Kit</Link>
+            <Link href="#products" className="text-sm text-muted-foreground hover:text-foreground">Ricambi</Link>
+            <Link href="#products" className="text-sm text-muted-foreground hover:text-foreground">Kit Detailing</Link>
           </div>
           <div className="flex flex-col gap-2">
             <h4 className="font-semibold">Azienda</h4>
@@ -38,7 +38,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t pt-4 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Lint Microfibra. Tutti i diritti riservati.
+          © {new Date().getFullYear()} Lint Professional Cleaning. Tutti i diritti riservati.
         </div>
       </div>
     </footer>
