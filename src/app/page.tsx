@@ -23,6 +23,7 @@ const heroImage = placeholderImages.find(img => img.id === 'hero-background');
 
 export default function Home() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+  const selectedProducts = products.slice(0, 4);
 
   return (
     <div className="flex flex-col">
@@ -117,18 +118,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Sezione Catalogo Prodotti Rimanenti */}
+        {/* Sezione Prodotti Selezionati */}
         <section id="products" className="py-16 lg:py-24 bg-background">
           <div className="container">
             <div className="text-center mb-12">
-               <h2 className="text-3xl md:text-4xl font-bold">Le Nostre Linee di Prodotti</h2>
-               <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-                Dalla microfibra specializzata per autolavaggi ai kit di detailing completi, abbiamo la soluzione per te.
-              </p>
+               <h2 className="text-3xl md:text-4xl font-bold">Prodotti Selezionati</h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
-                {products.filter(p => !['Panni', 'Accessori', 'Parti di Ricambio', 'Panni per Autolavaggio', 'Detergenti', 'Kit'].includes(p.category)).map(product => <ProductCard key={product.id} product={product} />)}
-                {products.length === 0 && <p>Nessun prodotto da mostrare in questa sezione.</p>}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {selectedProducts.map(product => <ProductCard key={product.id} product={product} />)}
             </div>
           </div>
         </section>
@@ -251,5 +248,7 @@ function ProductCard({ product }: { product: Product }) {
     </Card>
   )
 }
+
+    
 
     
