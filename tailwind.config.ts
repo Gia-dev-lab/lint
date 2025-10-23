@@ -95,12 +95,19 @@ export default {
             height: '0',
           },
         },
+        'sparkle': {
+            '0%, 100%': { opacity: '0', transform: 'scale(0.5) rotate(0deg)' },
+            '50%': { opacity: '1', transform: 'scale(1) rotate(90deg)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'sparkle': 'sparkle 4s ease-in-out infinite',
       },
     },
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config;
+
+    

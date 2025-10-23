@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { products, testimonials, type Product } from "@/lib/data";
-import { placeholderImages } from "@/lib/data";
+import { placeholderImages } from "@/lib/placeholder-images";
 import { CheckCircle2 } from 'lucide-react';
 import { KitConfigurator } from "@/components/kit-configurator";
 import {
@@ -19,6 +19,7 @@ import { QuoteRequestForm } from "@/components/quote-request-form";
 import Link from "next/link";
 import { useState } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { SparklesCore } from "@/components/ui/sparkles";
 
 const heroImage = placeholderImages.find(img => img.id === 'hero-background');
 
@@ -30,7 +31,7 @@ export default function Home() {
     <div className="flex flex-col">
       <main>
         {/* Sezione Eroe */}
-        <section className="relative w-full h-[60vh] flex items-center justify-center text-center text-foreground">
+        <section className="relative w-full h-[60vh] flex items-center justify-center text-center text-foreground overflow-hidden">
            {heroImage && (
             <Image
                 src={heroImage.imageUrl}
@@ -41,12 +42,23 @@ export default function Home() {
                 priority
             />
            )}
-           <div className="absolute inset-0 bg-background/60 backdrop-blur-sm -z-10" />
+           <div className="absolute inset-0 bg-background/70 backdrop-blur-sm -z-10" />
+           <div className="w-full absolute inset-0 h-full">
+            <SparklesCore
+              id="tsparticlesfullpage"
+              background="transparent"
+              minSize={0.6}
+              maxSize={1.4}
+              particleDensity={100}
+              className="w-full h-full"
+              particleColor="#FFFFFF"
+            />
+          </div>
           <div className="z-10 container max-w-4xl space-y-6">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-white">
               Attrezzature per Pulizia Professionale
             </h1>
-            <p className="text-lg md:text-xl text-foreground/80">
+            <p className="text-lg md:text-xl text-white/80">
               Da Lint, sappiamo che per un professionista ogni componente dell’attrezzatura è cruciale per l’efficienza e il risultato finale. Per questo abbiamo creato un ecosistema completo di attrezzature per pulizia professionale, che va oltre i singoli prodotti per offrirti una soluzione integrata e performante. Che tu abbia bisogno di panni tecnici ad alte prestazioni, di accessori per ottimizzare il lavoro o di ricambi per garantire la continuità operativa, qui troverai la qualità e l’affidabilità che il tuo business merita.
             </p>
             <div className="flex gap-4 justify-center">
@@ -54,7 +66,7 @@ export default function Home() {
                 <DialogTrigger asChild>
                   <Button size="lg" variant="default" className="transition-all duration-300 hover:scale-105 hover:shadow-lg">Contattaci per una Consulenza</Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
+                <DialogContent className="sm:max-w-[425px] bg-background/90 backdrop-blur-lg">
                   <DialogHeader>
                     <DialogTitle>Richiedi un Preventivo Personalizzato</DialogTitle>
                   </DialogHeader>
