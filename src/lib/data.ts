@@ -28,7 +28,7 @@ export type Product = {
   id: string;
   name: string;
   description: string;
-  category: 'Cloths' | 'Accessories' | 'Equipment Parts' | 'Kits';
+  category: 'Panni' | 'Accessori' | 'Parti di Ricambio' | 'Kit';
   image: ImagePlaceholder;
   details: string[];
 };
@@ -36,51 +36,51 @@ export type Product = {
 export const products: Product[] = [
   {
     id: 'p1',
-    name: 'Lint-Free Pro Cloth',
-    description: 'High-absorption, streak-free microfiber cloth for all surfaces.',
-    category: 'Cloths',
+    name: 'Panno Pro Anti-Pelucchi',
+    description: 'Panno in microfibra ad alto assorbimento e anti-alone per tutte le superfici.',
+    category: 'Panni',
     image: findImage('product-cloth-1'),
-    details: ['300 GSM', '16"x16" size', 'Ultrasonic cut edges'],
+    details: ['300 GSM', 'Dimensioni 40x40 cm', 'Bordi tagliati a ultrasuoni'],
   },
   {
     id: 'p2',
-    name: 'Heavy Duty Scrub Cloths (5-pack)',
-    description: 'Dual-sided for scrubbing and polishing. Ideal for tough grime.',
-    category: 'Cloths',
+    name: 'Panni per Pulizia Profonda (5 pz)',
+    description: 'Doppio lato per strofinare e lucidare. Ideale per lo sporco difficile.',
+    category: 'Panni',
     image: findImage('product-cloth-2'),
-    details: ['Color-coded for different tasks', 'Durable and long-lasting', 'Machine washable'],
+    details: ['Codifica a colori per compiti diversi', 'Resistenti e di lunga durata', 'Lavabili in lavatrice'],
   },
   {
     id: 'p3',
-    name: 'Ergo-Grip Spray Bottle',
-    description: 'Professional grade 32oz spray bottle with adjustable nozzle.',
-    category: 'Accessories',
+    name: 'Spruzzino con Impugnatura Ergonomica',
+    description: 'Spruzzino professionale da 1L con ugello regolabile.',
+    category: 'Accessori',
     image: findImage('product-accessory-1'),
-    details: ['Chemical resistant materials', 'Ergonomic design', 'Measures on side'],
+    details: ['Materiali resistenti agli agenti chimici', 'Design ergonomico', 'Indicatori di misura laterali'],
   },
   {
     id: 'p4',
-    name: 'Pro-Squeegee 18"',
-    description: 'Stainless steel squeegee for perfect, streak-free windows.',
-    category: 'Accessories',
+    name: 'Tergivetro Professionale 45cm',
+    description: 'Tergivetro in acciaio inox per vetri perfetti e senza aloni.',
+    category: 'Accessori',
     image: findImage('product-accessory-2'),
-    details: ['Replaceable rubber blade', 'Comfortable grip handle', 'Fits standard extension poles'],
+    details: ['Lama in gomma sostituibile', 'Manico con impugnatura comoda', 'Adatto a prolunghe standard'],
   },
   {
     id: 'p5',
-    name: 'Filter Assembly for Model X-100',
-    description: 'OEM replacement filter for the X-100 series floor cleaner.',
-    category: 'Equipment Parts',
+    name: 'Gruppo Filtro per Modello X-100',
+    description: 'Filtro di ricambio OEM per la lavasciuga pavimenti serie X-100.',
+    category: 'Parti di Ricambio',
     image: findImage('product-equipment-1'),
-    details: ['Part #EQP-45-2B', 'HEPA-rated filtration', 'Easy to install'],
+    details: ['Codice #EQP-45-2B', 'Filtrazione di classe HEPA', 'Facile da installare'],
   },
   {
     id: 'p6',
-    name: 'Auto Detailing Starter Kit',
-    description: 'Everything you need to get started with professional car detailing.',
-    category: 'Kits',
+    name: 'Kit Iniziale per Detailing Auto',
+    description: 'Tutto il necessario per iniziare con il detailing professionale di auto.',
+    category: 'Kit',
     image: findImage('product-kit-1'),
-    details: ['Includes 5 types of cloths', 'Comes with wash mitt and drying towel', 'Perfect for B2B clients'],
+    details: ['Include 5 tipi di panni', 'Include guanto e panno per asciugatura', 'Perfetto per clienti B2B'],
   },
 ];
 
@@ -95,25 +95,25 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     id: 't1',
-    name: 'John Doe',
-    company: 'Sparkle Cleaners Inc.',
-    quote: 'Lint Microfiber Hub has transformed our efficiency. Their cloths last longer and perform better than any other brand we’ve tried. The B2B ordering process is seamless.',
+    name: 'Mario Rossi',
+    company: 'Autolavaggio Splendido S.r.l.',
+    quote: 'Lint Microfibra ha trasformato la nostra efficienza. I loro panni durano più a lungo e hanno prestazioni migliori di qualsiasi altro marchio che abbiamo provato. Il processo di ordine B2B è impeccabile.',
     image: findImage('testimonial-1'),
   },
   {
     id: 't2',
-    name: 'Jane Smith',
-    company: 'Hotel Grandeur',
-    quote: 'The quality of the microfiber products is exceptional. Our housekeeping staff is thrilled, and our guests notice the difference. Highly recommended for any Ho.Re.Ca business.',
+    name: 'Giulia Bianchi',
+    company: 'Hotel Magnifico',
+    quote: 'La qualità dei prodotti in microfibra è eccezionale. Il nostro personale delle pulizie è entusiasta e i nostri ospiti notano la differenza. Altamente raccomandato per qualsiasi attività Ho.Re.Ca.',
     image: findImage('testimonial-2'),
   },
   {
     id: 't3',
     name: 'Carlos Rodriguez',
-    company: 'Prestige Auto Detailing',
-    quote: 'I rely on their detailing kits for all my high-end clients. The results are consistently flawless. The personalized kit configurator is a game changer for finding the right tools.',
+    company: 'Detailing Auto di Lusso',
+    quote: 'Mi affido ai loro kit di detailing per tutti i miei clienti di alta gamma. I risultati sono costantemente impeccabili. Il configuratore di kit personalizzato è una svolta per trovare gli strumenti giusti.',
     image: findImage('testimonial-1'),
   },
 ];
 
-export const productCategories = ['Cloths', 'Accessories', 'Equipment Parts', 'Kits'] as const;
+export const productCategories = ['Panni', 'Accessori', 'Parti di Ricambio', 'Kit'] as const;

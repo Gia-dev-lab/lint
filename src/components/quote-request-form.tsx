@@ -20,11 +20,11 @@ import { useTransition } from "react";
 import { Loader2 } from "lucide-react";
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  company: z.string().min(2, { message: "Company name is required." }),
-  email: z.string().email({ message: "Please enter a valid email." }),
+  name: z.string().min(2, { message: "Il nome deve contenere almeno 2 caratteri." }),
+  company: z.string().min(2, { message: "Il nome dell'azienda è obbligatorio." }),
+  email: z.string().email({ message: "Inserisci un'email valida." }),
   phone: z.string().optional(),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  message: z.string().min(10, { message: "Il messaggio deve contenere almeno 10 caratteri." }),
 });
 
 type QuoteFormValues = z.infer<typeof formSchema>;
@@ -49,16 +49,16 @@ export function QuoteRequestForm({ onSuccess }: { onSuccess?: () => void }) {
       const result = await handleQuoteRequest(data);
       if (result.success) {
         toast({
-          title: "Quote Request Sent!",
-          description: "Thank you! We'll be in touch with you shortly.",
+          title: "Richiesta di Preventivo Inviata!",
+          description: "Grazie! Ti contatteremo al più presto.",
         });
         form.reset();
         onSuccess?.();
       } else {
         toast({
           variant: "destructive",
-          title: "Uh oh! Something went wrong.",
-          description: result.error || "There was a problem with your request.",
+          title: "Oops! Qualcosa è andato storto.",
+          description: result.error || "C'è stato un problema con la tua richiesta.",
         });
       }
     });
@@ -72,9 +72,9 @@ export function QuoteRequestForm({ onSuccess }: { onSuccess?: () => void }) {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Full Name</FormLabel>
+              <FormLabel>Nome Completo</FormLabel>
               <FormControl>
-                <Input placeholder="John Doe" {...field} disabled={isPending} />
+                <Input placeholder="Mario Rossi" {...field} disabled={isPending} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -85,9 +85,9 @@ export function QuoteRequestForm({ onSuccess }: { onSuccess?: () => void }) {
           name="company"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Company Name</FormLabel>
+              <FormLabel>Nome Azienda</FormLabel>
               <FormControl>
-                <Input placeholder="Your Company Inc." {...field} disabled={isPending} />
+                <Input placeholder="La Tua Azienda S.p.A." {...field} disabled={isPending} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -100,7 +100,7 @@ export function QuoteRequestForm({ onSuccess }: { onSuccess?: () => void }) {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="you@company.com" {...field} disabled={isPending} />
+                <Input placeholder="tu@azienda.it" {...field} disabled={isPending} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -111,9 +111,9 @@ export function QuoteRequestForm({ onSuccess }: { onSuccess?: () => void }) {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Phone Number (Optional)</FormLabel>
+              <FormLabel>Numero di Telefono (Opzionale)</FormLabel>
               <FormControl>
-                <Input placeholder="+1 (555) 123-4567" {...field} disabled={isPending} />
+                <Input placeholder="+39 333 1234567" {...field} disabled={isPending} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -124,10 +124,10 @@ export function QuoteRequestForm({ onSuccess }: { onSuccess?: () => void }) {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Tell us about your needs</FormLabel>
+              <FormLabel>Parlaci delle tue esigenze</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="e.g., I need a bulk order of all-purpose cloths for a hotel chain."
+                  placeholder="Es: Ho bisogno di un ordine all'ingrosso di panni multiuso per una catena di hotel."
                   className="resize-none"
                   {...field}
                   disabled={isPending}
@@ -139,7 +139,7 @@ export function QuoteRequestForm({ onSuccess }: { onSuccess?: () => void }) {
         />
         <Button type="submit" disabled={isPending} className="w-full" variant="default">
           {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {isPending ? "Sending..." : "Submit Request"}
+          {isPending ? "Invio in corso..." : "Invia Richiesta"}
         </Button>
       </form>
     </Form>

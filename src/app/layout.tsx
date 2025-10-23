@@ -5,8 +5,8 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 
 export const metadata: Metadata = {
-  title: 'Lint Microfiber Hub',
-  description: 'Your one-stop shop for professional microfiber cleaning supplies.',
+  title: 'Lint Microfibra - Forniture Professionali in Microfibra',
+  description: 'Il tuo fornitore unico per prodotti di pulizia professionali in microfibra per autolavaggi e settore Ho.Re.Ca.',
   icons: {
     icon: '/favicon.ico',
   },
@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="it" className="dark">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

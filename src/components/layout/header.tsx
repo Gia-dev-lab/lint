@@ -22,9 +22,9 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const navLinks = [
-    { href: "#products", label: "Products" },
-    { href: "#configurator", label: "Kit Configurator" },
-    { href: "#testimonials", label: "Testimonials" },
+    { href: "#products", label: "Prodotti" },
+    { href: "#configurator", label: "Configuratore Kit" },
+    { href: "#testimonials", label: "Testimonianze" },
   ];
 
   return (
@@ -50,17 +50,17 @@ export default function Header() {
         <div className="flex flex-1 items-center justify-end gap-2 sm:gap-4">
             <div className="hidden w-full max-w-xs md:flex relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="Search products, parts..." className="pl-9" />
+                <Input placeholder="Cerca prodotti, ricambi..." className="pl-9" />
             </div>
 
             <div className="hidden items-center gap-4 lg:flex">
-                <a href="tel:+18005555468" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
+                <a href="tel:+39021234567" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
                     <Phone size={16} />
-                    <span>+1 (800) 555-LINT</span>
+                    <span>+39 02 1234567</span>
                 </a>
-                <a href="mailto:sales@lintmicrofiber.com" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
+                <a href="mailto:vendite@lintmicrofibra.it" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
                     <Mail size={16} />
-                    <span>sales@lintmicrofiber.com</span>
+                    <span>vendite@lintmicrofibra.it</span>
                 </a>
             </div>
 
@@ -68,12 +68,12 @@ export default function Header() {
                 <DialogTrigger asChild>
                 <Button variant="accent" className="hidden sm:flex shrink-0">
                     <Sparkles className="mr-2 h-4 w-4" />
-                    Request Quote
+                    Richiedi Preventivo
                 </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Request a Custom Quote</DialogTitle>
+                    <DialogTitle>Richiedi un Preventivo Personalizzato</DialogTitle>
                 </DialogHeader>
                 <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
                 </DialogContent>
@@ -83,7 +83,7 @@ export default function Header() {
                 <SheetTrigger asChild>
                 <Button variant="outline" size="icon" className="md:hidden shrink-0">
                     <Menu className="h-4 w-4" />
-                    <span className="sr-only">Open menu</span>
+                    <span className="sr-only">Apri menu</span>
                 </Button>
                 </SheetTrigger>
                 <SheetContent side="left">
@@ -106,16 +106,16 @@ export default function Header() {
                     <div className="mt-auto flex flex-col gap-4 border-t pt-4">
                         <Button variant="accent" onClick={() => { setIsMobileMenuOpen(false); setIsQuoteOpen(true);}}>
                             <Sparkles className="mr-2 h-4 w-4" />
-                            Request a Quote
+                            Richiedi un Preventivo
                         </Button>
                         <div className="flex flex-col gap-4 items-center text-sm font-medium text-muted-foreground">
-                            <a href="tel:+18005555468" className="flex items-center gap-2">
+                            <a href="tel:+39021234567" className="flex items-center gap-2">
                                 <Phone size={16} />
-                                <span>+1 (800) 555-LINT</span>
+                                <span>+39 02 1234567</span>
                             </a>
-                            <a href="mailto:sales@lintmicrofiber.com" className="flex items-center gap-2">
+                            <a href="mailto:vendite@lintmicrofibra.it" className="flex items-center gap-2">
                                 <Mail size={16} />
-                                <span>sales@lintmicrofiber.com</span>
+                                <span>vendite@lintmicrofibra.it</span>
                             </a>
                         </div>
                     </div>

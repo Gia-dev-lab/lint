@@ -32,7 +32,7 @@ export function KitConfigurator() {
       if (result.success && result.suggestions) {
         setSuggestions(result.suggestions);
       } else {
-        setError(result.error || "An unexpected error occurred.");
+        setError(result.error || "Si è verificato un errore imprevisto.");
       }
     });
   };
@@ -42,13 +42,13 @@ export function KitConfigurator() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Sparkles className="text-accent" />
-          Personalized Kit Configurator
+          Configuratore Kit Personalizzato
         </CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <Textarea
-            placeholder="Describe your cleaning needs, e.g., 'mobile car detailing' or 'busy hotel kitchen'."
+            placeholder="Descrivi le tue esigenze di pulizia, es: 'detailing auto a domicilio' o 'cucina di hotel affollata'."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={5}
@@ -59,24 +59,24 @@ export function KitConfigurator() {
             {isPending ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Generating Suggestions...
+                Genero Suggerimenti...
               </>
             ) : (
-              "Get AI-Powered Suggestions"
+              "Ottieni Suggerimenti dall'IA"
             )}
           </Button>
         </form>
 
         {error && (
           <Alert variant="destructive" className="mt-4">
-            <AlertTitle>Error</AlertTitle>
+            <AlertTitle>Errore</AlertTitle>
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
 
         {suggestions.length > 0 && (
           <div className="mt-6">
-            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2"><Lightbulb className="text-accent"/> Recommended for you:</h3>
+            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2"><Lightbulb className="text-accent"/> Consigliato per te:</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {suggestions.map((suggestion) => {
                 const product = products.find(p => p.id === suggestion.id);
