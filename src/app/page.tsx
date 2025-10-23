@@ -51,14 +51,14 @@ export default function Home() {
               maxSize={1.4}
               particleDensity={100}
               className="w-full h-full"
-              particleColor="#FFFFFF"
+              particleColor="hsl(var(--foreground))"
             />
           </div>
           <div className="z-10 container max-w-4xl space-y-6">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-white">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-foreground">
               Attrezzature per Pulizia Professionale
             </h1>
-            <p className="text-lg md:text-xl text-white/80">
+            <p className="text-lg md:text-xl text-foreground/80">
               Da Lint, sappiamo che per un professionista ogni componente dell’attrezzatura è cruciale per l’efficienza e il risultato finale. Per questo abbiamo creato un ecosistema completo di attrezzature per pulizia professionale, che va oltre i singoli prodotti per offrirti una soluzione integrata e performante. Che tu abbia bisogno di panni tecnici ad alte prestazioni, di accessori per ottimizzare il lavoro o di ricambi per garantire la continuità operativa, qui troverai la qualità e l’affidabilità che il tuo business merita.
             </p>
             <div className="flex gap-4 justify-center">
@@ -327,4 +327,5 @@ function ProductCard({ product }: { product: Product }) {
   )
 }
 
+    
     
