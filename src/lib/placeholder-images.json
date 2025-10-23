@@ -1,3 +1,58 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "Abstract blue background representing cleanliness",
+      "imageUrl": "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxibHVlJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzYxMTk4OTA2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue abstract"
+    },
+    {
+      "id": "product-cloth-1",
+      "description": "A blue microfiber cloth",
+      "imageUrl": "https://images.unsplash.com/photo-1659989159234-f95286c55b05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Ymx1ZSUyMGNsb3RofGVufDB8fHx8MTc2MTIwOTQwNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blue cloth"
+    },
+    {
+      "id": "product-cloth-2",
+      "description": "A stack of colorful microfiber cloths",
+      "imageUrl": "https://images.unsplash.com/photo-1706794831045-299d2a85a8e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjbG90aCUyMHN0YWNrfGVufDB8fHx8MTc2MTIxMDQ2MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cloth stack"
+    },
+    {
+      "id": "product-accessory-1",
+      "description": "A spray bottle for cleaning solutions",
+      "imageUrl": "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3ByYXklMjBib3R0bGV8ZW58MHx8fHwxNzYxMTI0MzU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "spray bottle"
+    },
+    {
+      "id": "product-accessory-2",
+      "description": "A squeegee for window cleaning",
+      "imageUrl": "https://images.unsplash.com/photo-1759547021596-006943692ebe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzcXVlZWdlZXxlbnwwfHx8fDE3NjEyMTA0NjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "squeegee"
+    },
+    {
+      "id": "product-equipment-1",
+      "description": "A part for a cleaning machine",
+      "imageUrl": "https://images.unsplash.com/photo-1523559094051-53bac879eb80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYWNoaW5lJTIwcGFydHxlbnwwfHx8fDE3NjEyMTA0NjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "machine part"
+    },
+    {
+      "id": "product-kit-1",
+      "description": "A starter kit for car detailing",
+      "imageUrl": "https://images.unsplash.com/photo-1708805282683-50a060eba80f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjYXIlMjBkZXRhaWxpbmd8ZW58MHx8fHwxNzYxMTgwNjQwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "car detailing"
+    },
+    {
+      "id": "testimonial-1",
+      "description": "Avatar for a satisfied customer",
+      "imageUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjExMjcwNDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "testimonial-2",
+      "description": "Avatar for another satisfied customer",
+      "imageUrl": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjExMjcwNDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    }
+  ]
 }
