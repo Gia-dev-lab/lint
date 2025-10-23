@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "hero-background",
-      "description": "Abstract blue background representing cleanliness",
-      "imageUrl": "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxibHVlJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzYxMTk4OTA2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "blue abstract"
+      "description": "Ambiente di lavoro professionale con prodotti Lint",
+      "imageUrl": "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/10/Ambiente-di-lavoro-professionale-che-si-affida-a-LINT-per-la-fornitura-di-panni-in-microfibra.png",
+      "imageHint": "pulizia professionale"
     },
     {
       "id": "product-cloth-1",
@@ -45,7 +45,7 @@
     {
       "id": "testimonial-1",
       "description": "Avatar for a satisfied customer",
-      "imageUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjExMjcwNDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjExMjcwNDB8MA&ixlib M-rb-4.1.0&q=80&w=1080",
       "imageHint": "person portrait"
     },
     {
