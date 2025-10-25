@@ -6,9 +6,9 @@
       "type": "object",
       "description": "Represents a product in the Lint Microfiber Hub catalog.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the product."
+        "ID": {
+          "type": "number",
+          "description": "Numeric identifier for the product."
         },
         "nome": {
           "type": "string",
@@ -23,10 +23,6 @@
           "description": "URL of the product image.",
           "format": "uri"
         },
-        "prezzo": {
-          "type": "number",
-          "description": "The price of the product. Might not be present in all documents."
-        },
         "categorie": {
           "type": "string",
           "description": "The category the product belongs to (e.g., Microfiber Cloth, Cleaning Accessory)."
@@ -34,12 +30,23 @@
         "SKU": {
           "type": "string",
           "description": "Technical specifications or product codes, if applicable."
+        },
+        "focus_keyword": {
+          "type": "string"
+        },
+        "metadesc": {
+          "type": "string"
+        },
+        "rank_math_title": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
         }
       },
       "required": [
-        "id",
+        "ID",
         "nome",
-        "descrizionebreve",
         "immagine",
         "categorie"
       ]

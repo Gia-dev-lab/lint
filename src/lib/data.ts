@@ -27,24 +27,21 @@ const findImage = (id: string): ImagePlaceholder => {
 export type ProductCategory = 'Panni' | 'Accessori' | 'Parti di Ricambio' | 'Panni per Autolavaggio' | 'Detergenti' | 'Kit' | string;
 
 export type Product = {
-  id: string;
+  id: string; // This is the document ID from Firestore, which is a string
+  ID: number; // The numeric ID from your data
   nome: string;
   descrizionebreve: string;
   categorie: ProductCategory;
   immagine: string;
-  prezzo: number;
+  prezzo?: number; // Prezzo remains optional
   SKU?: string;
-  // Manteniamo i campi vecchi per compatibilità temporanea se necessario
-  descrizione?: string;
-  imageUrl?: string;
-  specifiche?: string;
-  categoria?: ProductCategory;
-  name?: string;
-  description?: string;
-  category?: ProductCategory;
-  image?: ImagePlaceholder;
-  details?: string[];
+  focus_keyword?: string;
+  metadesc?: string;
+  rank_math_title?: string;
+  tag?: string;
+  image?: ImagePlaceholder; // Keep for potential use with placeholders
 };
+
 
 export const products: Product[] = [];
 

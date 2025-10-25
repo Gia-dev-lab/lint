@@ -54,12 +54,12 @@ export default function Home() {
   }, []);
 
   const staticProductsForSolutions = [
-    { id: 'p1', category: 'Panni', immagine: 'https://images.unsplash.com/photo-1659989159234-f95286c55b05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Ymx1ZSUyMGNsb3RofGVufDB8fHx8MTc2MTIwOTQwNnww&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'panno' } },
-    { id: 'p2', category: 'Accessori', immagine: 'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3ByYXklMjBib3R0bGV8ZW58MHx8fHwxNzYxMTI0MzU4fDA&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'accessorio' } },
-    { id: 'p3', category: 'Parti di Ricambio', immagine: 'https://images.unsplash.com/photo-1523559094051-53bac879eb80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYWNoaW5lJTIwcGFydHxlbnwwfHx8fDE3NjEyMTA0NjF8MA&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'ricambio' } },
-    { id: 'p4', category: 'Panni per Autolavaggio', immagine: 'https://images.unsplash.com/photo-1554158488-a7f402c0380f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', image: { imageHint: 'autolavaggio' } },
-    { id: 'p5', category: 'Detergenti', immagine: 'https://images.unsplash.com/photo-1598214902123-6a4a49c3e536?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', image: { imageHint: 'detergente' } },
-    { id: 'p6', category: 'Kit', immagine: 'https://images.unsplash.com/photo-1708805282683-50a060eba80f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjYXIlMjBkZXRhaWxpbmd8ZW58MHx8fHwxNzYxMTgwNjQwfDA&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'kit' } },
+    { id: 'p1', categorie: 'Panni', immagine: 'https://images.unsplash.com/photo-1659989159234-f95286c55b05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Ymx1ZSUyMGNsb3RofGVufDB8fHx8MTc2MTIwOTQwNnww&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'panno' } },
+    { id: 'p2', categorie: 'Accessori', immagine: 'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3ByYXklMjBib3R0bGV8ZW58MHx8fHwxNzYxMTI0MzU4fDA&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'accessorio' } },
+    { id: 'p3', categorie: 'Parti di Ricambio', immagine: 'https://images.unsplash.com/photo-1523559094051-53bac879eb80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYWNoaW5lJTIwcGFydHxlbnwwfHx8fDE3NjEyMTA0NjF8MA&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'ricambio' } },
+    { id: 'p4', categorie: 'Panni per Autolavaggio', immagine: 'https://images.unsplash.com/photo-1554158488-a7f402c0380f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', image: { imageHint: 'autolavaggio' } },
+    { id: 'p5', categorie: 'Detergenti', immagine: 'https://images.unsplash.com/photo-1598214902123-6a4a49c3e536?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', image: { imageHint: 'detergente' } },
+    { id: 'p6', categorie: 'Kit', immagine: 'https://images.unsplash.com/photo-1708805282683-50a060eba80f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjYXIlMjBkZXRhaWxpbmd8ZW58MHx8fHwxNzYxMTgwNjQwfDA&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'kit' } },
   ];
 
 
@@ -140,42 +140,42 @@ export default function Home() {
                   description="Il cuore di ogni intervento di pulizia. La nostra selezione include panni professionali per ogni applicazione: dall’asciugatura ultra-rapida alla pulizia senza aloni."
                   link="#products"
                   linkLabel="Esplora i Panni"
-                  product={staticProductsForSolutions.find(p => p.category === 'Panni')}
+                  product={staticProductsForSolutions.find(p => p.categorie === 'Panni')}
                 />
                 <SolutionCard 
                   title="Accessori per la Pulizia"
                   description="Gli strumenti giusti che fanno la differenza. In questa sezione troverai spugne, supporti, applicatori e tutto ciò che serve per massimizzare l’efficienza."
                   link="#products"
                   linkLabel="Scopri gli Accessori"
-                  product={staticProductsForSolutions.find(p => p.category === 'Accessori')}
+                  product={staticProductsForSolutions.find(p => p.categorie === 'Accessori')}
                 />
                 <SolutionCard 
                   title="Ricambi Professionali"
                   description="Non lasciare che un dettaglio fermi il tuo lavoro. La nostra gamma di ricambi ti assicura la massima continuità operativa e performance ottimali."
                   link="#products"
                   linkLabel="Trova i Ricambi"
-                  product={staticProductsForSolutions.find(p => p.category === 'Parti di Ricambio')}
+                  product={staticProductsForSolutions.find(p => p.categorie === 'Parti di Ricambio')}
                 />
                 <SolutionCard
                   title="Panni per Autolavaggio"
                   description="Panni specifici per autolavaggi, ad alta resistenza e capacità di assorbimento per un self-service di qualità e un detailing impeccabile."
                   link="#products"
                   linkLabel="Esplora i Panni"
-                  product={staticProductsForSolutions.find(p => p.category === 'Panni per Autolavaggio')}
+                  product={staticProductsForSolutions.find(p => p.categorie === 'Panni per Autolavaggio')}
                 />
                 <SolutionCard
                   title="Detergenti per Pulizia"
                   description="Prodotti chimici professionali per una pulizia profonda. Formule ecologiche ed efficaci per ogni tipo di superficie e sporco."
                   link="#products"
                   linkLabel="Scopri i Detergenti"
-                  product={staticProductsForSolutions.find(p => p.category === 'Detergenti')}
+                  product={staticProductsForSolutions.find(p => p.categorie === 'Detergenti')}
                 />
                 <SolutionCard
                   title="Kit di Pulizia e Detailing"
                   description="Kit pronti all'uso per professionisti. Soluzioni complete che includono tutto il necessario per iniziare subito a lavorare con efficienza."
                   link="#products"
                   linkLabel="Vedi i Kit"
-                  product={staticProductsForSolutions.find(p => p.category === 'Kit')}
+                  product={staticProductsForSolutions.find(p => p.categorie === 'Kit')}
                 />
               </div>
             </div>
@@ -343,7 +343,7 @@ function ProductSkeleton() {
 }
 
 
-function SolutionCard({ title, description, link, linkLabel, product }: { title: string, description: string, link: string, linkLabel: string, product?: Partial<Product> }) {
+function SolutionCard({ title, description, link, linkLabel, product }: { title: string, description: string, link: string, linkLabel: string, product?: { immagine?: string; image?: { imageHint?: string } } }) {
   const imageUrl = product?.immagine;
   const imageHint = product?.image?.imageHint;
   return (
@@ -387,7 +387,6 @@ function stripHtml(html: string) {
 function ProductCard({ product }: { product: Product }) {
   const { nome, descrizionebreve, SKU, immagine } = product;
   
-  // Controlla se descrizionebreve esiste prima di pulirlo
   const cleanDescription = descrizionebreve ? stripHtml(descrizionebreve) : "";
 
   return (
