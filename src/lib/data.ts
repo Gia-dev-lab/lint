@@ -38,10 +38,9 @@ export type Product = {
   metadesc?: string;
   rank_math_title?: string;
   tag?: string;
-  image?: ImagePlaceholder;
 };
 
-
+// This is intentionally left empty. All product data should come from Firestore.
 export const products: Product[] = [];
 
 

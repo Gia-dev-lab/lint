@@ -380,13 +380,15 @@ function ProductCard({ product }: { product: any }) {
   return (
     <Card className="overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
       <div className="relative h-48 w-full overflow-hidden">
-        <Image
-          src={immagine || "https://picsum.photos/seed/default/600/400"}
-          alt={nome || "Immagine Prodotto"}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
-          data-ai-hint="product image"
-        />
+        {immagine && 
+          <Image
+            src={immagine}
+            alt={nome || "Immagine Prodotto"}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+            data-ai-hint="product image"
+          />
+        }
       </div>
       <CardHeader className="flex-grow">
         {nome && <CardTitle className="text-lg">{nome}</CardTitle>}
@@ -410,5 +412,3 @@ function ProductCard({ product }: { product: any }) {
     </Card>
   )
 }
-
-    
