@@ -390,10 +390,12 @@ function ProductCard({ product }: { product: Product }) {
       </div>
       <CardHeader className="flex-grow">
         <CardTitle className="text-lg">{nome}</CardTitle>
-        {descrizionebreve && <CardDescription 
+        {descrizionebreve && (
+          <CardDescription 
             className="h-10 line-clamp-2"
             dangerouslySetInnerHTML={{ __html: descrizionebreve }}
-          />}
+          />
+        )}
       </CardHeader>
       <CardContent>
         {SKU && (
@@ -408,5 +410,3 @@ function ProductCard({ product }: { product: Product }) {
     </Card>
   )
 }
-
-    

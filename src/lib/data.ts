@@ -28,18 +28,17 @@ export type ProductCategory = 'Panni' | 'Accessori' | 'Parti di Ricambio' | 'Pan
 
 export type Product = {
   id: string; // This is the document ID from Firestore, which is a string
-  ID: number; // The numeric ID from your data
+  ID: number;
   nome: string;
-  descrizionebreve: string;
+  descrizionebreve?: string;
   categorie: ProductCategory;
   immagine: string;
-  prezzo?: number; // Prezzo remains optional
   SKU?: string;
   focus_keyword?: string;
   metadesc?: string;
   rank_math_title?: string;
   tag?: string;
-  image?: ImagePlaceholder; // Keep for potential use with placeholders
+  image?: ImagePlaceholder;
 };
 
 
