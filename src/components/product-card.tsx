@@ -4,7 +4,8 @@ import Image from "next/image";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 // Funzione per rimuovere i tag HTML da una stringa
-const stripHtml = (html: string) => {
+const stripHtml = (html: string | undefined | null): string => {
+  if (!html) return "";
   if (typeof window === 'undefined') {
     // Sostituzione base lato server
     return html.replace(/<[^>]+>/g, '');
@@ -16,7 +17,7 @@ const stripHtml = (html: string) => {
 export function ProductCard({ product }: { product: any }) {
   const { nome, immagine, descrizionebreve, metadesc, SKU } = product;
 
-  const plainDescrizioneBreve = descrizionebreve ? stripHtml(descrizionebreve) : '';
+  const plainDescrizioneBreve = stripHtml(descrizionebreve);
 
   return (
     <Card className="overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
