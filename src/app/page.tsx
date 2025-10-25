@@ -375,13 +375,44 @@ function SolutionCard({ title, description, link, linkLabel, product }: { title:
 }
 
 function ProductCard({ product }: { product: any }) {
-  const { nome } = product;
+  const { nome, immagine, descrizionebreve, metadesc } = product;
+
+  // Function to strip HTML tags for plain text display
+  const stripHtml = (html: string) => {
+    if (typeof window === 'undefined') {
+      // Basic stripping for server-side
+      return html.replace(/<[^>]+>/g, '');
+    }
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || "";
+  };
+
+  const plainDescrizioneBreve = descrizionebreve ? stripHtml(descrizionebreve) : '';
 
   return (
     <Card className="overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+      {immagine && (
+        <div className="relative aspect-square w-full">
+          <Image src={immagine} alt={nome || 'Immagine Prodotto'} fill className="object-cover" />
+        </div>
+      )}
       <CardHeader className="flex-grow">
         {nome && <CardTitle className="text-lg">{nome}</CardTitle>}
+        {plainDescrizioneBreve && (
+          <CardDescription className="text-sm text-muted-foreground mt-2 line-clamp-2">
+            {plainDescrizioneBreve}
+          </CardDescription>
+        )}
       </CardHeader>
+      <CardContent>
+        {metadesc && (
+          <p className="text-xs text-muted-foreground/80 line-clamp-3">
+            {metadesc}
+          </p>
+        )}
+      </CardContent>
     </Card>
   )
 }
+
+    
