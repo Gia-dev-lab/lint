@@ -3,43 +3,23 @@ import type { HTMLAttributes } from "react";
 export function Logo(props: HTMLAttributes<HTMLDivElement>) {
   return (
     <div className="flex items-center gap-2" {...props}>
-        <svg
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="text-primary"
-            >
-            <path
-                d="M12 2L2 7V17L12 22L22 17V7L12 2Z"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-            />
-            <path
-                d="M2 7L12 12L22 7"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-            />
-            <path
-                d="M12 22V12"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-            />
-            <path
-                d="M17 4.5L7 9.5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-            />
-        </svg>
+      <svg
+        width="80"
+        height="32"
+        viewBox="0 0 80 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0 0H12V26H0V0Z" fill="#0057B8" transform="translate(0 6)"/>
+        <path d="M0 0H32V6H0V0Z" fill="#0057B8" transform="translate(0 26)"/>
+        <rect x="30" y="14" width="8" height="18" fill="#0057B8"/>
+        <rect x="30" y="4" width="8" height="6" fill="#FFD700"/>
+        <path d="M46 14H54V32H46V14Z" fill="#0057B8"/>
+        <path d="M46 14C46 10.6863 48.6863 8 52 8L54 8L54 14L52 14C50.8954 14 50 14.8954 50 16L50 32H64C64 32 64 22 60 18C56 14 54 14 54 14" stroke="#0057B8" strokeWidth="0" fill="#0057B8"/>
+        <path d="M58 14H66V32H58V14Z" fill="#0057B8"/>
+        <rect x="68" y="10" width="8" height="22" fill="#0057B8" />
+        <rect x="63" y="16" width="18" height="6" fill="#0057B8" />
+      </svg>
       <span className="text-xl font-bold text-foreground">Lint <span className="font-normal">Professional Cleaning</span></span>
     </div>
   );
