@@ -4,7 +4,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { testimonials, type Product } from "@/lib/data";
+import { testimonials } from "@/lib/data";
 import { placeholderImages } from "@/lib/placeholder-images";
 import { CheckCircle2, Loader2 } from 'lucide-react';
 import { KitConfigurator } from "@/components/kit-configurator";
@@ -44,7 +44,7 @@ export default function Home() {
     return query(collection(firestore, "prodotti"), limit(6));
   }, [firestore]);
 
-  const { data: products, isLoading: isLoadingProducts } = useCollection<Product>(productsQuery);
+  const { data: products, isLoading: isLoadingProducts } = useCollection(productsQuery);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -374,7 +374,7 @@ function SolutionCard({ title, description, link, linkLabel, product }: { title:
   );
 }
 
-function ProductCard({ product }: { product: Product }) {
+function ProductCard({ product }: { product: any }) {
   const { nome, descrizionebreve, SKU, immagine } = product;
 
   return (
@@ -382,16 +382,16 @@ function ProductCard({ product }: { product: Product }) {
       <div className="relative h-48 w-full overflow-hidden">
         <Image
           src={immagine || "https://picsum.photos/seed/default/600/400"}
-          alt={nome}
+          alt={nome || "Immagine Prodotto"}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-110"
           data-ai-hint="product image"
         />
       </div>
       <CardHeader className="flex-grow">
-        <CardTitle className="text-lg">{nome}</CardTitle>
+        {nome && <CardTitle className="text-lg">{nome}</CardTitle>}
         {descrizionebreve && (
-          <CardDescription 
+          <CardDescription
             className="h-10 line-clamp-2"
             dangerouslySetInnerHTML={{ __html: descrizionebreve }}
           />
@@ -410,3 +410,5 @@ function ProductCard({ product }: { product: Product }) {
     </Card>
   )
 }
+
+    
