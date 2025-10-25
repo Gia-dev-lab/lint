@@ -374,20 +374,8 @@ function SolutionCard({ title, description, link, linkLabel, product }: { title:
   );
 }
 
-function stripHtml(html: string) {
-  if (typeof window === 'undefined') {
-    // lato server, una regex semplice
-    return html.replace(/<[^>]*>?/gm, '');
-  }
-  // lato client, usiamo il DOM parser
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-  return doc.body.textContent || "";
-}
-
 function ProductCard({ product }: { product: Product }) {
   const { nome, descrizionebreve, SKU, immagine } = product;
-  
-  const cleanDescription = descrizionebreve ? stripHtml(descrizionebreve) : "";
 
   return (
     <Card className="overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
@@ -402,7 +390,10 @@ function ProductCard({ product }: { product: Product }) {
       </div>
       <CardHeader className="flex-grow">
         <CardTitle className="text-lg">{nome}</CardTitle>
-        {cleanDescription && <CardDescription className="h-10 line-clamp-2">{cleanDescription}</CardDescription>}
+        {descrizionebreve && <CardDescription 
+            className="h-10 line-clamp-2"
+            dangerouslySetInnerHTML={{ __html: descrizionebreve }}
+          />}
       </CardHeader>
       <CardContent>
         {SKU && (
@@ -417,3 +408,5 @@ function ProductCard({ product }: { product: Product }) {
     </Card>
   )
 }
+
+    
