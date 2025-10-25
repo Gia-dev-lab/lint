@@ -5,9 +5,9 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { products, testimonials, type Product } from "@/lib/data";
+import { products as staticProducts, testimonials, type Product } from "@/lib/data";
 import { placeholderImages } from "@/lib/placeholder-images";
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, Loader2 } from 'lucide-react';
 import { KitConfigurator } from "@/components/kit-configurator";
 import {
   Dialog,
@@ -22,6 +22,9 @@ import { useState, useEffect } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
+import { collection, limit, query } from "firebase/firestore";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const heroImage = placeholderImages.find(img => img.id === 'hero-background');
 
@@ -33,8 +36,16 @@ const animatedHeadlines = [
 
 export default function Home() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
-  const selectedProducts = products.slice(0, 4);
   const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);
+
+  const firestore = useFirestore();
+
+  const productsQuery = useMemoFirebase(() => {
+    if (!firestore) return null;
+    return query(collection(firestore, "prodotti"), limit(6));
+  }, [firestore]);
+
+  const { data: products, isLoading: isLoadingProducts } = useCollection<Product>(productsQuery);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -121,42 +132,42 @@ export default function Home() {
                   description="Il cuore di ogni intervento di pulizia. La nostra selezione include panni professionali per ogni applicazione: dall’asciugatura ultra-rapida alla pulizia senza aloni."
                   link="#products"
                   linkLabel="Esplora i Panni"
-                  product={products.find(p => p.category === 'Panni')}
+                  product={staticProducts.find(p => p.category === 'Panni')}
                 />
                 <SolutionCard 
                   title="Accessori per la Pulizia"
                   description="Gli strumenti giusti che fanno la differenza. In questa sezione troverai spugne, supporti, applicatori e tutto ciò che serve per massimizzare l’efficienza."
                   link="#products"
                   linkLabel="Scopri gli Accessori"
-                  product={products.find(p => p.category === 'Accessori')}
+                  product={staticProducts.find(p => p.category === 'Accessori')}
                 />
                 <SolutionCard 
                   title="Ricambi Professionali"
                   description="Non lasciare che un dettaglio fermi il tuo lavoro. La nostra gamma di ricambi ti assicura la massima continuità operativa e performance ottimali."
                   link="#products"
                   linkLabel="Trova i Ricambi"
-                  product={products.find(p => p.category === 'Parti di Ricambio')}
+                  product={staticProducts.find(p => p.category === 'Parti di Ricambio')}
                 />
                 <SolutionCard
                   title="Panni per Autolavaggio"
                   description="Panni specifici per autolavaggi, ad alta resistenza e capacità di assorbimento per un self-service di qualità e un detailing impeccabile."
                   link="#products"
                   linkLabel="Esplora i Panni"
-                  product={products.find(p => p.category === 'Panni per Autolavaggio')}
+                  product={staticProducts.find(p => p.category === 'Panni per Autolavaggio')}
                 />
                 <SolutionCard
                   title="Detergenti per Pulizia"
                   description="Prodotti chimici professionali per una pulizia profonda. Formule ecologiche ed efficaci per ogni tipo di superficie e sporco."
                   link="#products"
                   linkLabel="Scopri i Detergenti"
-                  product={products.find(p => p.category === 'Detergenti')}
+                  product={staticProducts.find(p => p.category === 'Detergenti')}
                 />
                 <SolutionCard
                   title="Kit di Pulizia e Detailing"
                   description="Kit pronti all'uso per professionisti. Soluzioni complete che includono tutto il necessario per iniziare subito a lavorare con efficienza."
                   link="#products"
                   linkLabel="Vedi i Kit"
-                  product={products.find(p => p.category === 'Kit')}
+                  product={staticProducts.find(p => p.category === 'Kit')}
                 />
               </div>
             </div>
@@ -170,8 +181,9 @@ export default function Home() {
               <div className="text-center mb-12">
                  <h2 className="text-3xl md:text-4xl font-bold">Prodotti Selezionati</h2>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {selectedProducts.map(product => <ProductCard key={product.id} product={product} />)}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+                  {isLoadingProducts && Array.from({ length: 6 }).map((_, i) => <ProductSkeleton key={i} />)}
+                  {products?.map(product => <ProductCard key={product.id} product={product} />)}
               </div>
             </div>
           </AnimateOnScroll>
@@ -299,10 +311,34 @@ export default function Home() {
   );
 }
 
+function ProductSkeleton() {
+  return (
+    <Card className="overflow-hidden flex flex-col">
+      <Skeleton className="h-48 w-full" />
+      <CardHeader>
+        <Skeleton className="h-6 w-3/4" />
+        <Skeleton className="h-4 w-full mt-2" />
+        <Skeleton className="h-4 w-2/3 mt-1" />
+      </CardHeader>
+      <CardContent className="flex-grow">
+        <Skeleton className="h-5 w-1/3 mb-4" />
+        <div className="space-y-2">
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+        </div>
+      </CardContent>
+      <div className="p-6 pt-0 mt-auto">
+        <Skeleton className="h-10 w-full" />
+      </div>
+    </Card>
+  );
+}
+
+
 function SolutionCard({ title, description, link, linkLabel, product }: { title: string, description: string, link: string, linkLabel: string, product?: Product }) {
   return (
     <Card className="flex flex-col text-center items-center p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
-      {product && (
+      {product && product.image && (
         <div className="relative h-32 w-32 mb-4 rounded-full overflow-hidden border-4 border-background shadow-md">
           <Image
             src={product.image.imageUrl}
@@ -330,35 +366,35 @@ function SolutionCard({ title, description, link, linkLabel, product }: { title:
 
 
 function ProductCard({ product }: { product: Product }) {
+  const { nome, descrizione, prezzo, specifiche, id, imageUrl } = product;
+
   return (
     <Card className="overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
       <div className="relative h-48 w-full overflow-hidden">
         <Image
-          src={product.image.imageUrl}
-          alt={product.name}
+          src={imageUrl || "https://picsum.photos/seed/default/600/400"}
+          alt={nome}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-110"
-          data-ai-hint={product.image.imageHint}
+          data-ai-hint="product image"
         />
       </div>
       <CardHeader>
-        <CardTitle className="text-lg">{product.name}</CardTitle>
-        <CardDescription className="h-10 line-clamp-2">{product.description}</CardDescription>
+        <CardTitle className="text-lg">{nome}</CardTitle>
+        <CardDescription className="h-10 line-clamp-2">{descrizione}</CardDescription>
       </CardHeader>
       <CardContent className="flex-grow">
-        <h4 className="font-semibold text-sm mb-2">Dettagli Chiave:</h4>
-        <ul className="space-y-1 text-sm text-muted-foreground">
-          {product.details.map(detail => (
-            <li key={detail} className="flex items-center gap-2">
-              <CheckCircle2 size={14} className="text-primary/70" />
-              <span>{detail}</span>
-            </li>
-          ))}
-          <li className="flex items-center gap-2">
-             <span className="text-primary/70 text-xs font-code">SKU:</span>
-              <span className="font-code">{product.id.toUpperCase()}-2024</span>
-          </li>
-        </ul>
+        <div className="flex justify-between items-center mb-4">
+          <p className="text-xl font-bold text-primary">
+            {new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(prezzo)}
+          </p>
+        </div>
+
+        {specifiche && (
+           <p className="text-sm text-muted-foreground">
+             <span className="font-semibold">Specifiche:</span> {specifiche}
+            </p>
+        )}
       </CardContent>
       <div className="p-6 pt-0 mt-auto">
         <Button variant="outline" className="w-full transition-colors duration-300 hover:bg-primary hover:text-primary-foreground">Vedi Dettagli</Button>
