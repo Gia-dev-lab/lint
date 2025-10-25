@@ -1,8 +1,9 @@
 export const firebaseConfig = {
-  "projectId": "studio-8238432636-f26e0",
-  "appId": "1:936219711075:web:800e8a37a595de2efd4a56",
-  "apiKey": "AIzaSyDnnMd3PAbcPmRevN2zmh4OkejEo6Br5F4",
-  "authDomain": "studio-8238432636-f26e0.firebaseapp.com",
-  "measurementId": "",
-  "messagingSenderId": "936219711075"
+  apiKey: "AIzaSyBvjE9oz-Uq-uoQlxgeAbH8P5Lo61APSjc",
+  authDomain: "lintprofcleaning.firebaseapp.com",
+  projectId: "lintprofcleaning",
+  storageBucket: "lintprofcleaning.appspot.com",
+  messagingSenderId: "249821576303",
+  appId: "1:249821576303:web:d8b80ab4dc17286b29a19a",
+  measurementId: "G-M60221PK49"
 };
