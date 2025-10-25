@@ -375,42 +375,13 @@ function SolutionCard({ title, description, link, linkLabel, product }: { title:
 }
 
 function ProductCard({ product }: { product: any }) {
-  const { nome, descrizionebreve, SKU, immagine } = product;
+  const { nome } = product;
 
   return (
     <Card className="overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
-      <div className="relative h-48 w-full overflow-hidden">
-        {immagine && 
-          <Image
-            src={immagine}
-            alt={nome || "Immagine Prodotto"}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-110"
-            data-ai-hint="product image"
-          />
-        }
-      </div>
       <CardHeader className="flex-grow">
         {nome && <CardTitle className="text-lg">{nome}</CardTitle>}
-        {descrizionebreve && (
-          <CardDescription
-            className="h-10 line-clamp-2"
-            dangerouslySetInnerHTML={{ __html: descrizionebreve }}
-          />
-        )}
       </CardHeader>
-      <CardContent>
-        {SKU && (
-           <p className="text-sm text-muted-foreground">
-             <span className="font-semibold">SKU:</span> {SKU}
-            </p>
-        )}
-      </CardContent>
-      <div className="p-6 pt-0">
-        <Button variant="outline" className="w-full transition-colors duration-300 hover:bg-primary hover:text-primary-foreground">Vedi Dettagli</Button>
-      </div>
     </Card>
   )
 }
-
-    
