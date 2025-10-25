@@ -14,24 +14,24 @@
           "type": "string",
           "description": "The name of the product."
         },
-        "descrizione": {
+        "descrizionebreve": {
           "type": "string",
-          "description": "A detailed description of the product."
+          "description": "A short description of the product, may contain HTML."
         },
-        "imageUrl": {
+        "immagine": {
           "type": "string",
           "description": "URL of the product image.",
           "format": "uri"
         },
         "prezzo": {
           "type": "number",
-          "description": "The price of the product."
+          "description": "The price of the product. Might not be present in all documents."
         },
-        "categoria": {
+        "categorie": {
           "type": "string",
           "description": "The category the product belongs to (e.g., Microfiber Cloth, Cleaning Accessory)."
         },
-        "specifiche": {
+        "SKU": {
           "type": "string",
           "description": "Technical specifications or product codes, if applicable."
         }
@@ -39,10 +39,9 @@
       "required": [
         "id",
         "nome",
-        "descrizione",
-        "imageUrl",
-        "prezzo",
-        "categoria"
+        "descrizionebreve",
+        "immagine",
+        "categorie"
       ]
     },
     "Testimonial": {
@@ -250,5 +249,3 @@
     "reasoning": "The Firestore structure is designed to support the Lint Microfiber Hub application's core features, focusing on products, testimonials, quote requests, and user management. It prioritizes authorization independence, clarity, and scalability.\n\n*   **Products:** Products are stored in a flat `prodotti` collection, which simplifies listing and querying. No authorization is required to view the product catalog. Products are considered public data and thus need no additional complexity for access control.\n*   **Testimonials:** Testimonials are stored in a flat `testimonials` collection, which simplifies listing and querying. Testimonials are considered public data and thus need no additional complexity for access control.\n*   **Quote Requests:** Quote requests are stored in a `quoteRequests` collection. No authorization is required to submit a quote request.\n*   **Users:** User data is stored in a `users` collection, with each user having their own document identified by their UID. This structure enables easy management of user profiles and related data. This private data is stored under `/users/{userId}`.\n\n**Authorization Independence:**  The `prodotti`, `testimonials`, and `quoteRequests` collections do not require authorization, as they are considered public. The `users` collection is path-based ownership, enabling Authorization Independence.\n\n**QAPs Support:**\n*   The flat structure of `prodotti` and `testimonials` enables efficient `list` operations for displaying the product catalog and testimonials.\n*   Quote requests are stored in a dedicated `quoteRequests` collection, allowing for easy management and retrieval of quote requests.\n*   User data is segregated into individual user documents, ensuring that only the authenticated user can access their data."
   }
 }
-
-    

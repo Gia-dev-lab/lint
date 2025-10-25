@@ -336,16 +336,17 @@ function ProductSkeleton() {
 
 
 function SolutionCard({ title, description, link, linkLabel, product }: { title: string, description: string, link: string, linkLabel: string, product?: Product }) {
+  const imageUrl = product?.image?.imageUrl || product?.immagine;
   return (
     <Card className="flex flex-col text-center items-center p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
-      {product && product.image && (
+      {imageUrl && (
         <div className="relative h-32 w-32 mb-4 rounded-full overflow-hidden border-4 border-background shadow-md">
           <Image
-            src={product.image.imageUrl}
+            src={imageUrl}
             alt={title}
             fill
             className="object-cover"
-            data-ai-hint={product.image.imageHint}
+            data-ai-hint={product?.image?.imageHint}
           />
         </div>
       )}
@@ -364,15 +365,23 @@ function SolutionCard({ title, description, link, linkLabel, product }: { title:
   );
 }
 
+function stripHtml(html: string) {
+  if (typeof window === 'undefined') {
+    return html.replace(/<[^>]*>?/gm, '');
+  }
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  return doc.body.textContent || "";
+}
 
 function ProductCard({ product }: { product: Product }) {
-  const { nome, descrizione, prezzo, specifiche, id, imageUrl } = product;
+  const { nome, descrizionebreve, prezzo = 0, SKU, immagine } = product;
+  const cleanDescription = stripHtml(descrizionebreve);
 
   return (
     <Card className="overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
       <div className="relative h-48 w-full overflow-hidden">
         <Image
-          src={imageUrl || "https://picsum.photos/seed/default/600/400"}
+          src={immagine || "https://picsum.photos/seed/default/600/400"}
           alt={nome}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -381,7 +390,7 @@ function ProductCard({ product }: { product: Product }) {
       </div>
       <CardHeader>
         <CardTitle className="text-lg">{nome}</CardTitle>
-        <CardDescription className="h-10 line-clamp-2">{descrizione}</CardDescription>
+        <CardDescription className="h-10 line-clamp-2">{cleanDescription}</CardDescription>
       </CardHeader>
       <CardContent className="flex-grow">
         <div className="flex justify-between items-center mb-4">
@@ -390,9 +399,9 @@ function ProductCard({ product }: { product: Product }) {
           </p>
         </div>
 
-        {specifiche && (
+        {SKU && (
            <p className="text-sm text-muted-foreground">
-             <span className="font-semibold">Specifiche:</span> {specifiche}
+             <span className="font-semibold">SKU:</span> {SKU}
             </p>
         )}
       </CardContent>
@@ -402,5 +411,3 @@ function ProductCard({ product }: { product: Product }) {
     </Card>
   )
 }
-
-    

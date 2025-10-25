@@ -24,17 +24,21 @@ const findImage = (id: string): ImagePlaceholder => {
   return image;
 };
 
-export type ProductCategory = 'Panni' | 'Accessori' | 'Parti di Ricambio' | 'Panni per Autolavaggio' | 'Detergenti' | 'Kit';
+export type ProductCategory = 'Panni' | 'Accessori' | 'Parti di Ricambio' | 'Panni per Autolavaggio' | 'Detergenti' | 'Kit' | string;
 
 export type Product = {
   id: string;
   nome: string;
-  descrizione: string;
-  categoria: ProductCategory;
-  imageUrl: string;
+  descrizionebreve: string;
+  categorie: ProductCategory;
+  immagine: string;
   prezzo: number;
+  SKU?: string;
+  // Manteniamo i campi vecchi per compatibilità temporanea se necessario
+  descrizione?: string;
+  imageUrl?: string;
   specifiche?: string;
-  // Deprecated fields, kept for reference for other components
+  categoria?: ProductCategory;
   name?: string;
   description?: string;
   category?: ProductCategory;
@@ -78,5 +82,3 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const productCategories: ProductCategory[] = ['Panni', 'Accessori', 'Parti di Ricambio', 'Panni per Autolavaggio', 'Detergenti', 'Kit'];
-
-    
