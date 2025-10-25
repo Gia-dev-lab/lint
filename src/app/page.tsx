@@ -1,11 +1,10 @@
 
-
 "use client";
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { products as staticProducts, testimonials, type Product } from "@/lib/data";
+import { testimonials, type Product } from "@/lib/data";
 import { placeholderImages } from "@/lib/placeholder-images";
 import { CheckCircle2, Loader2 } from 'lucide-react';
 import { KitConfigurator } from "@/components/kit-configurator";
@@ -53,6 +52,15 @@ export default function Home() {
     }, 3000); // Cambia ogni 3 secondi
     return () => clearInterval(interval);
   }, []);
+
+  const staticProductsForSolutions = [
+    { id: 'p1', category: 'Panni', immagine: 'https://images.unsplash.com/photo-1659989159234-f95286c55b05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Ymx1ZSUyMGNsb3RofGVufDB8fHx8MTc2MTIwOTQwNnww&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'panno' } },
+    { id: 'p2', category: 'Accessori', immagine: 'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3ByYXklMjBib3R0bGV8ZW58MHx8fHwxNzYxMTI0MzU4fDA&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'accessorio' } },
+    { id: 'p3', category: 'Parti di Ricambio', immagine: 'https://images.unsplash.com/photo-1523559094051-53bac879eb80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYWNoaW5lJTIwcGFydHxlbnwwfHx8fDE3NjEyMTA0NjF8MA&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'ricambio' } },
+    { id: 'p4', category: 'Panni per Autolavaggio', immagine: 'https://images.unsplash.com/photo-1554158488-a7f402c0380f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', image: { imageHint: 'autolavaggio' } },
+    { id: 'p5', category: 'Detergenti', immagine: 'https://images.unsplash.com/photo-1598214902123-6a4a49c3e536?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', image: { imageHint: 'detergente' } },
+    { id: 'p6', category: 'Kit', immagine: 'https://images.unsplash.com/photo-1708805282683-50a060eba80f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjYXIlMjBkZXRhaWxpbmd8ZW58MHx8fHwxNzYxMTgwNjQwfDA&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'kit' } },
+  ];
 
 
   return (
@@ -132,42 +140,42 @@ export default function Home() {
                   description="Il cuore di ogni intervento di pulizia. La nostra selezione include panni professionali per ogni applicazione: dall’asciugatura ultra-rapida alla pulizia senza aloni."
                   link="#products"
                   linkLabel="Esplora i Panni"
-                  product={staticProducts.find(p => p.category === 'Panni')}
+                  product={staticProductsForSolutions.find(p => p.category === 'Panni')}
                 />
                 <SolutionCard 
                   title="Accessori per la Pulizia"
                   description="Gli strumenti giusti che fanno la differenza. In questa sezione troverai spugne, supporti, applicatori e tutto ciò che serve per massimizzare l’efficienza."
                   link="#products"
                   linkLabel="Scopri gli Accessori"
-                  product={staticProducts.find(p => p.category === 'Accessori')}
+                  product={staticProductsForSolutions.find(p => p.category === 'Accessori')}
                 />
                 <SolutionCard 
                   title="Ricambi Professionali"
                   description="Non lasciare che un dettaglio fermi il tuo lavoro. La nostra gamma di ricambi ti assicura la massima continuità operativa e performance ottimali."
                   link="#products"
                   linkLabel="Trova i Ricambi"
-                  product={staticProducts.find(p => p.category === 'Parti di Ricambio')}
+                  product={staticProductsForSolutions.find(p => p.category === 'Parti di Ricambio')}
                 />
                 <SolutionCard
                   title="Panni per Autolavaggio"
                   description="Panni specifici per autolavaggi, ad alta resistenza e capacità di assorbimento per un self-service di qualità e un detailing impeccabile."
                   link="#products"
                   linkLabel="Esplora i Panni"
-                  product={staticProducts.find(p => p.category === 'Panni per Autolavaggio')}
+                  product={staticProductsForSolutions.find(p => p.category === 'Panni per Autolavaggio')}
                 />
                 <SolutionCard
                   title="Detergenti per Pulizia"
                   description="Prodotti chimici professionali per una pulizia profonda. Formule ecologiche ed efficaci per ogni tipo di superficie e sporco."
                   link="#products"
                   linkLabel="Scopri i Detergenti"
-                  product={staticProducts.find(p => p.category === 'Detergenti')}
+                  product={staticProductsForSolutions.find(p => p.category === 'Detergenti')}
                 />
                 <SolutionCard
                   title="Kit di Pulizia e Detailing"
                   description="Kit pronti all'uso per professionisti. Soluzioni complete che includono tutto il necessario per iniziare subito a lavorare con efficienza."
                   link="#products"
                   linkLabel="Vedi i Kit"
-                  product={staticProducts.find(p => p.category === 'Kit')}
+                  product={staticProductsForSolutions.find(p => p.category === 'Kit')}
                 />
               </div>
             </div>
@@ -335,8 +343,9 @@ function ProductSkeleton() {
 }
 
 
-function SolutionCard({ title, description, link, linkLabel, product }: { title: string, description: string, link: string, linkLabel: string, product?: Product }) {
-  const imageUrl = product?.image?.imageUrl || product?.immagine;
+function SolutionCard({ title, description, link, linkLabel, product }: { title: string, description: string, link: string, linkLabel: string, product?: Partial<Product> }) {
+  const imageUrl = product?.immagine;
+  const imageHint = product?.image?.imageHint;
   return (
     <Card className="flex flex-col text-center items-center p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
       {imageUrl && (
@@ -346,7 +355,7 @@ function SolutionCard({ title, description, link, linkLabel, product }: { title:
             alt={title}
             fill
             className="object-cover"
-            data-ai-hint={product?.image?.imageHint}
+            data-ai-hint={imageHint}
           />
         </div>
       )}
@@ -374,8 +383,8 @@ function stripHtml(html: string) {
 }
 
 function ProductCard({ product }: { product: Product }) {
-  const { nome, descrizionebreve, prezzo = 0, SKU, immagine } = product;
-  const cleanDescription = stripHtml(descrizionebreve);
+  const { nome, descrizionebreve, SKU, immagine } = product;
+  const cleanDescription = stripHtml(descrizionebreve || "");
 
   return (
     <Card className="overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
@@ -388,26 +397,22 @@ function ProductCard({ product }: { product: Product }) {
           data-ai-hint="product image"
         />
       </div>
-      <CardHeader>
+      <CardHeader className="flex-grow">
         <CardTitle className="text-lg">{nome}</CardTitle>
-        <CardDescription className="h-10 line-clamp-2">{cleanDescription}</CardDescription>
+        {cleanDescription && <CardDescription className="h-10 line-clamp-2">{cleanDescription}</CardDescription>}
       </CardHeader>
-      <CardContent className="flex-grow">
-        <div className="flex justify-between items-center mb-4">
-          <p className="text-xl font-bold text-primary">
-            {new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(prezzo)}
-          </p>
-        </div>
-
+      <CardContent>
         {SKU && (
            <p className="text-sm text-muted-foreground">
              <span className="font-semibold">SKU:</span> {SKU}
             </p>
         )}
       </CardContent>
-      <div className="p-6 pt-0 mt-auto">
+      <div className="p-6 pt-0">
         <Button variant="outline" className="w-full transition-colors duration-300 hover:bg-primary hover:text-primary-foreground">Vedi Dettagli</Button>
       </div>
     </Card>
   )
 }
+
+    
