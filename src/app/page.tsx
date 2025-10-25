@@ -24,6 +24,7 @@ import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
 import { collection, limit, query } from "firebase/firestore";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ProductCard } from "@/components/product-card";
 
 const heroImage = placeholderImages.find(img => img.id === 'hero-background');
 
@@ -138,42 +139,42 @@ export default function Home() {
                 <SolutionCard 
                   title="Panni in Microfibra"
                   description="Il cuore di ogni intervento di pulizia. La nostra selezione include panni professionali per ogni applicazione: dall’asciugatura ultra-rapida alla pulizia senza aloni."
-                  link="#products"
+                  link="/prodotti"
                   linkLabel="Esplora i Panni"
                   product={staticProductsForSolutions.find(p => p.categorie === 'Panni')}
                 />
                 <SolutionCard 
                   title="Accessori per la Pulizia"
                   description="Gli strumenti giusti che fanno la differenza. In questa sezione troverai spugne, supporti, applicatori e tutto ciò che serve per massimizzare l’efficienza."
-                  link="#products"
+                  link="/prodotti"
                   linkLabel="Scopri gli Accessori"
                   product={staticProductsForSolutions.find(p => p.categorie === 'Accessori')}
                 />
                 <SolutionCard 
                   title="Ricambi Professionali"
                   description="Non lasciare che un dettaglio fermi il tuo lavoro. La nostra gamma di ricambi ti assicura la massima continuità operativa e performance ottimali."
-                  link="#products"
+                  link="/prodotti"
                   linkLabel="Trova i Ricambi"
                   product={staticProductsForSolutions.find(p => p.categorie === 'Parti di Ricambio')}
                 />
                 <SolutionCard
                   title="Panni per Autolavaggio"
                   description="Panni specifici per autolavaggi, ad alta resistenza e capacità di assorbimento per un self-service di qualità e un detailing impeccabile."
-                  link="#products"
+                  link="/prodotti"
                   linkLabel="Esplora i Panni"
                   product={staticProductsForSolutions.find(p => p.categorie === 'Panni per Autolavaggio')}
                 />
                 <SolutionCard
                   title="Detergenti per Pulizia"
                   description="Prodotti chimici professionali per una pulizia profonda. Formule ecologiche ed efficaci per ogni tipo di superficie e sporco."
-                  link="#products"
+                  link="/prodotti"
                   linkLabel="Scopri i Detergenti"
                   product={staticProductsForSolutions.find(p => p.categorie === 'Detergenti')}
                 />
                 <SolutionCard
                   title="Kit di Pulizia e Detailing"
                   description="Kit pronti all'uso per professionisti. Soluzioni complete che includono tutto il necessario per iniziare subito a lavorare con efficienza."
-                  link="#products"
+                  link="/prodotti"
                   linkLabel="Vedi i Kit"
                   product={staticProductsForSolutions.find(p => p.categorie === 'Kit')}
                 />
@@ -187,11 +188,17 @@ export default function Home() {
           <AnimateOnScroll>
             <div className="container">
               <div className="text-center mb-12">
-                 <h2 className="text-3xl md:text-4xl font-bold">Prodotti Selezionati</h2>
+                 <h2 className="text-3xl md:text-4xl font-bold">Prodotti in Evidenza</h2>
+                 <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">Una selezione dei nostri articoli più richiesti, scelti per te.</p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
                   {isLoadingProducts && Array.from({ length: 6 }).map((_, i) => <ProductSkeleton key={i} />)}
                   {products?.map(product => <ProductCard key={product.id} product={product} />)}
+              </div>
+               <div className="text-center mt-12">
+                <Button asChild size="lg">
+                  <Link href="/prodotti">Vedi tutti i prodotti</Link>
+                </Button>
               </div>
             </div>
           </AnimateOnScroll>
@@ -373,46 +380,3 @@ function SolutionCard({ title, description, link, linkLabel, product }: { title:
     </Card>
   );
 }
-
-function ProductCard({ product }: { product: any }) {
-  const { nome, immagine, descrizionebreve, metadesc } = product;
-
-  // Function to strip HTML tags for plain text display
-  const stripHtml = (html: string) => {
-    if (typeof window === 'undefined') {
-      // Basic stripping for server-side
-      return html.replace(/<[^>]+>/g, '');
-    }
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-    return doc.body.textContent || "";
-  };
-
-  const plainDescrizioneBreve = descrizionebreve ? stripHtml(descrizionebreve) : '';
-
-  return (
-    <Card className="overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
-      {immagine && (
-        <div className="relative aspect-square w-full">
-          <Image src={immagine} alt={nome || 'Immagine Prodotto'} fill className="object-cover" />
-        </div>
-      )}
-      <CardHeader className="flex-grow">
-        {nome && <CardTitle className="text-lg">{nome}</CardTitle>}
-        {plainDescrizioneBreve && (
-          <CardDescription className="text-sm text-muted-foreground mt-2 line-clamp-2">
-            {plainDescrizioneBreve}
-          </CardDescription>
-        )}
-      </CardHeader>
-      <CardContent>
-        {metadesc && (
-          <p className="text-xs text-muted-foreground/80 line-clamp-3">
-            {metadesc}
-          </p>
-        )}
-      </CardContent>
-    </Card>
-  )
-}
-
-    

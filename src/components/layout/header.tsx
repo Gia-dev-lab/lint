@@ -28,7 +28,7 @@ export default function Header() {
   
   const navLinks = [
     { href: "#solutions", label: "Soluzioni" },
-    { href: "#products", label: "Prodotti" },
+    { href: "/prodotti", label: "Tutti i Prodotti" },
     { href: "#why-lint", label: "Perché Lint" },
   ];
 
