@@ -1,8 +1,8 @@
 {
   "entities": {
-    "Product": {
+    "Prodotto": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "Product",
+      "title": "Prodotto",
       "type": "object",
       "description": "Represents a product in the Lint Microfiber Hub catalog.",
       "properties": {
@@ -189,7 +189,7 @@
   "firestore": {
     "/prodotti/{prodottoId}": {
       "schema": {
-        "$ref": "#/entities/Product"
+        "$ref": "#/entities/Prodotto"
       },
       "description": "Stores product information. Publicly accessible."
     },
