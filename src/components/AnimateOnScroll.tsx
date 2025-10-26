@@ -24,18 +24,14 @@ export function AnimateOnScroll({
     const observer = new IntersectionObserver(
       ([entry]) => {
         // Update state when element's intersection status changes
-        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+            setIsVisible(true);
+        }
       },
       { threshold }
     );
     
     observer.observe(element);
-    
-    // Check if the element is already visible on mount
-    const initialEntry = observer.takeRecords()[0];
-    if(initialEntry && initialEntry.isIntersecting){
-        setIsVisible(true);
-    }
 
     return () => {
        if (element) {
@@ -61,7 +57,7 @@ export function AnimateOnScroll({
       ref={ref}
       className={cn(
         'transition-all duration-700 ease-out',
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
+        isVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-8 blur-md',
         className
       )}
     >
