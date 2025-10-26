@@ -34,7 +34,7 @@ export default function PanniInMicrofibraPage() {
 
   const productsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
-    return query(collection(firestore, "prodotti"), where("categorie", "==", "Panni"));
+    return query(collection(firestore, "prodotti"), where("categorie", "==", "Panni in Microfibra Professionali"));
   }, [firestore]);
 
   const { data: products, isLoading: isLoadingProducts } = useCollection(productsQuery);
