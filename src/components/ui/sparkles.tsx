@@ -41,18 +41,18 @@ export const SparklesCore: React.FC<SparklesCoreProps> = ({
         return {
           id: i,
           x: Math.random() * 100,
-          y: Math.random() * 100,
+          y: Math.random() * 50, // Start in the top half
           size: size,
           color: particleColor,
-          animationDelay: `${Math.random() * 2}s`,
-          animationDuration: `${Math.random() * 2 + 2}s`,
+          animationDelay: `${Math.random() * 4}s`,
+          animationDuration: `${Math.random() * 4 + 2}s`,
         };
       });
       setSparkles(newSparkles);
     };
 
     generateSparkles();
-    const interval = setInterval(generateSparkles, 5000); // Regenerate sparkles every 5 seconds
+    const interval = setInterval(generateSparkles, 7000); 
 
     return () => clearInterval(interval);
   }, [particleDensity, minSize, maxSize, particleColor]);
@@ -63,7 +63,7 @@ export const SparklesCore: React.FC<SparklesCoreProps> = ({
         {sparkles.map((sparkle) => (
           <div
             key={sparkle.id}
-            className="absolute animate-sparkle"
+            className="absolute animate-water-drop"
             style={{
               left: `${sparkle.x}%`,
               top: `${sparkle.y}%`,
