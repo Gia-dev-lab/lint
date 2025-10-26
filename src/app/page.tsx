@@ -55,7 +55,7 @@ export default function Home() {
   }, []);
 
   const staticProductsForSolutions = [
-    { id: 'p1', categorie: 'Panni', immagine: 'https://images.unsplash.com/photo-1659989159234-f95286c55b05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Ymx1ZSUyMGNsb3RofGVufDB8fHx8MTc2MTIwOTQwNnww&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'panno' } },
+    { id: 'p1', categorie: 'Panni', immagine: 'https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Panno-Microfibra.png', image: { imageHint: 'panno' } },
     { id: 'p2', categorie: 'Accessori', immagine: 'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3ByYXklMjBib3R0bGV8ZW58MHx8fHwxNzYxMTI0MzU4fDA&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'accessorio' } },
     { id: 'p3', categorie: 'Parti di Ricambio', immagine: 'https://images.unsplash.com/photo-1523559094051-53bac879eb80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYWNoaW5lJTIwcGFydHxlbnwwfHx8fDE3NjEyMTA0NjF8MA&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'ricambio' } },
     { id: 'p4', categorie: 'Panni per Autolavaggio', immagine: 'https://images.unsplash.com/photo-1554158488-a7f402c0380f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', image: { imageHint: 'autolavaggio' } },
@@ -381,4 +381,5 @@ function SolutionCard({ title, description, link, linkLabel, product }: { title:
   );
 }
 
+    
     
