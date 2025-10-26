@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/dialog";
 import { QuoteRequestForm } from "@/components/quote-request-form";
 import Link from "next/link";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
@@ -25,6 +25,7 @@ import { useCollection, useFirestore } from "@/firebase";
 import { collection, limit, query } from "firebase/firestore";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ProductCard } from "@/components/product-card";
+import Autoplay from "embla-carousel-autoplay";
 
 const heroImage = placeholderImages.find(img => img.id === 'hero-background');
 
@@ -78,6 +79,10 @@ export default function Home() {
   const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);
 
   const firestore = useFirestore();
+  
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  );
 
   const productsQuery = useMemo(() => {
     if (!firestore) return null;
@@ -171,6 +176,9 @@ export default function Home() {
                   align: "start",
                   loop: true,
                 }}
+                plugins={[autoplayPlugin.current]}
+                onMouseEnter={() => autoplayPlugin.current.stop()}
+                onMouseLeave={() => autoplayPlugin.current.reset()}
                 className="w-full max-w-6xl mx-auto"
               >
                 <CarouselContent>
