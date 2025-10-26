@@ -6,17 +6,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 // Funzione per rimuovere i tag HTML da una stringa
 const stripHtml = (html: string | undefined | null): string => {
   if (!html) return "";
-  if (typeof window === 'undefined') {
-    // Sostituzione base lato server
-    return html.replace(/<[^>]+>/g, '');
-  }
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-  return doc.body.textContent || "";
+  // Questa funzione è sicura sia lato server che client
+  return html.replace(/<[^>]+>/g, '');
 };
 
 export function ProductCard({ product }: { product: any }) {
   const { nome, immagine, descrizionebreve, metadesc, SKU } = product;
 
+  // Usa la funzione sicura per pulire la descrizione
   const plainDescrizioneBreve = stripHtml(descrizionebreve);
 
   return (

@@ -1,7 +1,5 @@
-
 "use client";
 
-import { useMemo } from "react";
 import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
 import { collection, query, where } from "firebase/firestore";
 import { ProductCard } from "@/components/product-card";
