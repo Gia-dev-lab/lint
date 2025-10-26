@@ -17,11 +17,11 @@ import {
 } from "@/components/ui/dialog";
 import { QuoteRequestForm } from "@/components/quote-request-form";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
-import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
+import { useCollection, useFirestore } from "@/firebase";
 import { collection, limit, query } from "firebase/firestore";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ProductCard } from "@/components/product-card";
@@ -40,7 +40,7 @@ export default function Home() {
 
   const firestore = useFirestore();
 
-  const productsQuery = useMemoFirebase(() => {
+  const productsQuery = useMemo(() => {
     if (!firestore) return null;
     return query(collection(firestore, "prodotti"), limit(6));
   }, [firestore]);
@@ -79,7 +79,7 @@ export default function Home() {
                 priority
             />
            )}
-           <div className="absolute inset-0 bg-background/70 backdrop-blur-sm -z-10" />
+           <div className="absolute inset-0 bg-background/70 -z-10" />
            <div className="w-full absolute inset-0 h-full">
             <SparklesCore
               id="tsparticlesfullpage"
@@ -380,3 +380,5 @@ function SolutionCard({ title, description, link, linkLabel, product }: { title:
     </Card>
   );
 }
+
+    
