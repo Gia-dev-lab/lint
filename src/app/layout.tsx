@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
-import { FirebaseProvider } from '@/firebase/provider';
+import { FirebaseClientProvider } from '@/firebase/client-provider';
 
 export const metadata: Metadata = {
   title: 'Lint Professional Cleaning - Attrezzature per Pulizia Professionale',
@@ -26,14 +26,14 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        <FirebaseProvider>
+        <FirebaseClientProvider>
           <div className="flex flex-col min-h-screen">
             <Header />
             <main className="flex-grow">{children}</main>
             <Footer />
           </div>
           <Toaster />
-        </FirebaseProvider>
+        </FirebaseClientProvider>
       </body>
     </html>
   );
