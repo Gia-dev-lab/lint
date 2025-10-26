@@ -65,10 +65,10 @@ export default function PanniInMicrofibraPage() {
         <div className="absolute inset-0 overflow-hidden">
           <Image
             src="https://www.lintmicrofibercloths.it/wp-content/uploads/2025/10/Consigli-pulizia-professionale-del-blog-LINT.png"
-            alt="Consigli per la pulizia professionale"
+            alt="Consigli per la pulizia professionale dal blog LINT"
             fill
             className="object-cover"
-            data-ai-hint="professional cleaning"
+            data-ai-hint="professional cleaning blog"
           />
           <div className="absolute inset-0 bg-background/70" />
         </div>
@@ -93,23 +93,25 @@ export default function PanniInMicrofibraPage() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {isLoadingProducts &&
-            Array.from({ length: 8 }).map((_, i) => <ProductSkeleton key={i} />)}
-          
-          {!isLoadingProducts && products?.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-
-        {!isLoadingProducts && products?.length === 0 && (
-          <div className="text-center col-span-full py-12 bg-secondary/50 rounded-lg">
-            <p className="text-lg font-medium">Nessun prodotto trovato</p>
-            <p className="text-muted-foreground mt-2">
-              Non ci sono panni che corrispondono a "{activeFilter}" in questa categoria. Prova a selezionare un altro filtro.
-            </p>
+        <AnimateOnScroll>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {isLoadingProducts &&
+              Array.from({ length: 8 }).map((_, i) => <ProductSkeleton key={i} />)}
+            
+            {!isLoadingProducts && products?.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
           </div>
-        )}
+
+          {!isLoadingProducts && products?.length === 0 && (
+            <div className="text-center col-span-full py-12 bg-secondary/50 rounded-lg">
+              <p className="text-lg font-medium">Nessun prodotto trovato per "{activeFilter}"</p>
+              <p className="text-muted-foreground mt-2">
+                Prova a selezionare un'altra categoria o a rimuovere i filtri per vedere tutti i nostri panni.
+              </p>
+            </div>
+          )}
+        </AnimateOnScroll>
       </div>
     </div>
   );
