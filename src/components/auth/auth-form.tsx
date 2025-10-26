@@ -21,14 +21,16 @@ import {
 } from "@/components/ui/tabs";
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/firebase';
+import { useAuth, useFirestore } from '@/firebase';
 import {
   initiateEmailSignUp,
   initiateEmailSignIn,
 } from '@/firebase/non-blocking-login';
+import { setDoc, doc } from 'firebase/firestore';
 import { useTransition, useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { updateProfile } from 'firebase/auth';
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Inserisci un'email valida." }),
@@ -46,6 +48,7 @@ export function AuthForm({ onSuccess }: { onSuccess?: () => void }) {
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
   const auth = useAuth();
+  const firestore = useFirestore();
   const [activeTab, setActiveTab] = useState("login");
 
   const loginForm = useForm<z.infer<typeof loginSchema>>({
@@ -78,18 +81,35 @@ export function AuthForm({ onSuccess }: { onSuccess?: () => void }) {
   
   function onRegisterSubmit(data: z.infer<typeof registerSchema>) {
     startTransition(() => {
-       initiateEmailSignUp(auth, data.email, data.password).catch((error: any) => {
+       initiateEmailSignUp(auth, data.email, data.password)
+       .then(userCredential => {
+            if (userCredential?.user) {
+                const user = userCredential.user;
+                // 1. Update auth profile
+                updateProfile(user, { displayName: data.name });
+
+                // 2. Create user document in Firestore
+                const userDocRef = doc(firestore, 'users', user.uid);
+                setDoc(userDocRef, {
+                    uid: user.uid,
+                    name: data.name,
+                    email: data.email,
+                    createdAt: new Date().toISOString(),
+                });
+            }
+            toast({
+              title: 'Registrazione in corso...',
+              description: 'Account creato con successo. Stai per essere autenticato.',
+            });
+            onSuccess?.();
+       })
+       .catch((error: any) => {
         toast({
           variant: 'destructive',
           title: 'Errore di registrazione',
-          description: error.message || 'Non è stato possibile creare l\'account.',
+          description: error.code === 'auth/email-already-in-use' ? 'Questa email è già in uso.' : (error.message || 'Non è stato possibile creare l\'account.'),
         });
       });
-      toast({
-        title: 'Registrazione in corso...',
-        description: 'Account creato con successo. Stai per essere autenticato.',
-      });
-      onSuccess?.();
     });
   }
 

@@ -1,10 +1,11 @@
 "use server";
 
-import {addDocumentNonBlocking} from "@/firebase";
-import {collection, getDocs} from "firebase/firestore";
+import { addDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import * as z from "zod";
 import { getKitSuggestions as getKitSuggestionsAI } from "@/ai/flows/kit-suggestion-flow";
 import type { Product } from "@/lib/data";
+import { getApps } from "firebase/app";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Il nome deve contenere almeno 2 caratteri." }),
@@ -20,13 +21,28 @@ export async function handleQuoteRequest(data: QuoteFormValues) {
   try {
     const validatedData = formSchema.parse(data);
     
+    // CORREZIONE: Utilizza il nostro helper server-side per ottenere le istanze di Firebase
     const { getSdks } = await import('@/firebase/index.server');
-    const { firestore } = getSdks();
+    const { firestore, auth } = getSdks();
+
+    let userId = null;
+    try {
+        // La logica per ottenere l'utente corrente deve essere gestita diversamente
+        // nelle Server Actions. Per ora, procediamo con null se non disponibile
+        // in questo contesto.
+        if (auth.currentUser) {
+            userId = auth.currentUser.uid;
+        }
+    } catch (e) {
+        // User is not logged in or auth is not available server-side in this context
+        console.log("Auth not available, proceeding as anonymous.");
+    }
     
     const quoteRequestCollection = collection(firestore, "quoteRequests");
     
-    await addDocumentNonBlocking(quoteRequestCollection, {
+    await addDoc(quoteRequestCollection, {
         ...validatedData,
+        userId: userId, // Will be null if not logged in
         requestDate: new Date().toISOString()
     });
 

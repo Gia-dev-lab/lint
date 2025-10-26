@@ -14,14 +14,15 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useAuth } from '@/firebase';
 import type { User } from 'firebase/auth';
+import Link from 'next/link';
 
 export function UserNav({ user }: { user: User }) {
   const auth = useAuth();
 
-  const getInitials = (email: string | null) => {
-    if (!email) return 'U';
-    const parts = email.split('@');
-    return parts[0][0].toUpperCase();
+  const getInitials = (displayName: string | null, email: string | null) => {
+    if (displayName) return displayName.charAt(0).toUpperCase();
+    if (email) return email.charAt(0).toUpperCase();
+    return 'U';
   };
   
   const handleLogout = () => {
@@ -39,7 +40,7 @@ export function UserNav({ user }: { user: User }) {
               src={user.photoURL || `https://avatar.vercel.sh/${user.email}.png`}
               alt={user.displayName || user.email || 'User'}
             />
-            <AvatarFallback>{getInitials(user.email)}</AvatarFallback>
+            <AvatarFallback>{getInitials(user.displayName, user.email)}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -54,7 +55,9 @@ export function UserNav({ user }: { user: User }) {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>Profilo</DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/account">Profilo</Link>
+          </DropdownMenuItem>
           <DropdownMenuItem>Impostazioni</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
