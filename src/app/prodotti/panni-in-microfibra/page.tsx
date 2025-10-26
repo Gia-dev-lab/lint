@@ -5,10 +5,12 @@ import { collection, query, where, Query } from "firebase/firestore";
 import { ProductCard } from "@/components/product-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { X } from "lucide-react";
 
 const filterCategories = [
   { label: "Tutti", tag: "all" },
@@ -43,7 +45,28 @@ function ProductSkeleton() {
 
 export default function PanniInMicrofibraPage() {
   const firestore = useFirestore();
-  const [activeFilter, setActiveFilter] = useState("all");
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const activeFilter = searchParams.get("tag") || "all";
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (value === "all") {
+        params.delete(name);
+      } else {
+        params.set(name, value);
+      }
+      return params.toString();
+    },
+    [searchParams]
+  );
+  
+  const handleFilterChange = (tag: string) => {
+    router.push(pathname + '?' + createQueryString('tag', tag));
+  };
+
 
   const productsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
@@ -58,6 +81,8 @@ export default function PanniInMicrofibraPage() {
   }, [firestore, activeFilter]);
 
   const { data: products, isLoading: isLoadingProducts } = useCollection(productsQuery);
+
+  const selectedCategoryLabel = filterCategories.find(c => c.tag === activeFilter)?.label || activeFilter;
 
   return (
     <div>
@@ -81,16 +106,27 @@ export default function PanniInMicrofibraPage() {
       </section>
 
       <div className="container py-12">
-        <div className="mb-8 flex flex-wrap justify-center gap-2">
+        <div className="mb-8 flex flex-wrap justify-center items-center gap-2">
           {filterCategories.map(cat => (
             <Button
               key={cat.tag}
               variant={activeFilter === cat.tag ? "default" : "outline"}
-              onClick={() => setActiveFilter(cat.tag)}
+              onClick={() => handleFilterChange(cat.tag)}
             >
               {cat.label}
             </Button>
           ))}
+           {activeFilter !== 'all' && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => handleFilterChange('all')}
+              className="flex items-center gap-1 text-muted-foreground"
+            >
+              <X size={14}/>
+              Azzera Filtri
+            </Button>
+          )}
         </div>
 
         <AnimateOnScroll>
@@ -105,7 +141,7 @@ export default function PanniInMicrofibraPage() {
 
           {!isLoadingProducts && products?.length === 0 && (
             <div className="text-center col-span-full py-12 bg-secondary/50 rounded-lg">
-              <p className="text-lg font-medium">Nessun prodotto trovato per "{activeFilter}"</p>
+              <p className="text-lg font-medium">Nessun panno trovato per "{selectedCategoryLabel}"</p>
               <p className="text-muted-foreground mt-2">
                 Prova a selezionare un'altra categoria o a rimuovere i filtri per vedere tutti i nostri panni.
               </p>
