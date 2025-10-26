@@ -45,7 +45,7 @@ const kitSuggesterPrompt = ai.definePrompt({
 
       CATALOGO PRODOTTI DISPONIBILI (devi scegliere ESCLUSIVAMENTE da questa lista):
       {{#each products}}
-      - ID: {{id}}, Nome: {{nome}}, Categoria: {{categorie}}{{#if descrizionebreve}}, Descrizione: {{descrizionebreve}}{{/if}}
+      - ID: {{id}}, Nome: {{nome}}, Categoria: {{categorie}}
       {{/each}}
 
       OBIETTIVO:

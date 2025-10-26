@@ -1,11 +1,17 @@
 "use server";
 
-import { addDoc } from "firebase/firestore";
+import { addDoc, serverTimestamp } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
 import * as z from "zod";
 import { getKitSuggestions as getKitSuggestionsAI } from "@/ai/flows/kit-suggestion-flow";
 import type { Product } from "@/lib/data";
 import { getApps } from "firebase/app";
+
+// Funzione per rimuovere i tag HTML
+const stripHtml = (html: string | undefined | null): string => {
+  if (!html) return "";
+  return html.replace(/<[^>]+>/g, '');
+};
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Il nome deve contenere almeno 2 caratteri." }),
@@ -21,20 +27,15 @@ export async function handleQuoteRequest(data: QuoteFormValues) {
   try {
     const validatedData = formSchema.parse(data);
     
-    // CORREZIONE: Utilizza il nostro helper server-side per ottenere le istanze di Firebase
     const { getSdks } = await import('@/firebase/index.server');
     const { auth, firestore } = getSdks();
 
     let userId = null;
     try {
-        // La logica per ottenere l'utente corrente deve essere gestita diversamente
-        // nelle Server Actions. Per ora, procediamo con null se non disponibile
-        // in questo contesto.
         if (auth.currentUser) {
             userId = auth.currentUser.uid;
         }
     } catch (e) {
-        // User is not logged in or auth is not available server-side in this context
         console.log("Auth not available, proceeding as anonymous.");
     }
     
@@ -42,7 +43,7 @@ export async function handleQuoteRequest(data: QuoteFormValues) {
     
     await addDoc(quoteRequestCollection, {
         ...validatedData,
-        userId: userId, // Will be null if not logged in
+        userId: userId,
         requestDate: new Date().toISOString()
     });
 
@@ -75,10 +76,10 @@ export async function getKitSuggestions(input: { description: string }) {
       description: validatedInput.description,
       products: products.map(({ id, ID, nome, categorie, descrizionebreve, SKU }) => ({ 
           id, 
-          product_id: ID, // Correctly map the numeric ID
+          product_id: ID,
           nome, 
           categorie, 
-          descrizionebreve, 
+          descrizionebreve: stripHtml(descrizionebreve), // Clean the description here
           SKU 
       }))
     });
