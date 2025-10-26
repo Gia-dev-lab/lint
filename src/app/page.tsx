@@ -166,17 +166,30 @@ export default function Home() {
                   Trova rapidamente ciò di cui hai bisogno. Le nostre linee di attrezzature per pulizia professionale sono state selezionate per rispondere alle esigenze specifiche di ogni professionista del pulito.
                 </p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {solutionCategories.map((category) => (
-                  <SolutionCategoryCard
-                    key={category.title}
-                    title={category.title}
-                    link={category.link}
-                    image={category.image}
-                    imageHint={category.imageHint}
-                  />
-                ))}
-              </div>
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full max-w-6xl mx-auto"
+              >
+                <CarouselContent>
+                  {solutionCategories.map((category) => (
+                    <CarouselItem key={category.title} className="md:basis-1/2 lg:basis-1/3">
+                      <div className="p-1">
+                        <SolutionCategoryCard
+                          title={category.title}
+                          link={category.link}
+                          image={category.image}
+                          imageHint={category.imageHint}
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
             </div>
           </section>
         </AnimateOnScroll>
