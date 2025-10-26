@@ -20,15 +20,15 @@ export default function Footer() {
           </div>
           <div className="flex flex-col gap-2">
             <h4 className="font-semibold">Prodotti</h4>
-            <Link href="#products" className="text-sm text-muted-foreground hover:text-foreground">Panni in Microfibra</Link>
-            <Link href="#products" className="text-sm text-muted-foreground hover:text-foreground">Accessori</Link>
-            <Link href="#products" className="text-sm text-muted-foreground hover:text-foreground">Ricambi</Link>
-            <Link href="#products" className="text-sm text-muted-foreground hover:text-foreground">Kit Detailing</Link>
+            <Link href="/prodotti/panni-in-microfibra" className="text-sm text-muted-foreground hover:text-foreground">Panni in Microfibra</Link>
+            <Link href="/prodotti" className="text-sm text-muted-foreground hover:text-foreground">Accessori</Link>
+            <Link href="/prodotti" className="text-sm text-muted-foreground hover:text-foreground">Ricambi</Link>
+            <Link href="/prodotti" className="text-sm text-muted-foreground hover:text-foreground">Kit Detailing</Link>
           </div>
           <div className="flex flex-col gap-2">
             <h4 className="font-semibold">Azienda</h4>
-            <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Chi Siamo</Link>
-            <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Contatti</Link>
+            <Link href="/chi-siamo" className="text-sm text-muted-foreground hover:text-foreground">Chi Siamo</Link>
+            <Link href="#kit-configurator" className="text-sm text-muted-foreground hover:text-foreground">Contatti</Link>
             <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Lavora con Noi</Link>
           </div>
           <div className="flex flex-col gap-2">
