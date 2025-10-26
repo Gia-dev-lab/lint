@@ -23,6 +23,12 @@ export function UserNav({ user }: { user: User }) {
     const parts = email.split('@');
     return parts[0][0].toUpperCase();
   };
+  
+  const handleLogout = () => {
+      if (auth) {
+          auth.signOut();
+      }
+  }
 
   return (
     <DropdownMenu>
@@ -52,7 +58,7 @@ export function UserNav({ user }: { user: User }) {
           <DropdownMenuItem>Impostazioni</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => auth.signOut()}>
+        <DropdownMenuItem onClick={handleLogout}>
           Esci
         </DropdownMenuItem>
       </DropdownMenuContent>

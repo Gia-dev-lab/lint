@@ -1,13 +1,15 @@
 "use server";
 
+import {addDocumentNonBlocking} from "@/firebase";
+import {collection, getFirestore} from "firebase/firestore";
 import * as z from "zod";
 
 const formSchema = z.object({
-  name: z.string(),
-  company: z.string(),
-  email: z.string().email(),
+  name: z.string().min(2, { message: "Il nome deve contenere almeno 2 caratteri." }),
+  company: z.string().min(2, { message: "Il nome dell'azienda è obbligatorio." }),
+  email: z.string().email({ message: "Inserisci un'email valida." }),
   phone: z.string().optional(),
-  message: z.string(),
+  message: z.string().min(10, { message: "Il messaggio deve contenere almeno 10 caratteri." }),
 });
 
 type QuoteFormValues = z.infer<typeof formSchema>;
@@ -15,8 +17,20 @@ type QuoteFormValues = z.infer<typeof formSchema>;
 export async function handleQuoteRequest(data: QuoteFormValues) {
   try {
     const validatedData = formSchema.parse(data);
-    // In una vera applicazione, salveresti questi dati in un database (es. Firebase)
-    // e invieresti una notifica email.
+    
+    // NOTE: This is a server action, but we are using the client-side SDK
+    // to write to Firestore. This is a temporary solution for the prototype.
+    // In a real application, you would use the Firebase Admin SDK here.
+    const { getSdks } = await import('@/firebase/index.server');
+    const { firestore } = getSdks();
+    
+    const quoteRequestCollection = collection(firestore, "quoteRequests");
+    
+    await addDoc(quoteRequestCollection, {
+        ...validatedData,
+        requestDate: new Date().toISOString()
+    });
+
     console.log("Nuova Richiesta di Consulenza/Preventivo:", validatedData);
     return { success: true };
   } catch (error) {

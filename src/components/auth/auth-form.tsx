@@ -61,41 +61,35 @@ export function AuthForm({ onSuccess }: { onSuccess?: () => void }) {
 
   function onLoginSubmit(data: z.infer<typeof loginSchema>) {
     startTransition(() => {
-      try {
-        initiateEmailSignIn(auth, data.email, data.password);
-        toast({
-          title: 'Accesso in corso...',
-          description: "Sarai reindirizzato a breve.",
+      initiateEmailSignIn(auth, data.email, data.password).catch((error: any) => {
+         toast({
+            variant: 'destructive',
+            title: 'Errore di accesso',
+            description: 'Credenziali non valide. Riprova.',
         });
-        onSuccess?.();
-      } catch (error: any) {
-        toast({
-          variant: 'destructive',
-          title: 'Errore di accesso',
-          description: error.message || 'Controlla le tue credenziali e riprova.',
-        });
-      }
+      });
+      toast({
+        title: 'Accesso in corso...',
+        description: "Sarai reindirizzato a breve.",
+      });
+      onSuccess?.();
     });
   }
   
   function onRegisterSubmit(data: z.infer<typeof registerSchema>) {
     startTransition(() => {
-      try {
-        initiateEmailSignUp(auth, data.email, data.password);
-        // Here you might want to update the user's profile with the name
-        // This requires listening for the user object to be available
-        toast({
-          title: 'Registrazione in corso...',
-          description: 'Account creato con successo. Stai per essere autenticato.',
-        });
-        onSuccess?.();
-      } catch (error: any) {
+       initiateEmailSignUp(auth, data.email, data.password).catch((error: any) => {
         toast({
           variant: 'destructive',
           title: 'Errore di registrazione',
           description: error.message || 'Non è stato possibile creare l\'account.',
         });
-      }
+      });
+      toast({
+        title: 'Registrazione in corso...',
+        description: 'Account creato con successo. Stai per essere autenticato.',
+      });
+      onSuccess?.();
     });
   }
 

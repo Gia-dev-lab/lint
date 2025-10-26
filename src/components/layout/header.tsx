@@ -57,6 +57,7 @@ export default function Header() {
     e.preventDefault();
     if (searchQuery.trim()) {
       router.push(`/prodotti?q=${encodeURIComponent(searchQuery.trim())}`);
+      setIsMobileMenuOpen(false); // Chiudi il menu mobile dopo la ricerca
     }
   };
 
@@ -124,7 +125,7 @@ export default function Header() {
 
             <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
                 <DialogTrigger asChild>
-                <Button variant="default" className="hidden sm:flex shrink-0 transition-opacity hover:opacity-90">
+                <Button variant="default" className="hidden sm:flex shrink-0 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:opacity-90">
                     <Sparkles className="mr-2 h-4 w-4" />
                     Richiedi Consulenza
                 </Button>
@@ -177,6 +178,15 @@ export default function Header() {
                         </Link>
                         ))}
                     </nav>
+                     <form onSubmit={handleSearchSubmit} className="mt-8 relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input 
+                            placeholder="Cerca prodotti..." 
+                            className="pl-9"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                    </form>
                     <div className="mt-auto flex flex-col gap-4 border-t pt-4">
                         <Button variant="default" onClick={() => { setIsMobileMenuOpen(false); setIsQuoteOpen(true);}}>
                             <Sparkles className="mr-2 h-4 w-4" />
