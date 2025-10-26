@@ -56,11 +56,11 @@ export default function Home() {
 
   const staticProductsForSolutions = [
     { id: 'p1', categorie: 'Panni', immagine: 'https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Panno-Microfibra.png', image: { imageHint: 'panno' } },
-    { id: 'p2', categorie: 'Accessori', immagine: 'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3ByYXklMjBib3R0bGV8ZW58MHx8fHwxNzYxMTI0MzU4fDA&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'accessorio' } },
-    { id: 'p3', categorie: 'Parti di Ricambio', immagine: 'https://images.unsplash.com/photo-1523559094051-53bac879eb80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYWNoaW5lJTIwcGFydHxlbnwwfHx8fDE3NjEyMTA0NjF8MA&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'ricambio' } },
+    { id: 'p2', categorie: 'Accessori', immagine: 'https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Accessori-Pulizia.png', image: { imageHint: 'accessorio' } },
+    { id: 'p3', categorie: 'Parti di Ricambio', immagine: 'https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Ricambi.png', image: { imageHint: 'ricambio' } },
     { id: 'p4', categorie: 'Panni per Autolavaggio', immagine: 'https://images.unsplash.com/photo-1554158488-a7f402c0380f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', image: { imageHint: 'autolavaggio' } },
-    { id: 'p5', categorie: 'Detergenti', immagine: 'https://images.unsplash.com/photo-1598214902123-6a4a49c3e536?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', image: { imageHint: 'detergente' } },
-    { id: 'p6', categorie: 'Kit', immagine: 'https://images.unsplash.com/photo-1708805282683-50a060eba80f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjYXIlMjBkZXRhaWxpbmd8ZW58MHx8fHwxNzYxMTgwNjQwfDA&ixlib=rb-4.1.0&q=80&w=1080', image: { imageHint: 'kit' } },
+    { id: 'p5', categorie: 'Detergenti', immagine: 'https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Chimici.png', image: { imageHint: 'detergente' } },
+    { id: 'p6', categorie: 'Kit', immagine: 'https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/kit-1-moto-bike-scaled.jpg', image: { imageHint: 'kit' } },
   ];
 
 
@@ -139,7 +139,7 @@ export default function Home() {
                 <SolutionCard 
                   title="Panni in Microfibra"
                   description="Il cuore di ogni intervento di pulizia. La nostra selezione include panni professionali per ogni applicazione: dall’asciugatura ultra-rapida alla pulizia senza aloni."
-                  link="/prodotti"
+                  link="/prodotti/panni-in-microfibra"
                   linkLabel="Esplora i Panni"
                   product={staticProductsForSolutions.find(p => p.categorie === 'Panni')}
                 />
@@ -380,6 +380,3 @@ function SolutionCard({ title, description, link, linkLabel, product }: { title:
     </Card>
   );
 }
-
-    
-    

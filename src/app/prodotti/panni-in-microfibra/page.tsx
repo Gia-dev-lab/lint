@@ -1,0 +1,69 @@
+
+"use client";
+
+import { useMemo } from "react";
+import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
+import { collection, query, where } from "firebase/firestore";
+import { ProductCard } from "@/components/product-card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+
+function ProductSkeleton() {
+  return (
+    <Card className="overflow-hidden flex flex-col">
+      <Skeleton className="h-48 w-full" />
+      <CardHeader>
+        <Skeleton className="h-6 w-3/4" />
+        <Skeleton className="h-4 w-full mt-2" />
+        <Skeleton className="h-4 w-2/3 mt-1" />
+      </CardHeader>
+      <CardContent className="flex-grow">
+        <Skeleton className="h-5 w-1/3 mb-4" />
+        <div className="space-y-2">
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+        </div>
+      </CardContent>
+      <div className="p-6 pt-0 mt-auto">
+        <Skeleton className="h-10 w-full" />
+      </div>
+    </Card>
+  );
+}
+
+export default function PanniInMicrofibraPage() {
+  const firestore = useFirestore();
+
+  const productsQuery = useMemo(() => {
+    if (!firestore) return null;
+    return query(collection(firestore, "prodotti"), where("categorie", "==", "Panni"));
+  }, [firestore]);
+
+  const { data: products, isLoading: isLoadingProducts } = useCollection(productsQuery);
+
+  return (
+    <div className="container py-12">
+      <div className="mb-8 text-center">
+        <h1 className="text-4xl font-bold tracking-tight">Panni in Microfibra Professionali</h1>
+        <p className="mt-2 text-lg text-muted-foreground">
+          La migliore selezione di panni tecnici per ogni esigenza di pulizia.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {isLoadingProducts &&
+          Array.from({ length: 8 }).map((_, i) => <ProductSkeleton key={i} />)}
+        
+        {!isLoadingProducts && products?.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+
+       {!isLoadingProducts && products?.length === 0 && (
+        <div className="text-center col-span-full py-12">
+          <p className="text-muted-foreground">Nessun panno in microfibra trovato in questa categoria al momento.</p>
+        </div>
+      )}
+    </div>
+  );
+}
