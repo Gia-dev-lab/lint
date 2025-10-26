@@ -64,11 +64,11 @@ export default function PanniInMicrofibraPage() {
       <section className="relative py-20 md:py-32 bg-secondary text-foreground text-center">
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1706794831045-299d2a85a8e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjbG90aCUyMHN0YWNrfGVufDB8fHx8MTc2MTIxMDQ2MXww&ixlib=rb-4.1.0&q=80&w=1080"
-            alt="Panni in microfibra professionali"
+            src="https://www.lintmicrofibercloths.it/wp-content/uploads/2025/10/Consigli-pulizia-professionale-del-blog-LINT.png"
+            alt="Consigli per la pulizia professionale"
             fill
             className="object-cover"
-            data-ai-hint="cloth stack"
+            data-ai-hint="professional cleaning"
           />
           <div className="absolute inset-0 bg-background/70" />
         </div>
