@@ -13,12 +13,24 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Menu, Search, Phone, Mail, Sparkles } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Menu, Search, Phone, Mail, Sparkles, ChevronDown } from "lucide-react";
 import { Logo } from "@/components/icons";
 import { QuoteRequestForm } from "../quote-request-form";
 import { useUser } from "@/firebase";
 import { UserNav } from "../auth/user-nav";
 import { AuthForm } from "../auth/auth-form";
+
+type NavLink = {
+  href: string;
+  label: string;
+  children?: NavLink[];
+};
 
 export default function Header() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
@@ -26,9 +38,15 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, isUserLoading } = useUser();
   
-  const navLinks = [
+  const navLinks: NavLink[] = [
     { href: "#solutions", label: "Soluzioni" },
-    { href: "/prodotti", label: "Tutti i Prodotti" },
+    { 
+      href: "/prodotti", 
+      label: "Tutti i Prodotti",
+      children: [
+        { href: "/prodotti/panni-in-microfibra", label: "Panni in Microfibra" },
+      ]
+    },
     { href: "#why-lint", label: "Perché Lint" },
   ];
 
@@ -40,15 +58,34 @@ export default function Header() {
             <Logo />
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="transition-colors hover:text-foreground/80 text-foreground/70"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.children ? (
+                <DropdownMenu key={link.href}>
+                  <DropdownMenuTrigger className="flex items-center gap-1 transition-colors hover:text-foreground/80 text-foreground/70 outline-none">
+                    {link.label}
+                    <ChevronDown className="h-4 w-4" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem asChild>
+                      <Link href={link.href}>Vedi Tutti</Link>
+                    </DropdownMenuItem>
+                    {link.children.map((child) => (
+                      <DropdownMenuItem key={child.href} asChild>
+                        <Link href={child.href}>{child.label}</Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="transition-colors hover:text-foreground/80 text-foreground/70"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </nav>
         </div>
         
