@@ -14,6 +14,7 @@ const KitSuggestionInputSchema = z.object({
   description: z.string().describe("La descrizione dell'attività del cliente."),
   products: z.array(z.object({
     id: z.string(),
+    product_id: z.number().optional(),
     nome: z.string(),
     categorie: z.string(),
     descrizionebreve: z.string().optional(),
