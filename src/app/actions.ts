@@ -23,7 +23,7 @@ export async function handleQuoteRequest(data: QuoteFormValues) {
     
     // CORREZIONE: Utilizza il nostro helper server-side per ottenere le istanze di Firebase
     const { getSdks } = await import('@/firebase/index.server');
-    const { firestore, auth } = getSdks();
+    const { auth, firestore } = getSdks();
 
     let userId = null;
     try {
@@ -73,7 +73,14 @@ export async function getKitSuggestions(input: { description: string }) {
 
     const suggestions = await getKitSuggestionsAI({
       description: validatedInput.description,
-      products: products.map(({ id, nome, categorie, descrizionebreve, SKU }) => ({ id, nome, categorie, descrizionebreve, SKU }))
+      products: products.map(({ id, ID, nome, categorie, descrizionebreve, SKU }) => ({ 
+          id, 
+          product_id: ID, // Correctly map the numeric ID
+          nome, 
+          categorie, 
+          descrizionebreve, 
+          SKU 
+      }))
     });
     
     return { success: true, suggestions };
