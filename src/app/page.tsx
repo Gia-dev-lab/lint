@@ -111,7 +111,7 @@ export default function Home() {
             <div className="mt-8 flex gap-4 justify-center">
                <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
                 <DialogTrigger asChild>
-                  <Button size="lg" variant="default" className="transition-all duration-300 hover:scale-105 hover:shadow-lg">Contattaci per una Consulenza</Button>
+                  <Button size="lg" variant="default" className="transition-all duration-300 hover:scale-105 hover:shadow-lg hover:opacity-90">Contattaci per una Consulenza</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px] bg-background/90 backdrop-blur-lg">
                   <DialogHeader>
@@ -120,7 +120,7 @@ export default function Home() {
                   <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
                 </DialogContent>
               </Dialog>
-              <Button size="lg" variant="outline" asChild className="transition-all duration-300 hover:scale-105 hover:shadow-lg">
+              <Button size="lg" variant="outline" asChild className="transition-all duration-300 hover:scale-105 hover:shadow-lg hover:opacity-90">
                 <Link href="#solutions">Esplora le Soluzioni</Link>
               </Button>
             </div>
@@ -128,8 +128,8 @@ export default function Home() {
         </section>
         
         {/* Sezione Nuova Soluzioni Professionali */}
-        <section id="solutions" className="py-16 lg:py-24 bg-secondary">
-          <AnimateOnScroll>
+        <AnimateOnScroll>
+          <section id="solutions" className="py-16 lg:py-24 bg-secondary">
             <div className="container text-center">
               <h2 className="text-3xl md:text-4xl font-bold">Esplora le Nostre Soluzioni Professionali</h2>
               <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">
@@ -180,12 +180,12 @@ export default function Home() {
                 />
               </div>
             </div>
-          </AnimateOnScroll>
-        </section>
+          </section>
+        </AnimateOnScroll>
 
         {/* Sezione Prodotti Selezionati */}
-        <section id="products" className="py-16 lg:py-24 bg-background">
-          <AnimateOnScroll>
+        <AnimateOnScroll>
+          <section id="products" className="py-16 lg:py-24 bg-background">
             <div className="container">
               <div className="text-center mb-12">
                  <h2 className="text-3xl md:text-4xl font-bold">Prodotti in Evidenza</h2>
@@ -201,12 +201,12 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-          </AnimateOnScroll>
-        </section>
+          </section>
+        </AnimateOnScroll>
         
         {/* Sezione Perché Scegliere Lint */}
-        <section id="why-lint" className="py-16 lg:py-24 bg-secondary">
-          <AnimateOnScroll>
+        <AnimateOnScroll>
+          <section id="why-lint" className="py-16 lg:py-24 bg-secondary">
             <div className="container grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-4">
                 <h2 className="text-3xl md:text-4xl font-bold">Perché Scegliere Lint come Fornitore di Attrezzature per Pulizia Professionale</h2>
@@ -249,12 +249,12 @@ export default function Home() {
                   <p className="pt-4">Sei pronto a elevare la qualità del tuo lavoro? <a href="#" onClick={(e) => { e.preventDefault(); setIsQuoteOpen(true); }} className="text-primary font-semibold hover:underline">Contattaci per una consulenza</a> e scopri le nostre soluzioni B2B.</p>
                </div>
             </div>
-          </AnimateOnScroll>
-        </section>
+          </section>
+        </AnimateOnScroll>
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="py-16 lg:py-24 bg-background">
-          <AnimateOnScroll>
+        <AnimateOnScroll>
+          <section id="testimonials" className="py-16 lg:py-24 bg-background">
             <div className="container">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold">La Parola ai Nostri Clienti</h2>
@@ -298,12 +298,12 @@ export default function Home() {
                 <CarouselNext />
               </Carousel>
             </div>
-          </AnimateOnScroll>
-        </section>
+          </section>
+        </AnimateOnScroll>
 
         {/* Final CTA Section */}
-        <section id="kit-configurator" className="py-16 lg:py-24 bg-secondary">
-          <AnimateOnScroll>
+        <AnimateOnScroll>
+          <section id="kit-configurator" className="py-16 lg:py-24 bg-secondary">
             <div className="container grid md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-4">
                     <h2 className="text-3xl md:text-4xl font-bold">Non Sai da Dove Iniziare?</h2>
@@ -318,8 +318,8 @@ export default function Home() {
                     <KitConfigurator />
                 </div>
             </div>
-          </AnimateOnScroll>
-        </section>
+          </section>
+        </AnimateOnScroll>
 
       </main>
     </div>

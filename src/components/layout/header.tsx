@@ -108,7 +108,7 @@ export default function Header() {
 
             <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
                 <DialogTrigger asChild>
-                <Button variant="default" className="hidden sm:flex shrink-0">
+                <Button variant="default" className="hidden sm:flex shrink-0 transition-opacity hover:opacity-90">
                     <Sparkles className="mr-2 h-4 w-4" />
                     Richiedi Consulenza
                 </Button>
