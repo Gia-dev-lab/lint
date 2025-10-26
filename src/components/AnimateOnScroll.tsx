@@ -7,46 +7,54 @@ interface AnimateOnScrollProps {
   children: ReactNode;
   className?: string;
   threshold?: number;
-  triggerOnce?: boolean;
 }
 
 export function AnimateOnScroll({
   children,
   className,
   threshold = 0.1,
-  triggerOnce = true,
 }: AnimateOnScrollProps) {
-  const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
-
+  const [isVisible, setIsVisible] = useState(false);
+  
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          if (triggerOnce) {
-            observer.unobserve(element);
-          }
-        } else {
-            if(!triggerOnce){
-                setIsVisible(false);
-            }
-        }
+        // Update state when element's intersection status changes
+        setIsVisible(entry.isIntersecting);
       },
       { threshold }
     );
-
+    
     observer.observe(element);
+    
+    // Check if the element is already visible on mount
+    const initialEntry = observer.takeRecords()[0];
+    if(initialEntry && initialEntry.isIntersecting){
+        setIsVisible(true);
+    }
 
     return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
+       if (element) {
+         observer.unobserve(element);
+       }
     };
-  }, [threshold, triggerOnce]);
+  }, [threshold]);
+  
+  // This effect will unobserve the element if it has become visible
+  // and we only want the animation to trigger once.
+  useEffect(() => {
+      const element = ref.current;
+      if (isVisible && element) {
+          const observer = new IntersectionObserver(() => {}, {threshold});
+          observer.observe(element);
+          observer.unobserve(element);
+      }
+  }, [isVisible, threshold]);
+
 
   return (
     <div
