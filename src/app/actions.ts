@@ -1,17 +1,10 @@
 "use server";
 
-import { addDoc, serverTimestamp } from "firebase/firestore";
+import { addDoc } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
 import * as z from "zod";
 import { getKitSuggestions as getKitSuggestionsAI } from "@/ai/flows/kit-suggestion-flow";
 import type { Product } from "@/lib/data";
-import { getApps } from "firebase/app";
-
-// Funzione per rimuovere i tag HTML
-const stripHtml = (html: string | undefined | null): string => {
-  if (!html) return "";
-  return html.replace(/<[^>]+>/g, '');
-};
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Il nome deve contenere almeno 2 caratteri." }),
@@ -74,14 +67,11 @@ export async function getKitSuggestions(input: { description: string }) {
 
     const suggestions = await getKitSuggestionsAI({
       description: validatedInput.description,
-      products: products.map(({ id, ID, nome, categorie, descrizionebreve, SKU }) => ({ 
-          id, 
-          product_id: ID,
-          nome, 
-          categorie, 
-          descrizionebreve: stripHtml(descrizionebreve), // Clean the description here
-          SKU 
-      }))
+      products: products.map(({ id, nome, categorie }) => ({
+        id,
+        nome,
+        categorie,
+      })),
     });
     
     return { success: true, suggestions };

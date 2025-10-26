@@ -8,17 +8,13 @@
 
 import { ai } from '@/ai/genkit';
 import { z } from 'zod';
-import type { Product } from '@/lib/data';
 
 const KitSuggestionInputSchema = z.object({
   description: z.string().describe("La descrizione dell'attività del cliente."),
   products: z.array(z.object({
     id: z.string(),
-    product_id: z.number().optional(),
     nome: z.string(),
     categorie: z.string(),
-    descrizionebreve: z.string().optional(),
-    SKU: z.string().optional(),
   })).describe("L'elenco dei prodotti disponibili nel catalogo."),
 });
 export type KitSuggestionInput = z.infer<typeof KitSuggestionInputSchema>;
