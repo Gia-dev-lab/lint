@@ -34,6 +34,45 @@ const animatedHeadlines = [
   "Supporto Dedicato.",
 ];
 
+const solutionCategories = [
+  {
+    title: "Panni in Microfibra",
+    link: "/prodotti/panni-in-microfibra",
+    image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Panno-Microfibra.png",
+    imageHint: "panno",
+  },
+  {
+    title: "Accessori per Pulizia",
+    link: "/prodotti",
+    image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Accessori-Pulizia.png",
+    imageHint: "accessorio",
+  },
+  {
+    title: "Parti di Ricambio",
+    link: "/prodotti",
+    image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Ricambi.png",
+    imageHint: "ricambio",
+  },
+  {
+    title: "Panni Autolavaggio",
+    link: "/prodotti",
+    image: "https://images.unsplash.com/photo-1554158488-a7f402c0380f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imageHint: "autolavaggio",
+  },
+  {
+    title: "Detergenti",
+    link: "/prodotti",
+    image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Chimici.png",
+    imageHint: "detergente",
+  },
+  {
+    title: "Kit di Pulizia",
+    link: "/prodotti",
+    image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/kit-1-moto-bike-scaled.jpg",
+    imageHint: "kit",
+  },
+];
+
 export default function Home() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);
@@ -53,16 +92,6 @@ export default function Home() {
     }, 3000); // Cambia ogni 3 secondi
     return () => clearInterval(interval);
   }, []);
-
-  const staticProductsForSolutions = [
-    { id: 'p1', categorie: 'Panni', immagine: 'https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Panno-Microfibra.png', image: { imageHint: 'panno' } },
-    { id: 'p2', categorie: 'Accessori', immagine: 'https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Accessori-Pulizia.png', image: { imageHint: 'accessorio' } },
-    { id: 'p3', categorie: 'Parti di Ricambio', immagine: 'https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Ricambi.png', image: { imageHint: 'ricambio' } },
-    { id: 'p4', categorie: 'Panni per Autolavaggio', immagine: 'https://images.unsplash.com/photo-1554158488-a7f402c0380f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', image: { imageHint: 'autolavaggio' } },
-    { id: 'p5', categorie: 'Detergenti', immagine: 'https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Chimici.png', image: { imageHint: 'detergente' } },
-    { id: 'p6', categorie: 'Kit', immagine: 'https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/kit-1-moto-bike-scaled.jpg', image: { imageHint: 'kit' } },
-  ];
-
 
   return (
     <div className="flex flex-col">
@@ -130,54 +159,23 @@ export default function Home() {
         {/* Sezione Nuova Soluzioni Professionali */}
         <AnimateOnScroll>
           <section id="solutions" className="py-16 lg:py-24 bg-secondary">
-            <div className="container text-center">
-              <h2 className="text-3xl md:text-4xl font-bold">Esplora le Nostre Soluzioni Professionali</h2>
-              <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">
-                Trova rapidamente ciò di cui hai bisogno. Le nostre linee di attrezzature per pulizia professionale sono state selezionate per rispondere alle esigenze specifiche di ogni professionista del pulito.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                <SolutionCard 
-                  title="Panni in Microfibra"
-                  description="Il cuore di ogni intervento di pulizia. La nostra selezione include panni professionali per ogni applicazione: dall’asciugatura ultra-rapida alla pulizia senza aloni."
-                  link="/prodotti/panni-in-microfibra"
-                  linkLabel="Esplora i Panni"
-                  product={staticProductsForSolutions.find(p => p.categorie === 'Panni')}
-                />
-                <SolutionCard 
-                  title="Accessori per la Pulizia"
-                  description="Gli strumenti giusti che fanno la differenza. In questa sezione troverai spugne, supporti, applicatori e tutto ciò che serve per massimizzare l’efficienza."
-                  link="/prodotti"
-                  linkLabel="Scopri gli Accessori"
-                  product={staticProductsForSolutions.find(p => p.categorie === 'Accessori')}
-                />
-                <SolutionCard 
-                  title="Ricambi Professionali"
-                  description="Non lasciare che un dettaglio fermi il tuo lavoro. La nostra gamma di ricambi ti assicura la massima continuità operativa e performance ottimali."
-                  link="/prodotti"
-                  linkLabel="Trova i Ricambi"
-                  product={staticProductsForSolutions.find(p => p.categorie === 'Parti di Ricambio')}
-                />
-                <SolutionCard
-                  title="Panni per Autolavaggio"
-                  description="Panni specifici per autolavaggi, ad alta resistenza e capacità di assorbimento per un self-service di qualità e un detailing impeccabile."
-                  link="/prodotti"
-                  linkLabel="Esplora i Panni"
-                  product={staticProductsForSolutions.find(p => p.categorie === 'Panni per Autolavaggio')}
-                />
-                <SolutionCard
-                  title="Detergenti per Pulizia"
-                  description="Prodotti chimici professionali per una pulizia profonda. Formule ecologiche ed efficaci per ogni tipo di superficie e sporco."
-                  link="/prodotti"
-                  linkLabel="Scopri i Detergenti"
-                  product={staticProductsForSolutions.find(p => p.categorie === 'Detergenti')}
-                />
-                <SolutionCard
-                  title="Kit di Pulizia e Detailing"
-                  description="Kit pronti all'uso per professionisti. Soluzioni complete che includono tutto il necessario per iniziare subito a lavorare con efficienza."
-                  link="/prodotti"
-                  linkLabel="Vedi i Kit"
-                  product={staticProductsForSolutions.find(p => p.categorie === 'Kit')}
-                />
+            <div className="container">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold">Esplora le Nostre Soluzioni Professionali</h2>
+                <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">
+                  Trova rapidamente ciò di cui hai bisogno. Le nostre linee di attrezzature per pulizia professionale sono state selezionate per rispondere alle esigenze specifiche di ogni professionista del pulito.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {solutionCategories.map((category) => (
+                  <SolutionCategoryCard
+                    key={category.title}
+                    title={category.title}
+                    link={category.link}
+                    image={category.image}
+                    imageHint={category.imageHint}
+                  />
+                ))}
               </div>
             </div>
           </section>
@@ -349,34 +347,20 @@ function ProductSkeleton() {
   );
 }
 
-
-function SolutionCard({ title, description, link, linkLabel, product }: { title: string, description: string, link: string, linkLabel: string, product?: { immagine?: string; image?: { imageHint?: string } } }) {
-  const imageUrl = product?.immagine;
-  const imageHint = product?.image?.imageHint;
+function SolutionCategoryCard({ title, link, image, imageHint }: { title: string, link: string, image: string, imageHint?: string }) {
   return (
-    <Card className="flex flex-col text-center items-center p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
-      {imageUrl && (
-        <div className="relative h-32 w-32 mb-4 rounded-full overflow-hidden border-4 border-background shadow-md">
-          <Image
-            src={imageUrl}
-            alt={title}
-            fill
-            className="object-cover"
-            data-ai-hint={imageHint}
-          />
-        </div>
-      )}
-      <CardHeader className="p-0">
-        <CardTitle className="text-xl">{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="p-0 mt-2 flex-grow">
-        <p className="text-muted-foreground">{description}</p>
-      </CardContent>
-      <div className="mt-4">
-        <Button asChild variant="secondary" className="transition-transform duration-300 hover:scale-105">
-          <Link href={link}>{linkLabel}</Link>
-        </Button>
+    <Link href={link} className="group relative block aspect-video w-full overflow-hidden rounded-lg shadow-lg">
+      <Image
+        src={image}
+        alt={title}
+        fill
+        className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+        data-ai-hint={imageHint}
+      />
+      <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/60"></div>
+      <div className="absolute inset-0 flex items-center justify-center p-4">
+        <h3 className="text-2xl font-bold text-white text-center transition-transform duration-300 group-hover:scale-110">{title}</h3>
       </div>
-    </Card>
+    </Link>
   );
 }
