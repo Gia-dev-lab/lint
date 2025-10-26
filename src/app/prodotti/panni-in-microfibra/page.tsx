@@ -34,7 +34,7 @@ function ProductSkeleton() {
 export default function PanniInMicrofibraPage() {
   const firestore = useFirestore();
 
-  const productsQuery = useMemo(() => {
+  const productsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
     return query(collection(firestore, "prodotti"), where("categorie", "==", "Panni"));
   }, [firestore]);
