@@ -1,8 +1,9 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -37,6 +38,8 @@ export default function Header() {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, isUserLoading } = useUser();
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
   
   const navLinks: NavLink[] = [
     { href: "#solutions", label: "Soluzioni" },
@@ -49,6 +52,14 @@ export default function Header() {
     },
     { href: "#why-lint", label: "Perché Lint" },
   ];
+
+  const handleSearchSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/prodotti?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -90,10 +101,15 @@ export default function Header() {
         </div>
         
         <div className="flex flex-1 items-center justify-end gap-2 sm:gap-4">
-            <div className="hidden w-full max-w-xs md:flex relative">
+            <form onSubmit={handleSearchSubmit} className="hidden w-full max-w-xs md:flex relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="Cerca attrezzature, ricambi..." className="pl-9" />
-            </div>
+                <Input 
+                  placeholder="Cerca attrezzature, ricambi..." 
+                  className="pl-9"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+            </form>
 
             <div className="hidden items-center gap-4 lg:flex">
                 <a href="tel:+39021234567" className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
