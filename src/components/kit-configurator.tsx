@@ -8,8 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { getKitSuggestions } from "@/app/actions";
 import { Loader2, Sparkles, Lightbulb } from "lucide-react";
-import Image from "next/image";
 import type { KitSuggestion } from "@/ai/flows/kit-suggestion-flow";
+import Link from "next/link";
 
 export function KitConfigurator() {
   const [description, setDescription] = useState("");
@@ -75,12 +75,14 @@ export function KitConfigurator() {
             <h3 className="text-lg font-semibold mb-4 flex items-center gap-2"><Lightbulb className="text-accent"/> Kit consigliato per te:</h3>
             <div className="space-y-4">
               {suggestions.map((suggestion, index) => (
-                <Card key={index} className="overflow-hidden bg-secondary/50">
-                    <CardContent className="p-4">
-                        <h4 className="font-semibold">{suggestion.productName}</h4>
-                        <p className="text-sm text-muted-foreground mt-1">{suggestion.reason}</p>
-                    </CardContent>
-                </Card>
+                <Link href={`/prodotti/${suggestion.productId}`} key={index} className="block group">
+                  <Card className="overflow-hidden bg-secondary/50 transition-all duration-300 group-hover:bg-secondary group-hover:shadow-md">
+                      <CardContent className="p-4">
+                          <h4 className="font-semibold text-primary group-hover:underline">{suggestion.productName}</h4>
+                          <p className="text-sm text-muted-foreground mt-1">{suggestion.reason}</p>
+                      </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>

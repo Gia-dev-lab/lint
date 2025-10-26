@@ -1,9 +1,10 @@
 "use server";
 
 import {addDocumentNonBlocking} from "@/firebase";
-import {collection} from "firebase/firestore";
+import {collection, getDocs} from "firebase/firestore";
 import * as z from "zod";
 import { getKitSuggestions as getKitSuggestionsAI } from "@/ai/flows/kit-suggestion-flow";
+import type { Product } from "@/lib/data";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Il nome deve contenere almeno 2 caratteri." }),
@@ -47,7 +48,18 @@ const kitConfiguratorSchema = z.object({
 export async function getKitSuggestions(input: { description: string }) {
    try {
     const validatedInput = kitConfiguratorSchema.parse(input);
-    const suggestions = await getKitSuggestionsAI(validatedInput.description);
+    
+    const { getSdks } = await import('@/firebase/index.server');
+    const { firestore } = getSdks();
+    
+    const productsSnapshot = await getDocs(collection(firestore, "prodotti"));
+    const products: Product[] = productsSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as Product));
+
+    const suggestions = await getKitSuggestionsAI({
+      description: validatedInput.description,
+      products: products.map(({ id, nome, categorie, descrizionebreve, SKU }) => ({ id, nome, categorie, descrizionebreve, SKU }))
+    });
+    
     return { success: true, suggestions };
   } catch (error) {
     if (error instanceof z.ZodError) {
