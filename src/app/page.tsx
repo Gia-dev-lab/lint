@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { testimonials } from "@/lib/data";
-import { placeholderImages } from "@/lib/placeholder-images";
+import { placeholderImages } from "@/lib/data";
 import { CheckCircle2, Loader2 } from 'lucide-react';
 import { KitConfigurator } from "@/components/kit-configurator";
 import {
