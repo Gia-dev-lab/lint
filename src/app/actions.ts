@@ -1,8 +1,9 @@
 "use server";
 
 import {addDocumentNonBlocking} from "@/firebase";
-import {collection, getFirestore} from "firebase/firestore";
+import {collection} from "firebase/firestore";
 import * as z from "zod";
+import { getKitSuggestions as getKitSuggestionsAI } from "@/ai/flows/kit-suggestion-flow";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Il nome deve contenere almeno 2 caratteri." }),
@@ -18,15 +19,12 @@ export async function handleQuoteRequest(data: QuoteFormValues) {
   try {
     const validatedData = formSchema.parse(data);
     
-    // NOTE: This is a server action, but we are using the client-side SDK
-    // to write to Firestore. This is a temporary solution for the prototype.
-    // In a real application, you would use the Firebase Admin SDK here.
     const { getSdks } = await import('@/firebase/index.server');
     const { firestore } = getSdks();
     
     const quoteRequestCollection = collection(firestore, "quoteRequests");
     
-    await addDoc(quoteRequestCollection, {
+    await addDocumentNonBlocking(quoteRequestCollection, {
         ...validatedData,
         requestDate: new Date().toISOString()
     });
@@ -43,34 +41,19 @@ export async function handleQuoteRequest(data: QuoteFormValues) {
 }
 
 const kitConfiguratorSchema = z.object({
-  description: z.string().min(10),
+  description: z.string().min(10, { message: "La descrizione deve contenere almeno 10 caratteri." }),
 });
 
-// Questa è una funzione fittizia per il configuratore di kit AI.
-// In un'app reale, chiamerebbe un flow Genkit.
 export async function getKitSuggestions(input: { description: string }) {
    try {
-    kitConfiguratorSchema.parse(input);
-    await new Promise(resolve => setTimeout(resolve, 1500)); // Simula il tempo di elaborazione dell'IA
-
-    // Risposta fittizia basata su parole chiave
-    const lowercasedDescription = input.description.toLowerCase();
-    let suggestions: { id: string; name: string }[] = [];
-
-    if (lowercasedDescription.includes("auto") || lowercasedDescription.includes("macchina") || lowercasedDescription.includes("detailing")) {
-      suggestions.push({ id: 'p6', name: 'Kit Detailing Auto Completo' });
-      suggestions.push({ id: 'p7', name: 'Panni in Microfibra Linea Self Car Wash' });
-    } else if (lowercasedDescription.includes("hotel") || lowercasedDescription.includes("ristorante") || lowercasedDescription.includes("horeca")) {
-       suggestions.push({ id: 'p4', name: 'Tergivetro Professionale 45cm' });
-       suggestions.push({ id: 'p8', name: 'Detergente Universale Concentrato' });
-    } else {
-       suggestions.push({ id: 'p1', name: 'Panno Pro Anti-Pelucchi' });
-       suggestions.push({ id: 'p5', name: 'Gruppo Filtro per Modello X-100' });
-    }
-
+    const validatedInput = kitConfiguratorSchema.parse(input);
+    const suggestions = await getKitSuggestionsAI(validatedInput.description);
     return { success: true, suggestions };
-
   } catch (error) {
-    return { success: false, error: "Fornisci una descrizione più dettagliata delle tue necessità." };
+    if (error instanceof z.ZodError) {
+        return { success: false, error: "Fornisci una descrizione più dettagliata delle tue necessità (almeno 10 caratteri)." };
+    }
+    console.error("Errore dal flusso AI:", error);
+    return { success: false, error: "Si è verificato un errore durante l'analisi della tua richiesta. Riprova." };
   }
 }
