@@ -69,7 +69,7 @@ export default function RicambiClientPage() {
   const productsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
     
-    let q: Query = query(collection(firestore, "prodotti"), where("categorie", "==", "Ricambi per Attrezzature Pulizia"));
+    let q: Query = query(collection(firestore, "prodotti"), where("categorie", "==", "Ricambi Attrezzatura Pulizia"));
 
     if (activeFilter !== "all") {
       // Logic for filtering by tags can be added here in the future
