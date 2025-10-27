@@ -1,10 +1,9 @@
+
 "use server";
 
 import { addDoc } from "firebase/firestore";
-import { collection, getDocs } from "firebase/firestore";
+import { collection } from "firebase/firestore";
 import * as z from "zod";
-import { getKitSuggestions as getKitSuggestionsAI } from "@/ai/flows/kit-suggestion-flow";
-import type { Product } from "@/lib/data";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Il nome deve contenere almeno 2 caratteri." }),
@@ -51,35 +50,4 @@ export async function handleQuoteRequest(data: QuoteFormValues) {
   }
 }
 
-const kitConfiguratorSchema = z.object({
-  description: z.string().min(10, { message: "La descrizione deve contenere almeno 10 caratteri." }),
-});
-
-export async function getKitSuggestions(input: { description: string }) {
-   try {
-    const validatedInput = kitConfiguratorSchema.parse(input);
     
-    const { getSdks } = await import('@/firebase/index.server');
-    const { firestore } = getSdks();
-    
-    const productsSnapshot = await getDocs(collection(firestore, "prodotti"));
-    const products: Product[] = productsSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as Product));
-
-    const suggestions = await getKitSuggestionsAI({
-      description: validatedInput.description,
-      products: products.map(({ id, nome, categorie }) => ({
-        id,
-        nome,
-        categorie,
-      })),
-    });
-    
-    return { success: true, suggestions };
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-        return { success: false, error: "Fornisci una descrizione più dettagliata delle tue necessità (almeno 10 caratteri)." };
-    }
-    console.error("Errore dal flusso AI:", error);
-    return { success: false, error: "Si è verificato un errore durante l'analisi della tua richiesta. Riprova." };
-  }
-}

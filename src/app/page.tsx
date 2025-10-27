@@ -6,8 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { testimonials } from "@/lib/data";
 import { placeholderImages } from "@/lib/data";
-import { CheckCircle2, Loader2 } from 'lucide-react';
-import { KitConfigurator } from "@/components/kit-configurator";
+import { CheckCircle2, Building, Car, Hotel } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -325,16 +324,51 @@ export default function Home() {
           <section id="kit-configurator" className="py-16 lg:py-24 bg-secondary">
             <div className="container grid md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-4">
-                    <h2 className="text-3xl md:text-4xl font-bold">Non Sai da Dove Iniziare?</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold">Trova la Soluzione Giusta per Te</h2>
                     <p className="text-muted-foreground text-lg">
-                        Rispondi a poche semplici domande e il nostro configuratore intelligente ti suggerirà il kit di prodotti perfetto per le tue esigenze specifiche. Che tu gestisca un autolavaggio, un'impresa di pulizie o un hotel, abbiamo la soluzione su misura per te.
+                        Ogni settore ha esigenze uniche. Seleziona la tua area di competenza e scopri come possiamo aiutarti, oppure richiedi una consulenza mirata per creare il tuo kit di prodotti ideale.
                     </p>
                     <p className="text-muted-foreground">
-                        Inizia ora e scopri come ottimizzare il tuo lavoro con le attrezzature giuste.
+                        Il nostro team di esperti è a tua disposizione per consigliarti le migliori attrezzature per ottimizzare il tuo lavoro.
                     </p>
                 </div>
-                <div>
-                    <KitConfigurator />
+                <div className="grid gap-6">
+                    <Card className="hover:shadow-lg transition-shadow">
+                        <CardHeader className="flex flex-row items-center gap-4">
+                            <Building className="w-8 h-8 text-primary" />
+                            <div>
+                                <CardTitle>Imprese di Pulizia</CardTitle>
+                                <CardDescription>Soluzioni per uffici, condomini e grandi superfici.</CardDescription>
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                             <Button onClick={() => setIsQuoteOpen(true)} className="w-full">Richiedi Consulenza</Button>
+                        </CardContent>
+                    </Card>
+                    <Card className="hover:shadow-lg transition-shadow">
+                        <CardHeader className="flex flex-row items-center gap-4">
+                            <Car className="w-8 h-8 text-primary" />
+                            <div>
+                                <CardTitle>Car Detailing & Autolavaggi</CardTitle>
+                                <CardDescription>Prodotti specifici per la cura e la pulizia dell'auto.</CardDescription>
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                             <Button onClick={() => setIsQuoteOpen(true)} className="w-full">Scopri di più</Button>
+                        </CardContent>
+                    </Card>
+                    <Card className="hover:shadow-lg transition-shadow">
+                        <CardHeader className="flex flex-row items-center gap-4">
+                            <Hotel className="w-8 h-8 text-primary" />
+                            <div>
+                                <CardTitle>Settore Ho.Re.Ca.</CardTitle>
+                                <CardDescription>Attrezzature per hotel, ristoranti e catering.</CardDescription>
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                             <Button onClick={() => setIsQuoteOpen(true)} className="w-full">Contatta un Esperto</Button>
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
           </section>
@@ -385,3 +419,5 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
     </Link>
   );
 }
+
+    
