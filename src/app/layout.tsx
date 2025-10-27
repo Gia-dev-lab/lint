@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { FirebaseClientProvider } from '@/firebase/client-provider';
+import { CookieBanner } from '@/components/cookie-banner';
 
 export const metadata: Metadata = {
   title: 'Lint Professional Cleaning - Attrezzature per Pulizia Professionale',
@@ -34,6 +35,7 @@ export default function RootLayout({
           </div>
           <Toaster />
         </FirebaseClientProvider>
+        <CookieBanner />
       </body>
     </html>
   );
