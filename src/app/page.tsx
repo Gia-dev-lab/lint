@@ -343,21 +343,21 @@ export default function Home() {
                     <DialogTrigger asChild>
                       <Card className="bg-background/10 text-background border-background/20 hover:bg-background/20 transition-all duration-300 cursor-pointer p-6 flex flex-col items-center justify-center text-center space-y-4 backdrop-blur-lg">
                           <Building className="w-10 h-10 text-primary" />
-                          <CardTitle className="text-xl">Imprese di Pulizia</CardTitle>
+                          <CardTitle className="text-xl text-background">Imprese di Pulizia</CardTitle>
                           <CardDescription className="text-background/80">Soluzioni per uffici, condomini e grandi superfici.</CardDescription>
                       </Card>
                     </DialogTrigger>
                      <DialogTrigger asChild>
                       <Card className="bg-background/10 text-background border-background/20 hover:bg-background/20 transition-all duration-300 cursor-pointer p-6 flex flex-col items-center justify-center text-center space-y-4 backdrop-blur-lg">
                           <Car className="w-10 h-10 text-primary" />
-                          <CardTitle className="text-xl">Car Detailing</CardTitle>
+                          <CardTitle className="text-xl text-background">Car Detailing</CardTitle>
                           <CardDescription className="text-background/80">Prodotti specifici per la cura e la pulizia dell'auto.</CardDescription>
                       </Card>
                     </DialogTrigger>
                      <DialogTrigger asChild>
                       <Card className="bg-background/10 text-background border-background/20 hover:bg-background/20 transition-all duration-300 cursor-pointer p-6 flex flex-col items-center justify-center text-center space-y-4 backdrop-blur-lg">
                           <Hotel className="w-10 h-10 text-primary" />
-                          <CardTitle className="text-xl">Settore Ho.Re.Ca.</CardTitle>
+                          <CardTitle className="text-xl text-background">Settore Ho.Re.Ca.</CardTitle>
                           <CardDescription className="text-background/80">Attrezzature per hotel, ristoranti e catering.</CardDescription>
                       </Card>
                     </DialogTrigger>
