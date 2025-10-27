@@ -19,6 +19,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Menu, Search, Phone, Mail, Sparkles, ChevronDown } from "lucide-react";
 import { Logo } from "@/components/icons";
 import { QuoteRequestForm } from "../quote-request-form";
@@ -44,7 +50,7 @@ export default function Header() {
     { href: "#solutions", label: "Soluzioni" },
     { 
       href: "/prodotti", 
-      label: "Tutti i Prodotti",
+      label: "Prodotti",
       children: [
         { href: "/prodotti/panni-in-microfibra", label: "Panni in Microfibra" },
         { href: "/prodotti/accessori", label: "Accessori e Detailing" },
@@ -167,19 +173,50 @@ export default function Header() {
                 </SheetTrigger>
                 <SheetContent side="left">
                   <div className="flex flex-col h-full">
-                    <nav className="grid gap-6 text-lg font-medium mt-8">
-                        <Link href="/" className="flex items-center gap-2 text-lg font-semibold mb-4" onClick={() => setIsMobileMenuOpen(false)}>
-                            <Logo />
-                        </Link>
+                     <Link href="/" className="flex items-center gap-2 text-lg font-semibold mb-4" onClick={() => setIsMobileMenuOpen(false)}>
+                        <Logo />
+                    </Link>
+                    <nav className="grid gap-2 text-lg font-medium mt-4">
                         {navLinks.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            className="text-muted-foreground transition-colors hover:text-foreground"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            {link.label}
-                        </Link>
+                           link.children ? (
+                             <Accordion key={link.label} type="single" collapsible className="w-full">
+                               <AccordionItem value="item-1" className="border-b-0">
+                                 <AccordionTrigger className="text-lg font-medium text-muted-foreground hover:text-foreground py-2 hover:no-underline">
+                                  {link.label}
+                                 </AccordionTrigger>
+                                 <AccordionContent className="pl-4">
+                                   <div className="grid gap-2">
+                                      <Link
+                                        href={link.href}
+                                        className="text-muted-foreground transition-colors hover:text-foreground"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                      >
+                                        Vedi Tutti
+                                      </Link>
+                                      {link.children.map((childLink) => (
+                                        <Link
+                                          key={childLink.href}
+                                          href={childLink.href}
+                                          className="text-muted-foreground transition-colors hover:text-foreground"
+                                          onClick={() => setIsMobileMenuOpen(false)}
+                                        >
+                                          {childLink.label}
+                                        </Link>
+                                      ))}
+                                   </div>
+                                 </AccordionContent>
+                               </AccordionItem>
+                             </Accordion>
+                           ) : (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className="text-muted-foreground transition-colors hover:text-foreground py-2"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                {link.label}
+                            </Link>
+                           )
                         ))}
                     </nav>
                      <form onSubmit={handleSearchSubmit} className="mt-8 relative">
