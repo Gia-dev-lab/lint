@@ -44,9 +44,9 @@
     },
     {
       "id": "product-kit-1",
-      "description": "A starter kit for car detailing",
-      "imageUrl": "https://images.unsplash.com/photo-1708805282683-50a060eba80f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjYXIlMjBkZXRhaWxpbmd8ZW58MHx8fHwxNzYxMTgwNjQwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "car detailing"
+      "description": "Attrezzature per pulizia professionale",
+      "imageUrl": "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/10/Attrezzature-per-pulizia-professionale.png",
+      "imageHint": "attrezzature pulizia"
     },
     {
       "id": "testimonial-1",
