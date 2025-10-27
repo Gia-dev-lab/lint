@@ -48,6 +48,7 @@ export default function Header() {
       children: [
         { href: "/prodotti/panni-in-microfibra", label: "Panni in Microfibra" },
         { href: "/prodotti/accessori", label: "Accessori e Detailing" },
+        { href: "/prodotti/ricambi", label: "Ricambi" },
       ]
     },
     { href: "#why-lint", label: "Perché Lint" },
