@@ -142,7 +142,7 @@ export default function Home() {
             <p className="mt-6 text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto">
               Dalla microfibra tecnica ai ricambi essenziali, ti offriamo soluzioni integrate per elevare l'efficienza e il risultato del tuo lavoro.
             </p>
-            <div className="mt-8 flex gap-4 justify-center">
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
                 <DialogTrigger asChild>
                   <Button size="lg" variant="default" className="transition-all duration-300 hover:scale-105 hover:shadow-lg hover:opacity-90">Contattaci per una Consulenza</Button>
