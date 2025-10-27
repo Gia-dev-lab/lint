@@ -49,6 +49,7 @@ export default function Header() {
         { href: "/prodotti/panni-in-microfibra", label: "Panni in Microfibra" },
         { href: "/prodotti/accessori", label: "Accessori e Detailing" },
         { href: "/prodotti/ricambi", label: "Ricambi" },
+        { href: "/prodotti/kit-pulizia", label: "Kit di Pulizia" },
       ]
     },
     { href: "#why-lint", label: "Perché Lint" },
