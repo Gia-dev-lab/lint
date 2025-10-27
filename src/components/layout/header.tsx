@@ -51,6 +51,7 @@ export default function Header() {
         { href: "/prodotti/ricambi", label: "Ricambi" },
         { href: "/prodotti/kit-pulizia", label: "Kit di Pulizia" },
         { href: "/prodotti/linea-self-car-wash", label: "Linea Self Car Wash" },
+        { href: "/prodotti/detergenti", label: "Detergenti" },
       ]
     },
     { href: "#why-lint", label: "Perché Lint" },
