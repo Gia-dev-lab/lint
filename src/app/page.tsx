@@ -323,7 +323,7 @@ export default function Home() {
 
         {/* Final CTA Section */}
         <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
-          <section id="kit-configurator" className="relative py-20 lg:py-32 bg-secondary text-foreground">
+          <section id="kit-configurator" className="relative py-20 lg:py-32">
               {ctaBgImage && (
                 <Image
                   src={ctaBgImage.imageUrl}
@@ -333,7 +333,7 @@ export default function Home() {
                   data-ai-hint={ctaBgImage.imageHint}
                 />
               )}
-              <div className="absolute inset-0 bg-black/70 -z-10 backdrop-blur-sm" />
+              <div className="absolute inset-0 bg-black/80 -z-10 backdrop-blur-sm" />
               <AnimateOnScroll className="container text-center">
                 <h2 className="text-3xl md:text-4xl font-bold text-background">Trova la Soluzione Giusta per Te</h2>
                 <p className="mt-4 text-lg text-background/80 max-w-3xl mx-auto">
@@ -417,3 +417,5 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
     </Link>
   );
 }
+
+    
