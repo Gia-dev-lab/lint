@@ -322,7 +322,7 @@ export default function Home() {
         </AnimateOnScroll>
 
         {/* Final CTA Section */}
-        <Dialog>
+        <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
           <section id="kit-configurator" className="relative py-20 lg:py-32 bg-secondary text-foreground">
               {ctaBgImage && (
                 <Image
