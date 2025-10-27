@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, FormEvent } from "react";
@@ -48,6 +47,7 @@ export default function Header() {
       label: "Tutti i Prodotti",
       children: [
         { href: "/prodotti/panni-in-microfibra", label: "Panni in Microfibra" },
+        { href: "/prodotti/accessori", label: "Accessori e Detailing" },
       ]
     },
     { href: "#why-lint", label: "Perché Lint" },
