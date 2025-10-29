@@ -163,8 +163,7 @@ export default function Home() {
         </section>
         
         {/* Sezione Nuova Soluzioni Professionali */}
-        <AnimateOnScroll>
-          <section id="solutions" className="py-16 lg:py-24 bg-secondary">
+        <section id="solutions" className="py-16 lg:py-24 bg-secondary">
             <div className="container text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold">Esplora le Nostre Soluzioni Professionali</h2>
               <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">
@@ -201,7 +200,6 @@ export default function Home() {
                 </Carousel>
             </div>
           </section>
-        </AnimateOnScroll>
 
         {/* Sezione Prodotti Selezionati */}
         <AnimateOnScroll>
@@ -325,7 +323,7 @@ export default function Home() {
         <section id="kit-configurator" className="py-20 lg:py-32 bg-secondary text-foreground">
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-lg">
+                    <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl rotate-2 transition-transform duration-300 hover:scale-105 hover:rotate-0">
                         {ctaBgImage && (
                             <Image
                                 src={ctaBgImage.imageUrl}
