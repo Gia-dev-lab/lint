@@ -27,7 +27,7 @@ import { ProductCard } from "@/components/product-card";
 import Autoplay from "embla-carousel-autoplay";
 
 const heroImage = placeholderImages.find(img => img.id === 'hero-background');
-const ctaBgImage = placeholderImages.find(img => img.id === 'cta-image');
+const I9shR7SOvaa24ko2tfujImage = placeholderImages.find(img => img.id === 'I9shR7SOvaa24ko2tfuj');
 
 
 const animatedHeadlines = [
@@ -325,13 +325,13 @@ export default function Home() {
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <Link href="/prodotti/I9shR7SOvaa24ko2tfuj" className="block">
                         <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl rotate-2 transition-transform duration-300 hover:scale-105 hover:rotate-0">
-                            {ctaBgImage && (
+                            {I9shR7SOvaa24ko2tfujImage && (
                                 <Image
-                                    src={ctaBgImage.imageUrl}
-                                    alt={ctaBgImage.description}
+                                    src={I9shR7SOvaa24ko2tfujImage.imageUrl}
+                                    alt={I9shR7SOvaa24ko2tfujImage.description}
                                     fill
                                     className="object-cover"
-                                    data-ai-hint={ctaBgImage.imageHint}
+                                    data-ai-hint={I9shR7SOvaa24ko2tfujImage.imageHint}
                                 />
                             )}
                         </div>
