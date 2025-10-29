@@ -323,17 +323,19 @@ export default function Home() {
         <section id="kit-configurator" className="py-20 lg:py-32 bg-secondary text-foreground">
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl rotate-2 transition-transform duration-300 hover:scale-105 hover:rotate-0">
-                        {ctaBgImage && (
-                            <Image
-                                src={ctaBgImage.imageUrl}
-                                alt={ctaBgImage.description}
-                                fill
-                                className="object-cover"
-                                data-ai-hint={ctaBgImage.imageHint}
-                            />
-                        )}
-                    </div>
+                    <Link href="/prodotti/panno-asciugatura-auto-1200-gsm-bysont-giallo" className="block">
+                        <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl rotate-2 transition-transform duration-300 hover:scale-105 hover:rotate-0">
+                            {ctaBgImage && (
+                                <Image
+                                    src={ctaBgImage.imageUrl}
+                                    alt={ctaBgImage.description}
+                                    fill
+                                    className="object-cover"
+                                    data-ai-hint={ctaBgImage.imageHint}
+                                />
+                            )}
+                        </div>
+                    </Link>
                     <div className="text-center md:text-left">
                         <h2 className="text-3xl md:text-4xl font-bold">Trova la Soluzione Giusta per Te</h2>
                         <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto md:mx-0">
@@ -416,3 +418,5 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
     </Link>
   );
 }
+
+    
