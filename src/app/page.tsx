@@ -323,42 +323,32 @@ export default function Home() {
 
         {/* Final CTA Section */}
         <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
-          <section id="kit-configurator" className="relative py-20 lg:py-32">
-              {ctaBgImage && (
-                <Image
-                  src={ctaBgImage.imageUrl}
-                  alt={ctaBgImage.description}
-                  fill
-                  className="object-cover -z-10"
-                  data-ai-hint={ctaBgImage.imageHint}
-                />
-              )}
-              <div className="absolute inset-0 bg-black/80 -z-10 backdrop-blur-sm" />
+           <section id="kit-configurator" className="py-20 lg:py-32 bg-secondary text-foreground">
               <AnimateOnScroll className="container text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-background">Trova la Soluzione Giusta per Te</h2>
-                <p className="mt-4 text-lg text-background/80 max-w-3xl mx-auto">
+                <h2 className="text-3xl md:text-4xl font-bold">Trova la Soluzione Giusta per Te</h2>
+                <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
                     Ogni settore ha esigenze uniche. Il nostro team di esperti è a tua disposizione per consigliarti le migliori attrezzature per ottimizzare il tuo lavoro e creare il tuo kit di prodotti ideale.
                 </p>
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                     <DialogTrigger asChild>
-                      <Card className="bg-background/10 text-background border-background/20 hover:bg-background/20 transition-all duration-300 cursor-pointer p-6 flex flex-col items-center justify-center text-center space-y-4 backdrop-blur-lg">
+                      <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-6 flex flex-col items-center justify-center text-center space-y-4 hover:shadow-xl hover:-translate-y-1">
                           <Building className="w-10 h-10 text-primary" />
-                          <CardTitle className="text-xl text-background">Imprese di Pulizia</CardTitle>
-                          <CardDescription className="text-background/80">Soluzioni per uffici, condomini e grandi superfici.</CardDescription>
+                          <CardTitle className="text-xl">Imprese di Pulizia</CardTitle>
+                          <CardDescription className="text-muted-foreground">Soluzioni per uffici, condomini e grandi superfici.</CardDescription>
                       </Card>
                     </DialogTrigger>
                      <DialogTrigger asChild>
-                      <Card className="bg-background/10 text-background border-background/20 hover:bg-background/20 transition-all duration-300 cursor-pointer p-6 flex flex-col items-center justify-center text-center space-y-4 backdrop-blur-lg">
+                      <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-6 flex flex-col items-center justify-center text-center space-y-4 hover:shadow-xl hover:-translate-y-1">
                           <Car className="w-10 h-10 text-primary" />
-                          <CardTitle className="text-xl text-background">Car Detailing</CardTitle>
-                          <CardDescription className="text-background/80">Prodotti specifici per la cura e la pulizia dell'auto.</CardDescription>
+                          <CardTitle className="text-xl">Car Detailing</CardTitle>
+                          <CardDescription className="text-muted-foreground">Prodotti specifici per la cura e la pulizia dell'auto.</CardDescription>
                       </Card>
                     </DialogTrigger>
                      <DialogTrigger asChild>
-                      <Card className="bg-background/10 text-background border-background/20 hover:bg-background/20 transition-all duration-300 cursor-pointer p-6 flex flex-col items-center justify-center text-center space-y-4 backdrop-blur-lg">
+                      <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-6 flex flex-col items-center justify-center text-center space-y-4 hover:shadow-xl hover:-translate-y-1">
                           <Hotel className="w-10 h-10 text-primary" />
-                          <CardTitle className="text-xl text-background">Settore Ho.Re.Ca.</CardTitle>
-                          <CardDescription className="text-background/80">Attrezzature per hotel, ristoranti e catering.</CardDescription>
+                          <CardTitle className="text-xl">Settore Ho.Re.Ca.</CardTitle>
+                          <CardDescription className="text-muted-foreground">Attrezzature per hotel, ristoranti e catering.</CardDescription>
                       </Card>
                     </DialogTrigger>
                 </div>
