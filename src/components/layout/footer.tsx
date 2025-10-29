@@ -21,9 +21,11 @@ export default function Footer() {
           <div className="flex flex-col gap-2">
             <h4 className="font-semibold">Prodotti</h4>
             <Link href="/prodotti/panni-in-microfibra" className="text-sm text-muted-foreground hover:text-foreground">Panni in Microfibra</Link>
-            <Link href="/prodotti" className="text-sm text-muted-foreground hover:text-foreground">Accessori</Link>
-            <Link href="/prodotti" className="text-sm text-muted-foreground hover:text-foreground">Ricambi</Link>
-            <Link href="/prodotti" className="text-sm text-muted-foreground hover:text-foreground">Kit Detailing</Link>
+            <Link href="/prodotti/accessori" className="text-sm text-muted-foreground hover:text-foreground">Accessori</Link>
+            <Link href="/prodotti/ricambi" className="text-sm text-muted-foreground hover:text-foreground">Ricambi</Link>
+            <Link href="/prodotti/kit-pulizia" className="text-sm text-muted-foreground hover:text-foreground">Kit di Pulizia</Link>
+            <Link href="/prodotti/linea-self-car-wash" className="text-sm text-muted-foreground hover:text-foreground">Linea Self Car Wash</Link>
+            <Link href="/prodotti/detergenti" className="text-sm text-muted-foreground hover:text-foreground">Detergenti</Link>
           </div>
           <div className="flex flex-col gap-2">
             <h4 className="font-semibold">Azienda</h4>
