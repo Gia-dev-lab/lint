@@ -171,33 +171,35 @@ export default function Home() {
                 Trova rapidamente ciò di cui hai bisogno. Le nostre linee di attrezzature per pulizia professionale sono state selezionate per rispondere alle esigenze specifiche di ogni professionista del pulito.
               </p>
             </div>
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              plugins={[autoplayPlugin.current]}
-              onMouseEnter={() => autoplayPlugin.current.stop()}
-              onMouseLeave={() => autoplayPlugin.current.reset()}
-              className="w-full max-w-6xl mx-auto"
-            >
-              <CarouselContent>
-                {solutionCategories.map((category) => (
-                  <CarouselItem key={category.title} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="p-1">
-                      <SolutionCategoryCard
-                        title={category.title}
-                        link={category.link}
-                        image={category.image}
-                        imageHint={category.imageHint}
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
+            <div className="w-full">
+                <Carousel
+                opts={{
+                    align: "start",
+                    loop: true,
+                }}
+                plugins={[autoplayPlugin.current]}
+                onMouseEnter={() => autoplayPlugin.current.stop()}
+                onMouseLeave={() => autoplayPlugin.current.reset()}
+                className="w-full max-w-6xl mx-auto"
+                >
+                <CarouselContent>
+                    {solutionCategories.map((category) => (
+                    <CarouselItem key={category.title} className="md:basis-1/2 lg:basis-1/3">
+                        <div className="p-1">
+                        <SolutionCategoryCard
+                            title={category.title}
+                            link={category.link}
+                            image={category.image}
+                            imageHint={category.imageHint}
+                        />
+                        </div>
+                    </CarouselItem>
+                    ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+                </Carousel>
+            </div>
           </section>
         </AnimateOnScroll>
 
@@ -320,9 +322,8 @@ export default function Home() {
         </AnimateOnScroll>
 
         {/* Final CTA Section */}
-        <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
-           <section id="kit-configurator" className="py-20 lg:py-32 bg-secondary text-foreground">
-              <AnimateOnScroll className="container">
+        <section id="kit-configurator" className="py-20 lg:py-32 bg-secondary text-foreground">
+            <AnimateOnScroll className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-lg">
                         {ctaBgImage && (
@@ -340,38 +341,38 @@ export default function Home() {
                         <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto md:mx-0">
                             Ogni settore ha esigenze uniche. Il nostro team di esperti è a tua disposizione per consigliarti le migliori attrezzature per ottimizzare il tuo lavoro e creare il tuo kit di prodotti ideale.
                         </p>
-                        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto md:mx-0">
-                            <DialogTrigger asChild>
-                              <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-4 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-xl hover:-translate-y-1">
-                                  <Building className="w-8 h-8 text-primary" />
-                                  <CardTitle className="text-lg">Imprese di Pulizia</CardTitle>
-                              </Card>
-                            </DialogTrigger>
-                             <DialogTrigger asChild>
-                              <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-4 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-xl hover:-translate-y-1">
-                                  <Car className="w-8 h-8 text-primary" />
-                                  <CardTitle className="text-lg">Car Detailing</CardTitle>
-                              </Card>
-                            </DialogTrigger>
-                             <DialogTrigger asChild>
-                              <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-4 col-span-1 sm:col-span-2 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-xl hover:-translate-y-1">
-                                  <Hotel className="w-8 h-8 text-primary" />
-                                  <CardTitle className="text-lg">Settore Ho.Re.Ca.</CardTitle>
-                              </Card>
-                            </DialogTrigger>
-                        </div>
+                        <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
+                            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto md:mx-0">
+                                <DialogTrigger asChild>
+                                    <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-4 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-xl hover:-translate-y-1">
+                                        <Building className="w-8 h-8 text-primary" />
+                                        <CardTitle className="text-lg">Imprese di Pulizia</CardTitle>
+                                    </Card>
+                                </DialogTrigger>
+                                <DialogTrigger asChild>
+                                    <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-4 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-xl hover:-translate-y-1">
+                                        <Car className="w-8 h-8 text-primary" />
+                                        <CardTitle className="text-lg">Car Detailing</CardTitle>
+                                    </Card>
+                                </DialogTrigger>
+                                <DialogTrigger asChild>
+                                    <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-4 col-span-1 sm:col-span-2 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-xl hover:-translate-y-1">
+                                        <Hotel className="w-8 h-8 text-primary" />
+                                        <CardTitle className="text-lg">Settore Ho.Re.Ca.</CardTitle>
+                                    </Card>
+                                </DialogTrigger>
+                            </div>
+                            <DialogContent className="sm:max-w-[425px]">
+                                <DialogHeader>
+                                    <DialogTitle>Richiedi una Consulenza o un Preventivo</DialogTitle>
+                                </DialogHeader>
+                                <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
+                            </DialogContent>
+                        </Dialog>
                     </div>
                 </div>
-              </AnimateOnScroll>
-          </section>
-           <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                    <DialogTitle>Richiedi una Consulenza o un Preventivo</DialogTitle>
-                </DialogHeader>
-                <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
-            </DialogContent>
-        </Dialog>
-
+            </AnimateOnScroll>
+        </section>
       </main>
     </div>
   );
