@@ -325,7 +325,7 @@ export default function Home() {
               <AnimateOnScroll className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     {ctaBgImage && (
-                        <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-lg order-last md:order-first">
+                        <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-lg">
                              <Image
                                 src={ctaBgImage.imageUrl}
                                 alt={ctaBgImage.description}
