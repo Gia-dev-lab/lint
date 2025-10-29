@@ -32,20 +32,14 @@ export function ProductCard({ product }: { product: any }) {
             </div>
         )}
         <div className="p-4 flex flex-col flex-grow">
-            <div className="flex justify-between items-start">
-                {nome && <h3 className="font-semibold text-base line-clamp-2 pr-2">{nome}</h3>}
-                {SKU && <Badge variant="outline">{SKU}</Badge>}
+            <div className="flex justify-between items-start gap-2">
+                {nome && <h3 className="font-semibold text-base line-clamp-2 pr-2 flex-grow">{nome}</h3>}
+                {SKU && <Badge variant="outline" className="flex-shrink-0">{SKU}</Badge>}
             </div>
             
-            {descrizionebreve && (
+            {(descrizionebreve || metadesc) && (
             <p className="text-sm text-muted-foreground mt-1 line-clamp-2 flex-grow">
-                {stripHtml(descrizionebreve)}
-            </p>
-            )}
-            
-            {metadesc && (
-            <p className="text-xs text-muted-foreground/80 mt-2 line-clamp-2">
-                {metadesc}
+                {stripHtml(descrizionebreve || metadesc)}
             </p>
             )}
         </div>
@@ -53,3 +47,5 @@ export function ProductCard({ product }: { product: any }) {
     </Link>
   );
 }
+
+    
