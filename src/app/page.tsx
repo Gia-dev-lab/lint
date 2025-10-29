@@ -27,7 +27,7 @@ import { ProductCard } from "@/components/product-card";
 import Autoplay from "embla-carousel-autoplay";
 
 const heroImage = placeholderImages.find(img => img.id === 'hero-background');
-const ctaBgImage = placeholderImages.find(img => img.id === 'about-hero');
+const ctaBgImage = placeholderImages.find(img => img.id === 'cta-image');
 
 
 const animatedHeadlines = [
@@ -165,13 +165,11 @@ export default function Home() {
         {/* Sezione Nuova Soluzioni Professionali */}
         <AnimateOnScroll>
           <section id="solutions" className="py-16 lg:py-24 bg-secondary">
-            <div className="container">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold">Esplora le Nostre Soluzioni Professionali</h2>
-                <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">
-                  Trova rapidamente ciò di cui hai bisogno. Le nostre linee di attrezzature per pulizia professionale sono state selezionate per rispondere alle esigenze specifiche di ogni professionista del pulito.
-                </p>
-              </div>
+            <div className="container text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold">Esplora le Nostre Soluzioni Professionali</h2>
+              <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">
+                Trova rapidamente ciò di cui hai bisogno. Le nostre linee di attrezzature per pulizia professionale sono state selezionate per rispondere alle esigenze specifiche di ogni professionista del pulito.
+              </p>
             </div>
             <Carousel
               opts={{
@@ -324,33 +322,45 @@ export default function Home() {
         {/* Final CTA Section */}
         <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
            <section id="kit-configurator" className="py-20 lg:py-32 bg-secondary text-foreground">
-              <AnimateOnScroll className="container text-center">
-                <h2 className="text-3xl md:text-4xl font-bold">Trova la Soluzione Giusta per Te</h2>
-                <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
-                    Ogni settore ha esigenze uniche. Il nostro team di esperti è a tua disposizione per consigliarti le migliori attrezzature per ottimizzare il tuo lavoro e creare il tuo kit di prodotti ideale.
-                </p>
-                <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    <DialogTrigger asChild>
-                      <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-6 flex flex-col items-center justify-center text-center space-y-4 hover:shadow-xl hover:-translate-y-1">
-                          <Building className="w-10 h-10 text-primary" />
-                          <CardTitle className="text-xl">Imprese di Pulizia</CardTitle>
-                          <CardDescription className="text-muted-foreground">Soluzioni per uffici, condomini e grandi superfici.</CardDescription>
-                      </Card>
-                    </DialogTrigger>
-                     <DialogTrigger asChild>
-                      <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-6 flex flex-col items-center justify-center text-center space-y-4 hover:shadow-xl hover:-translate-y-1">
-                          <Car className="w-10 h-10 text-primary" />
-                          <CardTitle className="text-xl">Car Detailing</CardTitle>
-                          <CardDescription className="text-muted-foreground">Prodotti specifici per la cura e la pulizia dell'auto.</CardDescription>
-                      </Card>
-                    </DialogTrigger>
-                     <DialogTrigger asChild>
-                      <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-6 flex flex-col items-center justify-center text-center space-y-4 hover:shadow-xl hover:-translate-y-1">
-                          <Hotel className="w-10 h-10 text-primary" />
-                          <CardTitle className="text-xl">Settore Ho.Re.Ca.</CardTitle>
-                          <CardDescription className="text-muted-foreground">Attrezzature per hotel, ristoranti e catering.</CardDescription>
-                      </Card>
-                    </DialogTrigger>
+              <AnimateOnScroll className="container">
+                <div className="grid md:grid-cols-2 gap-12 items-center">
+                    {ctaBgImage && (
+                        <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-lg order-last md:order-first">
+                             <Image
+                                src={ctaBgImage.imageUrl}
+                                alt={ctaBgImage.description}
+                                fill
+                                className="object-cover"
+                                data-ai-hint={ctaBgImage.imageHint}
+                            />
+                        </div>
+                    )}
+                    <div className="text-center md:text-left">
+                        <h2 className="text-3xl md:text-4xl font-bold">Trova la Soluzione Giusta per Te</h2>
+                        <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto md:mx-0">
+                            Ogni settore ha esigenze uniche. Il nostro team di esperti è a tua disposizione per consigliarti le migliori attrezzature per ottimizzare il tuo lavoro e creare il tuo kit di prodotti ideale.
+                        </p>
+                        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto md:mx-0">
+                            <DialogTrigger asChild>
+                              <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-4 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-xl hover:-translate-y-1">
+                                  <Building className="w-8 h-8 text-primary" />
+                                  <CardTitle className="text-lg">Imprese di Pulizia</CardTitle>
+                              </Card>
+                            </DialogTrigger>
+                             <DialogTrigger asChild>
+                              <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-4 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-xl hover:-translate-y-1">
+                                  <Car className="w-8 h-8 text-primary" />
+                                  <CardTitle className="text-lg">Car Detailing</CardTitle>
+                              </Card>
+                            </DialogTrigger>
+                             <DialogTrigger asChild>
+                              <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-4 col-span-1 sm:col-span-2 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-xl hover:-translate-y-1">
+                                  <Hotel className="w-8 h-8 text-primary" />
+                                  <CardTitle className="text-lg">Settore Ho.Re.Ca.</CardTitle>
+                              </Card>
+                            </DialogTrigger>
+                        </div>
+                    </div>
                 </div>
               </AnimateOnScroll>
           </section>
@@ -407,5 +417,3 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
     </Link>
   );
 }
-
-    

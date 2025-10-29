@@ -77,6 +77,12 @@
       "description": "Portrait of another male team member",
       "imageUrl": "https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "imageHint": "man portrait"
+    },
+    {
+      "id": "cta-image",
+      "description": "Donna che mostra un panno in microfibra Lint",
+      "imageUrl": "https://storage.googleapis.com/studiopaper-dev.appspot.com/e6a57597-d86b-4e6f-998f-a957b494d45d.png",
+      "imageHint": "donna panno"
     }
   ]
 }
