@@ -21,7 +21,7 @@
     {
       "id": "product-cloth-2",
       "description": "A stack of colorful microfiber cloths",
-      "imageUrl": "https://images.unsplash.com/photo-1706794831045-299d2a85a8e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjbG90aCUyMHN0YWNrfGVufDB8fHx8MTc2MTIxMDQ2MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1706794831045-299d2a8e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjbG90aCUyMHN0YWNrfGVufDB8fHx8MTc2MTIxMDQ2MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "cloth stack"
     },
     {
@@ -80,9 +80,9 @@
     },
     {
       "id": "cta-image",
-      "description": "Donna che mostra un panno in microfibra Lint",
-      "imageUrl": "https://storage.googleapis.com/studiopaper-dev.appspot.com/e6a57597-d86b-4e6f-998f-a957b494d45d.png",
-      "imageHint": "donna panno"
+      "description": "Espositore da banco per panni in microfibra",
+      "imageUrl": "https://www.lintmicrofibercloths.it/wp-content/uploads/2024/11/Espositore-Panni-Microfibra-da-Banco.png",
+      "imageHint": "espositore panni"
     }
   ]
 }
