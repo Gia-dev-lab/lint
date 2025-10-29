@@ -4,24 +4,49 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
-import { ArrowRight, CheckCircle, PlusCircle, RefreshCw } from 'lucide-react';
+import { ArrowRight, RefreshCw } from 'lucide-react';
 import { AnimateOnScroll } from '@/components/AnimateOnScroll';
 import { placeholderImages } from '@/lib/data';
 import Link from 'next/link';
+import { SparklesCore } from '@/components/ui/sparkles';
 
 type Step = 'start' | 'step1' | 'step2' | 'step3' | 'step4' | 'step5' | 'result-a1' | 'result-a2' | 'result-b1' | 'result-b2' | 'result-c1' | 'result-c2' | 'result-d1' | 'result-d2';
 
 const StepIntro = ({ setStep }: { setStep: (step: Step) => void }) => (
-  <AnimateOnScroll className="text-center container py-16">
-    <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-primary">L’Arte della Pulizia Assoluta</h1>
-    <h2 className="mt-4 text-2xl md:text-3xl font-semibold">Il Tuo Percorso di Detailing Interattivo con Chiara Lumina</h2>
-    <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
-      Benvenuto al livello GOLD del detailing! Chiara Lumina, la nostra esperta, ti guiderà attraverso una pulizia professionale in 5 fasi. Ad ogni bivio, dovrai scegliere l'attrezzo LINT più appropriato. La tua missione: ottenere un risultato che superi gli standard dello showroom.
-    </p>
-    <Button size="lg" className="mt-8" onClick={() => setStep('step1')}>
-      Inizia la Tua Missione <ArrowRight className="ml-2" />
-    </Button>
-  </AnimateOnScroll>
+  <div className="w-full bg-background flex flex-col items-center justify-center overflow-hidden rounded-md py-16 md:py-24">
+    <h1 className="md:text-7xl text-3xl lg:text-8xl font-bold text-center text-foreground relative z-20">
+      L’Arte della Pulizia Assoluta
+    </h1>
+    <div className="w-[40rem] h-20 relative">
+      {/* Gradients */}
+      <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-primary to-transparent h-[2px] w-3/4 blur-sm" />
+      <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-primary to-transparent h-px w-3/4" />
+      <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-accent to-transparent h-[5px] w-1/4 blur-sm" />
+      <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-accent to-transparent h-px w-1/4" />
+ 
+      {/* Core component */}
+      <SparklesCore
+        background="transparent"
+        minSize={0.4}
+        maxSize={1}
+        particleDensity={1200}
+        className="w-full h-full"
+        particleColor="#FFFFFF"
+      />
+ 
+      {/* Radial Gradient to prevent sharp edges */}
+      <div className="absolute inset-0 w-full h-full bg-background [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+    </div>
+     <AnimateOnScroll className="text-center container">
+      <h2 className="mt-4 text-2xl md:text-3xl font-semibold">Il Tuo Percorso di Detailing Interattivo con Chiara Lumina</h2>
+      <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground">
+        Benvenuto al livello GOLD del detailing! Chiara Lumina, la nostra esperta, ti guiderà attraverso una pulizia professionale in 5 fasi. Ad ogni bivio, dovrai scegliere l'attrezzo LINT più appropriato. La tua missione: ottenere un risultato che superi gli standard dello showroom.
+      </p>
+      <Button size="lg" className="mt-8 animate-pulse" onClick={() => setStep('step1')}>
+        Inizia la Tua Missione <ArrowRight className="ml-2" />
+      </Button>
+    </AnimateOnScroll>
+  </div>
 );
 
 const Step1 = ({ setStep }: { setStep: (step: Step) => void }) => (
@@ -205,10 +230,10 @@ interface StepCardProps {
 
 const StepCard = ({ stepNumber, title, description, choices }: StepCardProps) => (
     <AnimateOnScroll className="container py-12">
-        <Card className="max-w-4xl mx-auto overflow-hidden">
+        <Card className="max-w-4xl mx-auto overflow-hidden shadow-2xl border-primary/20">
             <CardHeader className="bg-secondary p-6">
                 <CardDescription>STEP {stepNumber}</CardDescription>
-                <CardTitle className="text-3xl">{title}</CardTitle>
+                <CardTitle className="text-3xl text-primary">{title}</CardTitle>
                 <p className="text-muted-foreground pt-2">{description}</p>
             </CardHeader>
             <CardContent className="p-6">
@@ -218,12 +243,12 @@ const StepCard = ({ stepNumber, title, description, choices }: StepCardProps) =>
                         <button
                             key={index}
                             onClick={choice.onClick}
-                            className="text-left p-4 border rounded-lg hover:bg-secondary transition-all duration-200 group"
+                            className="text-left p-6 border rounded-lg hover:bg-secondary transition-all duration-300 group hover:shadow-lg hover:-translate-y-1"
                         >
-                            <p className="font-semibold text-primary">{choice.text}</p>
+                            <p className="font-semibold text-primary text-lg">{choice.text}</p>
                             <p className="text-sm text-muted-foreground mt-1">{choice.subtext}</p>
-                            <div className="flex justify-end mt-2">
-                                <ArrowRight className="w-5 h-5 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <div className="flex justify-end mt-3">
+                                <ArrowRight className="w-5 h-5 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1" />
                             </div>
                         </button>
                     ))}
@@ -247,14 +272,14 @@ interface ResultCardProps {
 
 const ResultCard = ({ title, actionTitle, actionDescription, image, products, nextStep, isFinalStep = false, setStep }: ResultCardProps) => (
     <AnimateOnScroll className="container py-12">
-        <Card className="max-w-4xl mx-auto overflow-hidden">
-            <CardHeader className="p-6">
+        <Card className="max-w-4xl mx-auto overflow-hidden shadow-2xl border-accent/20">
+            <CardHeader className="p-6 bg-gradient-to-r from-accent/10 to-primary/10">
                 <h2 className="text-2xl font-bold text-primary">{title}</h2>
             </CardHeader>
             <CardContent className="p-6 grid md:grid-cols-2 gap-8 items-center">
                 <div className="space-y-4">
                     <h3 className="font-semibold text-xl">{actionTitle}</h3>
-                    <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-md">
+                    <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
                         <Image src={image.src} alt={image.alt} fill className="object-cover" data-ai-hint={image.hint} />
                     </div>
                     <p className="text-muted-foreground">{actionDescription}</p>
@@ -263,7 +288,7 @@ const ResultCard = ({ title, actionTitle, actionDescription, image, products, ne
                     <h3 className="font-semibold text-xl">Prodotti Chiave Utilizzati</h3>
                     <ul className="space-y-4">
                         {products.map(product => (
-                            <li key={product.name}>
+                            <li key={product.name} className="p-3 bg-secondary/50 rounded-md">
                                 <h4 className="font-semibold">{product.name}</h4>
                                 <p className="text-sm text-muted-foreground">{product.description}</p>
                                 {product.link && <Link href={product.link} className="text-sm text-primary hover:underline">Vedi prodotto <ArrowRight className="inline w-4 h-4" /></Link>}
@@ -275,7 +300,7 @@ const ResultCard = ({ title, actionTitle, actionDescription, image, products, ne
             <div className="p-6 bg-secondary flex justify-center gap-4">
                 {isFinalStep ? (
                     <>
-                        <Button onClick={() => setStep('start')}>
+                        <Button onClick={() => setStep('start')} className="animate-pulse">
                             <RefreshCw className="mr-2" />
                             Ricomincia il Percorso
                         </Button>
@@ -284,8 +309,8 @@ const ResultCard = ({ title, actionTitle, actionDescription, image, products, ne
                          </Button>
                     </>
                 ) : (
-                    <Button onClick={nextStep}>
-                        Prossimo Step: {title.includes('Interni') ? 'Asciugatura' : 'Pulizia Interni'} <ArrowRight className="ml-2" />
+                    <Button onClick={nextStep} className="animate-pulse">
+                        Prossimo Step <ArrowRight className="ml-2" />
                     </Button>
                 )}
             </div>
