@@ -45,31 +45,31 @@ const solutionCategories = [
   },
   {
     title: "Accessori per Pulizia",
-    link: "/prodotti",
+    link: "/prodotti/accessori",
     image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Accessori-Pulizia.png",
     imageHint: "accessorio",
   },
   {
     title: "Parti di Ricambio",
-    link: "/prodotti",
+    link: "/prodotti/ricambi",
     image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Ricambi.png",
     imageHint: "ricambio",
   },
   {
     title: "Panni Autolavaggio",
-    link: "/prodotti",
+    link: "/prodotti/linea-self-car-wash",
     image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2024/10/CARTA-BIANCA-SELF.webp",
     imageHint: "autolavaggio",
   },
   {
     title: "Detergenti",
-    link: "/prodotti",
+    link: "/prodotti/detergenti",
     image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Chimici.png",
     imageHint: "detergente",
   },
   {
     title: "Kit di Pulizia",
-    link: "/prodotti",
+    link: "/prodotti/kit-pulizia",
     image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/kit-1-moto-bike-scaled.jpg",
     imageHint: "kit",
   },
@@ -172,34 +172,34 @@ export default function Home() {
                   Trova rapidamente ciò di cui hai bisogno. Le nostre linee di attrezzature per pulizia professionale sono state selezionate per rispondere alle esigenze specifiche di ogni professionista del pulito.
                 </p>
               </div>
-              <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
-                plugins={[autoplayPlugin.current]}
-                onMouseEnter={() => autoplayPlugin.current.stop()}
-                onMouseLeave={() => autoplayPlugin.current.reset()}
-                className="w-full max-w-6xl mx-auto"
-              >
-                <CarouselContent>
-                  {solutionCategories.map((category) => (
-                    <CarouselItem key={category.title} className="md:basis-1/2 lg:basis-1/3">
-                      <div className="p-1">
-                        <SolutionCategoryCard
-                          title={category.title}
-                          link={category.link}
-                          image={category.image}
-                          imageHint={category.imageHint}
-                        />
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-              </Carousel>
             </div>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              plugins={[autoplayPlugin.current]}
+              onMouseEnter={() => autoplayPlugin.current.stop()}
+              onMouseLeave={() => autoplayPlugin.current.reset()}
+              className="w-full max-w-6xl mx-auto"
+            >
+              <CarouselContent>
+                {solutionCategories.map((category) => (
+                  <CarouselItem key={category.title} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1">
+                      <SolutionCategoryCard
+                        title={category.title}
+                        link={category.link}
+                        image={category.image}
+                        imageHint={category.imageHint}
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
           </section>
         </AnimateOnScroll>
 
