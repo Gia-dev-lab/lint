@@ -323,7 +323,7 @@ export default function Home() {
 
         {/* Final CTA Section */}
         <section id="kit-configurator" className="py-20 lg:py-32 bg-secondary text-foreground">
-            <AnimateOnScroll className="container">
+            <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-lg">
                         {ctaBgImage && (
@@ -371,7 +371,7 @@ export default function Home() {
                         </Dialog>
                     </div>
                 </div>
-            </AnimateOnScroll>
+            </div>
         </section>
       </main>
     </div>
@@ -418,5 +418,3 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
     </Link>
   );
 }
-
-    
