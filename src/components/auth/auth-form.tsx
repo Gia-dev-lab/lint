@@ -82,20 +82,22 @@ export function AuthForm({ onSuccess }: { onSuccess?: () => void }) {
   function onRegisterSubmit(data: z.infer<typeof registerSchema>) {
     startTransition(() => {
        initiateEmailSignUp(auth, data.email, data.password)
-       .then(userCredential => {
+       .then(async (userCredential) => {
             if (userCredential?.user) {
                 const user = userCredential.user;
-                // 1. Update auth profile
-                updateProfile(user, { displayName: data.name });
-
-                // 2. Create user document in Firestore
-                const userDocRef = doc(firestore, 'users', user.uid);
-                setDoc(userDocRef, {
-                    uid: user.uid,
-                    name: data.name,
-                    email: data.email,
-                    createdAt: new Date().toISOString(),
-                });
+                
+                // Use Promise.all to handle both async operations concurrently
+                await Promise.all([
+                    // 1. Update auth profile
+                    updateProfile(user, { displayName: data.name }),
+                    // 2. Create user document in Firestore
+                    setDoc(doc(firestore, 'users', user.uid), {
+                        uid: user.uid,
+                        name: data.name,
+                        email: data.email,
+                        createdAt: new Date().toISOString(),
+                    })
+                ]);
             }
             toast({
               title: 'Registrazione in corso...',
@@ -104,10 +106,16 @@ export function AuthForm({ onSuccess }: { onSuccess?: () => void }) {
             onSuccess?.();
        })
        .catch((error: any) => {
+        let description = 'Non è stato possibile creare l\'account.';
+        if (error.code === 'auth/email-already-in-use') {
+            description = 'Questa email è già in uso. Prova ad accedere.';
+        } else if (error.message) {
+            description = error.message;
+        }
         toast({
           variant: 'destructive',
           title: 'Errore di registrazione',
-          description: error.code === 'auth/email-already-in-use' ? 'Questa email è già in uso.' : (error.message || 'Non è stato possibile creare l\'account.'),
+          description: description,
         });
       });
     });
