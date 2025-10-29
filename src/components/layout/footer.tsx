@@ -30,6 +30,7 @@ export default function Footer() {
           <div className="flex flex-col gap-2">
             <h4 className="font-semibold">Azienda</h4>
             <Link href="/chi-siamo" className="text-sm text-muted-foreground hover:text-foreground">Chi Siamo</Link>
+            <Link href="/detailing-journey" className="text-sm text-muted-foreground hover:text-foreground">Detailing Journey</Link>
             <Link href="#kit-configurator" className="text-sm text-muted-foreground hover:text-foreground">Contatti</Link>
             <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Lavora con Noi</Link>
           </div>
