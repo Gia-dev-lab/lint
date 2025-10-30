@@ -89,9 +89,9 @@ const ctaImageDetailing = {
 };
 
 const ctaImageHoreca = {
-    imageUrl: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Panno-Microfibra.png",
-    description: "Panni in microfibra per Ho.Re.Ca.",
-    imageHint: "panni pulizia",
+    imageUrl: "https://www.lintmicrofibercloths.it/wp-content/uploads/2024/10/Panno-Multiuso-TNT-ETURK.png",
+    description: "Panno Multiuso TNT ETURK",
+    imageHint: "panno multiuso",
     link: "/prodotti/panni-in-microfibra"
 }
 
