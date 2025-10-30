@@ -31,7 +31,7 @@ const StepIntro = ({ setStep }: { setStep: (step: Step) => void }) => (
         maxSize={1}
         particleDensity={1200}
         className="w-full h-full"
-        particleColor="#FFFFFF"
+        particleColor="hsl(var(--primary))"
       />
  
       {/* Radial Gradient to prevent sharp edges */}
@@ -116,10 +116,11 @@ const ResultA1 = ({ setStep }: { setStep: (step: Step) => void }) => (
         actionDescription="Chiara inserisce la Spazzola Lavacerchi MAXI tra i raggi di un cerchio in lega, pulendo in profondità il canale interno."
         image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Accessori-Pulizia.png", alt: "Spazzola lavacerchi in azione", hint: "spazzola cerchi" }}
         products={[
-            { name: "Secchio con Grata Grit Guard", description: "Intrappola i detriti sul fondo per prevenire graffi sulla vernice." },
+            { name: "Secchio con Grata Grit Guard", description: "Intrappola i detriti sul fondo per prevenire graffi sulla vernice.", link: "/prodotti/C5n6yXz39sT0P4u1hPNN" },
             { name: "Spazzola Lavacerchi MAXI ECO", description: "Lunghezza 38 cm, setole dense e morbide, ideale per il canale interno." }
         ]}
         nextStep={() => setStep('step4')}
+        setStep={setStep}
     />
 );
 
@@ -134,6 +135,7 @@ const ResultA2 = ({ setStep }: { setStep: (step: Step) => void }) => (
             { name: "Alternativa: Spugna HIPPY", description: "Guanto in microfibra 'Chenille' a multifrange, anti-graffio con presa sicura." }
         ]}
         nextStep={() => setStep('step4')}
+        setStep={setStep}
     />
 );
 
@@ -148,6 +150,7 @@ const ResultB1 = ({ setStep }: { setStep: (step: Step) => void }) => (
             { name: "Set 3 Pennelli Detailing PRO", description: "Include il pennello in KREX, resistente agli acidi e ai chimici aggressivi." }
         ]}
         nextStep={() => setStep('step4')}
+        setStep={setStep}
     />
 );
 
@@ -161,6 +164,7 @@ const ResultB2 = ({ setStep }: { setStep: (step: Step) => void }) => (
             { name: "RYSOFT", description: "Detergente acido multifunzione. Usato al posto dell'ammorbidente, neutralizza i minerali dell'acqua dura. Ottimo anche come disincrostante." }
         ]}
         nextStep={() => setStep('step4')}
+        setStep={setStep}
     />
 );
 
@@ -174,6 +178,7 @@ const ResultC1 = ({ setStep }: { setStep: (step: Step) => void }) => (
             { name: "DUAL SCRUB PAD", description: "Pad 2-in-1. Lato grigio per agitare lo sporco, lato bianco in microfibra per assorbire." }
         ]}
         nextStep={() => setStep('step5')}
+        setStep={setStep}
     />
 );
 
@@ -188,6 +193,7 @@ const ResultC2 = ({ setStep }: { setStep: (step: Step) => void }) => (
             { name: "Panno SOFT-SOFT (PAN132)", description: "Pelo Ultra-lungo 'Plush', Bordo Edgeless, ideale per finiture su nero laccato." }
         ]}
         nextStep={() => setStep('step5')}
+        setStep={setStep}
     />
 );
 
@@ -348,3 +354,5 @@ export default function DetailingJourneyPage() {
     </div>
   );
 }
+
+    
