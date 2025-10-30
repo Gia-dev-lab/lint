@@ -6,7 +6,7 @@ import { collection, query, where, Query } from "firebase/firestore";
 import { ProductCard } from "@/components/product-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useState, useCallback } from "react";
+import { useMemo, useCallback } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
@@ -71,17 +71,21 @@ export default function PanniInMicrofibraClientPage() {
 
   const productsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
-    
-    let q: Query = query(collection(firestore, "prodotti"), where("categorie", "==", "Panni in Microfibra Professionali"));
-
-    if (activeFilter !== "all") {
-      q = query(q, where("tag", "array-contains", activeFilter));
-    }
-    
-    return q;
-  }, [firestore, activeFilter]);
+    return query(collection(firestore, "prodotti"), where("categorie", "==", "Panni in Microfibra Professionali"));
+  }, [firestore]);
 
   const { data: products, isLoading: isLoadingProducts } = useCollection(productsQuery);
+  
+  const filteredProducts = useMemo(() => {
+    if (!products) return [];
+    if (activeFilter === "all") return products;
+    
+    return products.filter(product => 
+      product.tag?.toLowerCase().includes(activeFilter.toLowerCase())
+    );
+
+  }, [products, activeFilter]);
+
 
   const selectedCategoryLabel = filterCategories.find(c => c.tag === activeFilter)?.label || activeFilter;
 
@@ -135,12 +139,12 @@ export default function PanniInMicrofibraClientPage() {
             {isLoadingProducts &&
               Array.from({ length: 8 }).map((_, i) => <ProductSkeleton key={i} />)}
             
-            {!isLoadingProducts && products?.map((product) => (
+            {!isLoadingProducts && filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
 
-          {!isLoadingProducts && products?.length === 0 && (
+          {!isLoadingProducts && filteredProducts.length === 0 && (
             <div className="text-center col-span-full py-12 bg-secondary/50 rounded-lg">
               <p className="text-lg font-medium">Nessun panno trovato per "{selectedCategoryLabel}"</p>
               <p className="text-muted-foreground mt-2">
