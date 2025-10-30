@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { testimonials } from "@/lib/data";
 import { placeholderImages } from "@/lib/data";
-import { CheckCircle2, Building, Car, Hotel, SprayCan, Wind, Sparkles } from 'lucide-react';
+import { CheckCircle2, Building, Car, Hotel, SprayCan, Wind, Sparkles, Layers, GlassWater, CookingPot } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -358,9 +358,9 @@ export default function Home() {
                                 <p className="text-sm text-muted-foreground mb-4">Ottimizza i tempi e garantisci un pulito impeccabile in uffici, condomini e strutture sanitarie.</p>
                                  <h4 className="font-semibold mb-2">Prodotti Consigliati:</h4>
                                 <ul className="space-y-2 text-sm text-muted-foreground list-inside mb-4">
-                                    <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary"/>Panni multiuso ad alta assorbenza</li>
-                                    <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary"/>Detergenti igienizzanti concentrati</li>
-                                    <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary"/>Ricambi per attrezzature (mop, spazzole)</li>
+                                    <li className="flex items-center"><Layers className="w-4 h-4 mr-2 text-primary"/>Panni multiuso ad alta assorbenza</li>
+                                    <li className="flex items-center"><SprayCan className="w-4 h-4 mr-2 text-primary"/>Detergenti igienizzanti concentrati</li>
+                                    <li className="flex items-center"><Building className="w-4 h-4 mr-2 text-primary"/>Ricambi per attrezzature (mop, spazzole)</li>
                                 </ul>
                                 <DialogTrigger asChild>
                                   <Button className="w-full">Richiedi Consulenza Specifica</Button>
@@ -382,9 +382,9 @@ export default function Home() {
                                 <p className="text-sm text-muted-foreground mb-4">Mantieni i più alti standard di igiene in cucine, sale e camere d'hotel, nel rispetto delle normative HACCP.</p>
                                 <h4 className="font-semibold mb-2">Prodotti Consigliati:</h4>
                                 <ul className="space-y-2 text-sm text-muted-foreground list-inside mb-4">
-                                    <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary"/>Panni colore-codificati per aree di lavoro</li>
-                                    <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary"/>Detergenti per superfici a contatto con alimenti</li>
-                                    <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary"/>Sistemi per la pulizia di vetri e acciai</li>
+                                    <li className="flex items-center"><Hotel className="w-4 h-4 mr-2 text-primary"/>Panni colore-codificati per aree di lavoro</li>
+                                    <li className="flex items-center"><CookingPot className="w-4 h-4 mr-2 text-primary"/>Detergenti per superfici a contatto con alimenti</li>
+                                    <li className="flex items-center"><GlassWater className="w-4 h-4 mr-2 text-primary"/>Sistemi per la pulizia di vetri e acciai</li>
                                 </ul>
                                 <DialogTrigger asChild>
                                   <Button className="w-full">Richiedi Consulenza Specifica</Button>
