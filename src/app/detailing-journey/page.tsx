@@ -187,7 +187,7 @@ const ResultC2 = ({ setStep }: { setStep: (step: Step) => void }) => (
         title="RISULTATO: Delicatezza Estrema"
         actionTitle="Azione di Chiara"
         actionDescription="Chiara usa la Spazzola LUX con setole morbidissime per spolverare la console centrale in piano black, e poi passa il panno SOFT-SOFT per la lucidatura."
-        image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Spazzola-LUX-Setole-Extra-Morbide-per-Interni.png", alt: "Pulizia console piano black", hint: "pulizia console" }}
+        image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/10/spazzola-detailing.png", alt: "Pulizia console piano black", hint: "pulizia console" }}
         products={[
             { name: "Spazzola LUX", description: "Setole morbidissime, anti-graffio, perfetta per schermi e superfici lucide.", link: "/prodotti/acuo5nUIETdAAME2JEkV" },
             { name: "Panno SOFT-SOFT (PAN132)", description: "Pelo Ultra-lungo 'Plush', Bordo Edgeless, ideale per finiture su nero laccato.", link: "/prodotti/AH0Qe2HGdd6tKnEeUlp3" }
