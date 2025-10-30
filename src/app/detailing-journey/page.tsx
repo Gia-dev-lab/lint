@@ -117,7 +117,7 @@ const ResultA1 = ({ setStep }: { setStep: (step: Step) => void }) => (
         image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Accessori-Pulizia.png", alt: "Spazzola lavacerchi in azione", hint: "spazzola cerchi" }}
         products={[
             { name: "Secchio con Grata Grit Guard", description: "Intrappola i detriti sul fondo per prevenire graffi sulla vernice.", link: "/prodotti/2f8vUF6QhtDuTlHLCzca" },
-            { name: "Spazzola Lavacerchi MAXI ECO", description: "Lunghezza 38 cm, setole dense e morbide, ideale per il canale interno." }
+            { name: "Spazzola Lavacerchi MAXI ECO", description: "Lunghezza 38 cm, setole dense e morbide, ideale per il canale interno.", link: "/prodotti/8OOyWZ0WJHdLeluzVoHE" }
         ]}
         nextStep={() => setStep('step4')}
         setStep={setStep}
@@ -131,8 +131,8 @@ const ResultA2 = ({ setStep }: { setStep: (step: Step) => void }) => (
         actionDescription="Chiara usa il Guanto MATTY a pelo ultra-lungo per sollevare e isolare le particelle di sporco dalla vernice."
         image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/08/Guanto-Lavaggio-MATTY-Pelo-Lungo-con-Elastico.png", alt: "Guanto MATTY su carrozzeria", hint: "guanto lavaggio" }}
         products={[
-            { name: "Guanto MATTY", description: "Microfibra 'Plush' a pelo ultra-lungo. Crea un cuscino che isola lo sporco per il lavaggio più sicuro." },
-            { name: "Alternativa: Spugna HIPPY", description: "Guanto in microfibra 'Chenille' a multifrange, anti-graffio con presa sicura." }
+            { name: "Guanto MATTY", description: "Microfibra 'Plush' a pelo ultra-lungo. Crea un cuscino che isola lo sporco per il lavaggio più sicuro.", link: "/prodotti/6HZrOeQ9osxHvQcwjOUG" },
+            { name: "Spugna HIPPY", description: "Guanto in microfibra 'Chenille' a multifrange, anti-graffio con presa sicura.", link: "/prodotti/IWGEIicCwd8ZL9rcogZE" }
         ]}
         nextStep={() => setStep('step4')}
         setStep={setStep}
@@ -146,8 +146,8 @@ const ResultB1 = ({ setStep }: { setStep: (step: Step) => void }) => (
         actionDescription="Chiara usa un pennello con setole in KREX per sgrassare il vano motore dopo aver spruzzato l'A.P.C. 5456."
         image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Chimici.png", alt: "Pulizia vano motore con pennello", hint: "pulizia motore" }}
         products={[
-            { name: "A.P.C. 5456", description: "Detergente universale concentrato per motori, cerchioni, grasso e sporco pesante." },
-            { name: "Set 3 Pennelli Detailing PRO", description: "Include il pennello in KREX, resistente agli acidi e ai chimici aggressivi." }
+            { name: "A.P.C. 5456", description: "Detergente universale concentrato per motori, cerchioni, grasso e sporco pesante.", link: "/prodotti/ivfZj0KIrTLjsw7LZRZl" },
+            { name: "Set 3 Pennelli Detailing PRO", description: "Include il pennello in KREX, resistente agli acidi e ai chimici aggressivi.", link: "/prodotti/h9Rigug6d5B4GBwstTGb" }
         ]}
         nextStep={() => setStep('step4')}
         setStep={setStep}
@@ -161,7 +161,7 @@ const ResultB2 = ({ setStep }: { setStep: (step: Step) => void }) => (
         actionDescription="Chiara versa RYSOFT nella vaschetta dell'ammorbidente della lavatrice per rigenerare un carico di panni in microfibra."
         image={{ src: placeholderImages.find(i => i.id === 'product-cloth-2')?.imageUrl || '', alt: "Panni in microfibra in lavatrice", hint: "panni lavatrice" }}
         products={[
-            { name: "RYSOFT", description: "Detergente acido multifunzione. Usato al posto dell'ammorbidente, neutralizza i minerali dell'acqua dura. Ottimo anche come disincrostante." }
+            { name: "RYSOFT", description: "Detergente acido multifunzione. Usato al posto dell'ammorbidente, neutralizza i minerali dell'acqua dura. Ottimo anche come disincrostante.", link: "/prodotti/Oidg8Df5HSWcahc5r00C" }
         ]}
         nextStep={() => setStep('step4')}
         setStep={setStep}
@@ -175,7 +175,7 @@ const ResultC1 = ({ setStep }: { setStep: (step: Step) => void }) => (
         actionDescription="Chiara usa il lato grigio (scrub) del DUAL SCRUB PAD su un sedile in pelle per sollevare lo sporco, e poi il lato bianco (microfibra) per asportare i residui."
         image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Tampone-Detailing-2-in-1-per-Interni-e-Pelle.png", alt: "Pulizia sedile in pelle", hint: "pulizia interni" }}
         products={[
-            { name: "DUAL SCRUB PAD", description: "Pad 2-in-1. Lato grigio per agitare lo sporco, lato bianco in microfibra per assorbire." }
+            { name: "DUAL SCRUB PAD", description: "Pad 2-in-1. Lato grigio per agitare lo sporco, lato bianco in microfibra per assorbire.", link: "/prodotti/8uiCXrrBDtd7cXKlJ90k" }
         ]}
         nextStep={() => setStep('step5')}
         setStep={setStep}
@@ -189,8 +189,8 @@ const ResultC2 = ({ setStep }: { setStep: (step: Step) => void }) => (
         actionDescription="Chiara usa la Spazzola LUX con setole morbidissime per spolverare la console centrale in piano black, e poi passa il panno SOFT-SOFT per la lucidatura."
         image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Spazzola-LUX-Setole-Extra-Morbide-per-Interni.png", alt: "Pulizia console piano black", hint: "pulizia console" }}
         products={[
-            { name: "Spazzola LUX", description: "Setole morbidissime, anti-graffio, perfetta per schermi e superfici lucide." },
-            { name: "Panno SOFT-SOFT (PAN132)", description: "Pelo Ultra-lungo 'Plush', Bordo Edgeless, ideale per finiture su nero laccato." }
+            { name: "Spazzola LUX", description: "Setole morbidissime, anti-graffio, perfetta per schermi e superfici lucide.", link: "/prodotti/acuo5nUIETdAAME2JEkV" },
+            { name: "Panno SOFT-SOFT (PAN132)", description: "Pelo Ultra-lungo 'Plush', Bordo Edgeless, ideale per finiture su nero laccato.", link: "/prodotti/AH0Qe2HGdd6tKnEeUlp3" }
         ]}
         nextStep={() => setStep('step5')}
         setStep={setStep}
@@ -204,7 +204,7 @@ const ResultD1 = ({ setStep }: { setStep: (step: Step) => void }) => (
         actionDescription="Chiara tiene aperto il panno BYSONT Maxi Formato 60x90 cm sulla carrozzeria bagnata, che assorbe l'acqua per contatto."
         image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/08/Panno-Asciugatura-Auto-1200-GSM-BYSONT.png", alt: "Asciugatura auto con panno Bysont", hint: "asciugatura auto" }}
         products={[
-            { name: "BYSONT (PAN170)", description: "GSM: 1400; Tecnologia Twisted Pile. Assorbe fino a 12 volte il suo peso in acqua. Ideale per asciugare grandi superfici in una sola passata." }
+            { name: "BYSONT (PAN170)", description: "GSM: 1400; Tecnologia Twisted Pile. Assorbe fino a 12 volte il suo peso in acqua. Ideale per asciugare grandi superfici in una sola passata.", link: "/prodotti/I9shR7SOvaa24ko2tfuj" }
         ]}
         isFinalStep={true}
         setStep={setStep}
@@ -218,8 +218,8 @@ const ResultD2 = ({ setStep }: { setStep: (step: Step) => void }) => (
         actionDescription="Chiara passa il panno MOMMY AMAR leggermente umido su un vetro, ispezionando il risultato per verificare l'assenza di striature."
         image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Panno-Vetri-MOMMY-AMAR-Finitura-Anti-Alone.png", alt: "Pulizia vetri auto", hint: "pulizia vetri" }}
         products={[
-            { name: "MOMMY AMAR - FIBER (PAN101)", description: "Spessore 0.3mm e trama Ultra-fine. Specifico per vetri, specchi e cromature. Pulisce anche solo con acqua." },
-            { name: "Alternativa: SUPER GLASSES PRO (PAN130)", description: "Consigliato per sporco ostinato e unto, con metodo a Doppio Step." }
+            { name: "MOMMY AMAR - FIBER (PAN101)", description: "Spessore 0.3mm e trama Ultra-fine. Specifico per vetri, specchi e cromature. Pulisce anche solo con acqua.", link: "/prodotti/MMKHizpcAKJhNkSjuIxg" },
+            { name: "SUPER GLASSES PRO (PAN130)", description: "Consigliato per sporco ostinato e unto, con metodo a Doppio Step.", link: "/prodotti/NEorcFP1G94dzgPtETTP" }
         ]}
         isFinalStep={true}
         setStep={setStep}
@@ -354,3 +354,5 @@ export default function DetailingJourneyPage() {
     </div>
   );
 }
+
+    
