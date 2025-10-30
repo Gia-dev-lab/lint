@@ -174,7 +174,7 @@ const ResultC1 = ({ setStep }: { setStep: (step: Step) => void }) => (
         title="RISULTATO: Il Lavoro 2-in-1"
         actionTitle="Azione di Chiara"
         actionDescription="Chiara usa il lato grigio (scrub) del DUAL SCRUB PAD su un sedile in pelle per sollevare lo sporco, e poi il lato bianco (microfibra) per asportare i residui."
-        image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Tampone-Detailing-2-in-1-per-Interni-e-Pelle.png", alt: "Pulizia sedile in pelle", hint: "pulizia interni" }}
+        image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2024/11/DUAL-SCRUB-PAD.jpg", alt: "Pulizia sedile in pelle", hint: "pulizia interni" }}
         products={[
             { name: "DUAL SCRUB PAD", description: "Pad 2-in-1. Lato grigio per agitare lo sporco, lato bianco in microfibra per assorbire.", link: "/prodotti/8uiCXrrBDtd7cXKlJ90k" }
         ]}
@@ -355,5 +355,3 @@ export default function DetailingJourneyPage() {
     </div>
   );
 }
-
-    
