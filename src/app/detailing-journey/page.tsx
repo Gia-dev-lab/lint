@@ -144,7 +144,7 @@ const ResultB1 = ({ setStep }: { setStep: (step: Step) => void }) => (
         title="RISULTATO: Potenza Concentrata"
         actionTitle="Azione di Chiara"
         actionDescription="Chiara usa un pennello con setole in KREX per sgrassare il vano motore dopo aver spruzzato l'A.P.C. 5456."
-        image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Chimici.png", alt: "Pulizia vano motore con pennello", hint: "pulizia motore" }}
+        image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Spazzola-con-Setole-Dure-per-Tappeti-e-Moquette-Auto.png", alt: "Pulizia vano motore con pennello", hint: "pulizia motore" }}
         products={[
             { name: "A.P.C. 5456", description: "Detergente universale concentrato per motori, cerchioni, grasso e sporco pesante.", link: "/prodotti/ivfZj0KIrTLjsw7LZRZl" },
             { name: "Set 3 Pennelli Detailing PRO", description: "Include il pennello in KREX, resistente agli acidi e ai chimici aggressivi.", link: "/prodotti/h9Rigug6d5B4GBwstTGb" }
@@ -354,5 +354,3 @@ export default function DetailingJourneyPage() {
     </div>
   );
 }
-
-    
