@@ -28,8 +28,6 @@ import Autoplay from "embla-carousel-autoplay";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const heroImage = placeholderImages.find(img => img.id === 'hero-background');
-const I9shR7SOvaa24ko2tfujImage = placeholderImages.find(img => img.id === 'I9shR7SOvaa24ko2tfuj');
-
 
 const animatedHeadlines = [
   "Efficienza Ineguagliabile.",
@@ -76,9 +74,32 @@ const solutionCategories = [
   },
 ];
 
+const ctaImageDefault = {
+    imageUrl: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/08/Panno-Asciugatura-Auto-1200-GSM-BYSONT.png",
+    description: "Panno Asciugatura Auto 1200 GSM BYSONT",
+    imageHint: "panno auto",
+    link: "/prodotti/I9shR7SOvaa24ko2tfuj"
+};
+
+const ctaImageDetailing = {
+    imageUrl: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/PAD-POLISH-3-in-1-Kit-Lucidatura-Auto-a-3-Fasi.png",
+    description: "Kit Lucidatura Auto a 3 Fasi",
+    imageHint: "kit lucidatura",
+    link: "/prodotti/accessori" 
+};
+
+const ctaImageHoreca = {
+    imageUrl: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Panno-Microfibra.png",
+    description: "Panni in microfibra per Ho.Re.Ca.",
+    imageHint: "panni pulizia",
+    link: "/prodotti/panni-in-microfibra"
+}
+
+
 export default function Home() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);
+  const [activeTabImage, setActiveTabImage] = useState(ctaImageDefault);
 
   const firestore = useFirestore();
   
@@ -99,6 +120,21 @@ export default function Home() {
     }, 3000); // Cambia ogni 3 secondi
     return () => clearInterval(interval);
   }, []);
+
+  const handleTabChange = (value: string) => {
+    switch (value) {
+        case 'detailing':
+            setActiveTabImage(ctaImageDetailing);
+            break;
+        case 'horeca':
+            setActiveTabImage(ctaImageHoreca);
+            break;
+        case 'cleaning':
+        default:
+            setActiveTabImage(ctaImageDefault);
+            break;
+    }
+  }
 
   return (
     <div className="flex flex-col">
@@ -308,20 +344,20 @@ export default function Home() {
         <section id="kit-configurator" className="py-20 lg:py-32 bg-secondary text-foreground">
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <Link href="/prodotti/I9shR7SOvaa24ko2tfuj" className="block group">
+                    <Link href={activeTabImage.link} className="block group">
                         <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl rotate-2 transition-transform duration-300 hover:scale-105 hover:rotate-0">
-                            {I9shR7SOvaa24ko2tfujImage && (
+                            {activeTabImage && (
                                 <Image
-                                    src={I9shR7SOvaa24ko2tfujImage.imageUrl}
-                                    alt={I9shR7SOvaa24ko2tfujImage.description}
+                                    src={activeTabImage.imageUrl}
+                                    alt={activeTabImage.description}
                                     fill
                                     className="object-cover"
-                                    data-ai-hint={I9shR7SOvaa24ko2tfujImage.imageHint}
+                                    data-ai-hint={activeTabImage.imageHint}
                                 />
                             )}
                              <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <h3 className="text-white text-xl font-bold text-center p-4">
-                                    {I9shR7SOvaa24ko2tfujImage?.description}
+                                    {activeTabImage?.description}
                                 </h3>
                             </div>
                         </div>
@@ -332,7 +368,7 @@ export default function Home() {
                             Ogni settore ha esigenze uniche. Il nostro team di esperti è a tua disposizione per consigliarti le migliori attrezzature per ottimizzare il tuo lavoro.
                         </p>
                         <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
-                           <Tabs defaultValue="cleaning" className="mt-6">
+                           <Tabs defaultValue="cleaning" className="mt-6" onValueChange={handleTabChange}>
                             <TabsList className="grid w-full grid-cols-3">
                                 <TabsTrigger value="cleaning"><Building className="mr-2"/>Imprese</TabsTrigger>
                                 <TabsTrigger value="detailing"><Car className="mr-2"/>Detailing</TabsTrigger>
@@ -433,3 +469,5 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
     </Link>
   );
 }
+
+    
