@@ -116,7 +116,7 @@ const ResultA1 = ({ setStep }: { setStep: (step: Step) => void }) => (
         actionDescription="Chiara inserisce la Spazzola Lavacerchi MAXI tra i raggi di un cerchio in lega, pulendo in profondità il canale interno."
         image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Accessori-Pulizia.png", alt: "Spazzola lavacerchi in azione", hint: "spazzola cerchi" }}
         products={[
-            { name: "Secchio con Grata Grit Guard", description: "Intrappola i detriti sul fondo per prevenire graffi sulla vernice.", link: "/prodotti/C5n6yXz39sT0P4u1hPNN" },
+            { name: "Secchio con Grata Grit Guard", description: "Intrappola i detriti sul fondo per prevenire graffi sulla vernice.", link: "/prodotti/2f8vUF6QhtDuTlHLCzca" },
             { name: "Spazzola Lavacerchi MAXI ECO", description: "Lunghezza 38 cm, setole dense e morbide, ideale per il canale interno." }
         ]}
         nextStep={() => setStep('step4')}
@@ -354,5 +354,3 @@ export default function DetailingJourneyPage() {
     </div>
   );
 }
-
-    
