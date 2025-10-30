@@ -165,42 +165,26 @@ export default function Home() {
         
         {/* Sezione Nuova Soluzioni Professionali */}
         <section id="solutions" className="py-16 lg:py-24 bg-secondary">
-            <div className="container text-center mb-12">
+          <div className="container">
+            <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold">Esplora le Nostre Soluzioni Professionali</h2>
               <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">
                 Trova rapidamente ciò di cui hai bisogno. Le nostre linee di attrezzature per pulizia professionale sono state selezionate per rispondere alle esigenze specifiche di ogni professionista del pulito.
               </p>
             </div>
-            <div className="w-full">
-                <Carousel
-                opts={{
-                    align: "start",
-                    loop: true,
-                }}
-                plugins={[autoplayPlugin.current]}
-                onMouseEnter={() => autoplayPlugin.current.stop()}
-                onMouseLeave={() => autoplayPlugin.current.reset()}
-                className="w-full max-w-6xl mx-auto"
-                >
-                <CarouselContent>
-                    {solutionCategories.map((category) => (
-                    <CarouselItem key={category.title} className="md:basis-1/2 lg:basis-1/3">
-                        <div className="p-1">
-                        <SolutionCategoryCard
-                            title={category.title}
-                            link={category.link}
-                            image={category.image}
-                            imageHint={category.imageHint}
-                        />
-                        </div>
-                    </CarouselItem>
-                    ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-                </Carousel>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {solutionCategories.map((category) => (
+                  <SolutionCategoryCard
+                      key={category.title}
+                      title={category.title}
+                      link={category.link}
+                      image={category.image}
+                      imageHint={category.imageHint}
+                  />
+              ))}
             </div>
-          </section>
+          </div>
+        </section>
 
         {/* Sezione Prodotti Selezionati */}
         <AnimateOnScroll>
@@ -432,17 +416,19 @@ function ProductSkeleton() {
 
 function SolutionCategoryCard({ title, link, image, imageHint }: { title: string, link: string, image: string, imageHint?: string }) {
   return (
-    <Link href={link} className="group relative block aspect-video w-full overflow-hidden rounded-lg shadow-lg">
-      <Image
-        src={image}
-        alt={title}
-        fill
-        className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
-        data-ai-hint={imageHint}
-      />
-      <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/60"></div>
-      <div className="absolute inset-0 flex items-center justify-center p-4">
-        <h3 className="text-2xl font-bold text-white text-center transition-transform duration-300 group-hover:scale-110">{title}</h3>
+    <Link href={link} className="group block overflow-hidden rounded-lg shadow-lg">
+      <div className="relative aspect-video w-full">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+          data-ai-hint={imageHint}
+        />
+        <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/60"></div>
+        <div className="absolute inset-0 flex items-center justify-center p-4">
+          <h3 className="text-2xl font-bold text-white text-center transition-transform duration-300 group-hover:scale-110">{title}</h3>
+        </div>
       </div>
     </Link>
   );
