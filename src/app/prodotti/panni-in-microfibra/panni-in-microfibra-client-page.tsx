@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
@@ -74,7 +75,7 @@ export default function PanniInMicrofibraClientPage() {
     let q: Query = query(collection(firestore, "prodotti"), where("categorie", "==", "Panni in Microfibra Professionali"));
 
     if (activeFilter !== "all") {
-      q = query(q, where("tag", "==", activeFilter));
+      q = query(q, where("tag", "array-contains", activeFilter));
     }
     
     return q;
