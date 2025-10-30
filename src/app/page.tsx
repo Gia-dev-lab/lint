@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { testimonials } from "@/lib/data";
 import { placeholderImages } from "@/lib/data";
-import { CheckCircle2, Building, Car, Hotel } from 'lucide-react';
+import { CheckCircle2, Building, Car, Hotel, SprayCan, Wind, Sparkles } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -25,6 +25,7 @@ import { collection, limit, query } from "firebase/firestore";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ProductCard } from "@/components/product-card";
 import Autoplay from "embla-carousel-autoplay";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const heroImage = placeholderImages.find(img => img.id === 'hero-background');
 const I9shR7SOvaa24ko2tfujImage = placeholderImages.find(img => img.id === 'I9shR7SOvaa24ko2tfuj');
@@ -344,29 +345,52 @@ export default function Home() {
                     <div className="text-center md:text-left">
                         <h2 className="text-3xl md:text-4xl font-bold">Trova la Soluzione Giusta per Te</h2>
                         <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto md:mx-0">
-                            Ogni settore ha esigenze uniche. Il nostro team di esperti è a tua disposizione per consigliarti le migliori attrezzature per ottimizzare il tuo lavoro e creare il tuo kit di prodotti ideale.
+                            Ogni settore ha esigenze uniche. Il nostro team di esperti è a tua disposizione per consigliarti le migliori attrezzature per ottimizzare il tuo lavoro.
                         </p>
                         <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
-                            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto md:mx-0">
+                           <Tabs defaultValue="cleaning" className="mt-6">
+                            <TabsList className="grid w-full grid-cols-3">
+                                <TabsTrigger value="cleaning"><Building className="mr-2"/>Imprese</TabsTrigger>
+                                <TabsTrigger value="detailing"><Car className="mr-2"/>Detailing</TabsTrigger>
+                                <TabsTrigger value="horeca"><Hotel className="mr-2"/>Ho.Re.Ca.</TabsTrigger>
+                            </TabsList>
+                            <TabsContent value="cleaning" className="p-4 bg-background/50 rounded-b-lg border border-t-0">
+                                <p className="text-sm text-muted-foreground mb-4">Ottimizza i tempi e garantisci un pulito impeccabile in uffici, condomini e strutture sanitarie.</p>
+                                 <h4 className="font-semibold mb-2">Prodotti Consigliati:</h4>
+                                <ul className="space-y-2 text-sm text-muted-foreground list-inside mb-4">
+                                    <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary"/>Panni multiuso ad alta assorbenza</li>
+                                    <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary"/>Detergenti igienizzanti concentrati</li>
+                                    <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary"/>Ricambi per attrezzature (mop, spazzole)</li>
+                                </ul>
                                 <DialogTrigger asChild>
-                                    <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-4 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-xl hover:-translate-y-1">
-                                        <Building className="w-8 h-8 text-primary" />
-                                        <CardTitle className="text-lg">Imprese di Pulizia</CardTitle>
-                                    </Card>
+                                  <Button className="w-full">Richiedi Consulenza Specifica</Button>
                                 </DialogTrigger>
+                            </TabsContent>
+                            <TabsContent value="detailing" className="p-4 bg-background/50 rounded-b-lg border border-t-0">
+                                <p className="text-sm text-muted-foreground mb-4">Raggiungi la perfezione nella cura dell'auto, dalla decontaminazione alla finitura lucida.</p>
+                                  <h4 className="font-semibold mb-2">Prodotti Consigliati:</h4>
+                                <ul className="space-y-2 text-sm text-muted-foreground list-inside mb-4">
+                                    <li className="flex items-center"><Wind className="w-4 h-4 mr-2 text-primary"/>Panni per asciugatura ultra-assorbenti</li>
+                                    <li className="flex items-center"><Sparkles className="w-4 h-4 mr-2 text-primary"/>Applicatori per cere e sigillanti</li>
+                                    <li className="flex items-center"><SprayCan className="w-4 h-4 mr-2 text-primary"/>Sgrassatori e decontaminanti specifici</li>
+                                </ul>
                                 <DialogTrigger asChild>
-                                    <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-4 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-xl hover:-translate-y-1">
-                                        <Car className="w-8 h-8 text-primary" />
-                                        <CardTitle className="text-lg">Car Detailing</CardTitle>
-                                    </Card>
+                                  <Button className="w-full">Richiedi Consulenza Specifica</Button>
                                 </DialogTrigger>
+                            </TabsContent>
+                            <TabsContent value="horeca" className="p-4 bg-background/50 rounded-b-lg border border-t-0">
+                                <p className="text-sm text-muted-foreground mb-4">Mantieni i più alti standard di igiene in cucine, sale e camere d'hotel, nel rispetto delle normative HACCP.</p>
+                                <h4 className="font-semibold mb-2">Prodotti Consigliati:</h4>
+                                <ul className="space-y-2 text-sm text-muted-foreground list-inside mb-4">
+                                    <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary"/>Panni colore-codificati per aree di lavoro</li>
+                                    <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary"/>Detergenti per superfici a contatto con alimenti</li>
+                                    <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary"/>Sistemi per la pulizia di vetri e acciai</li>
+                                </ul>
                                 <DialogTrigger asChild>
-                                    <Card className="bg-card text-card-foreground border hover:bg-card/90 transition-all duration-300 cursor-pointer p-4 col-span-1 sm:col-span-2 flex flex-col items-center justify-center text-center space-y-2 hover:shadow-xl hover:-translate-y-1">
-                                        <Hotel className="w-8 h-8 text-primary" />
-                                        <CardTitle className="text-lg">Settore Ho.Re.Ca.</CardTitle>
-                                    </Card>
+                                  <Button className="w-full">Richiedi Consulenza Specifica</Button>
                                 </DialogTrigger>
-                            </div>
+                            </TabsContent>
+                            </Tabs>
                             <DialogContent className="sm:max-w-[425px]">
                                 <DialogHeader>
                                     <DialogTitle>Richiedi una Consulenza o un Preventivo</DialogTitle>
