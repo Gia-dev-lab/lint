@@ -26,6 +26,7 @@ const StepIntro = ({ setStep }: { setStep: (step: Step) => void }) => (
  
       {/* Core component */}
       <SparklesCore
+        id="detailing-sparkles"
         background="transparent"
         minSize={0.4}
         maxSize={1}
@@ -114,7 +115,7 @@ const ResultA1 = ({ setStep }: { setStep: (step: Step) => void }) => (
         title="RISULTATO: Pulizia a 360°"
         actionTitle="Azione di Chiara"
         actionDescription="Chiara inserisce la Spazzola Lavacerchi MAXI tra i raggi di un cerchio in lega, pulendo in profondità il canale interno."
-        image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Accessori-Pulizia.png", alt: "Spazzola lavacerchi in azione", hint: "spazzola cerchi" }}
+        image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Spazzola-per-Pulizia-Cerchi-Auto.png", alt: "Spazzola lavacerchi in azione", hint: "spazzola cerchi" }}
         products={[
             { name: "Secchio con Grata Grit Guard", description: "Intrappola i detriti sul fondo per prevenire graffi sulla vernice.", link: "/prodotti/2f8vUF6QhtDuTlHLCzca" },
             { name: "Spazzola Lavacerchi MAXI ECO", description: "Lunghezza 38 cm, setole dense e morbide, ideale per il canale interno.", link: "/prodotti/8OOyWZ0WJHdLeluzVoHE" }
@@ -285,7 +286,7 @@ const ResultCard = ({ title, actionTitle, actionDescription, image, products, ne
             <CardContent className="p-6 grid md:grid-cols-2 gap-8 items-center">
                 <div className="space-y-4">
                     <h3 className="font-semibold text-xl">{actionTitle}</h3>
-                    <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
+                    <div className="relative aspect-[3/4] w-full rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
                         <Image src={image.src} alt={image.alt} fill className="object-cover" data-ai-hint={image.hint} />
                     </div>
                     <p className="text-muted-foreground">{actionDescription}</p>
@@ -354,3 +355,5 @@ export default function DetailingJourneyPage() {
     </div>
   );
 }
+
+    
