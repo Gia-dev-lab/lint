@@ -269,21 +269,21 @@ export default function Home() {
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                      <CheckCircle2 className="text-primary mt-1 flex-shrink-0" /> 
+                      <CheckCircle2 className="text-primary mt-1 flex-shrink-0 transition-all duration-500 delay-300 group-data-[visible=true]:scale-100 group-data-[visible=true]:opacity-100 scale-50 opacity-0" /> 
                       <div>
                           <h4 className="font-semibold">Qualità Selezionata</h4>
                           <p className="text-muted-foreground">Ogni articolo, dal panno più tecnico al più piccolo ricambio, è testato per garantire standard elevati di performance e durata.</p>
                       </div>
                   </li>
                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="text-primary mt-1 flex-shrink-0" /> 
+                      <CheckCircle2 className="text-primary mt-1 flex-shrink-0 transition-all duration-500 delay-500 group-data-[visible=true]:scale-100 group-data-[visible=true]:opacity-100 scale-50 opacity-0" /> 
                       <div>
                           <h4 className="font-semibold">Efficienza Operativa</h4>
                           <p className="text-muted-foreground">Le nostre attrezzature per pulizia professionale sono pensate per lavorare in sinergia, ottimizzando i tempi e riducendo gli sprechi di prodotto e di energia.</p>
                       </div>
                   </li>
                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="text-primary mt-1 flex-shrink-0" /> 
+                      <CheckCircle2 className="text-primary mt-1 flex-shrink-0 transition-all duration-500 delay-700 group-data-[visible=true]:scale-100 group-data-[visible=true]:opacity-100 scale-50 opacity-0" /> 
                       <div>
                           <h4 className="font-semibold">Supporto Completo</h4>
                           <p className="text-muted-foreground">Offriamo consulenza specializzata per aiutarti a costruire il kit di pulizia perfetto per le tue esigenze, con listini dedicati a rivenditori e grandi utilizzatori.</p>
@@ -486,9 +486,3 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
     </Link>
   );
 }
-
-    
-
-    
-
-

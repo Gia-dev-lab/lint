@@ -23,9 +23,9 @@ export function AnimateOnScroll({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Update state when element's intersection status changes
         if (entry.isIntersecting) {
             setIsVisible(true);
+            observer.unobserve(element);
         }
       },
       { threshold }
@@ -39,24 +39,14 @@ export function AnimateOnScroll({
        }
     };
   }, [threshold]);
-  
-  // This effect will unobserve the element if it has become visible
-  // and we only want the animation to trigger once.
-  useEffect(() => {
-      const element = ref.current;
-      if (isVisible && element) {
-          const observer = new IntersectionObserver(() => {}, {threshold});
-          observer.observe(element);
-          observer.unobserve(element);
-      }
-  }, [isVisible, threshold]);
 
 
   return (
     <div
       ref={ref}
+      data-visible={isVisible}
       className={cn(
-        'transition-all duration-700 ease-out',
+        'transition-all duration-700 ease-out group',
         isVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-8 blur-md',
         className
       )}
