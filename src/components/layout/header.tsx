@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, FormEvent } from "react";
@@ -25,7 +26,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Menu, Search, Phone, Mail, Sparkles, ChevronDown } from "lucide-react";
+import { Menu, Search, Phone, Mail, MessageSquareText, ChevronDown } from "lucide-react";
 import { Logo } from "@/components/icons";
 import { QuoteRequestForm } from "../quote-request-form";
 import { useUser } from "@/firebase";
@@ -136,7 +137,7 @@ export default function Header() {
             <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
                 <DialogTrigger asChild>
                 <Button variant="default" className="hidden sm:flex shrink-0 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:opacity-90">
-                    <Sparkles className="mr-2 h-4 w-4" />
+                    <MessageSquareText className="mr-2 h-4 w-4" />
                     Richiedi Consulenza
                 </Button>
                 </DialogTrigger>
@@ -230,7 +231,7 @@ export default function Header() {
                     </form>
                     <div className="mt-auto flex flex-col gap-4 border-t pt-4">
                         <Button variant="default" onClick={() => { setIsMobileMenuOpen(false); setIsQuoteOpen(true);}}>
-                            <Sparkles className="mr-2 h-4 w-4" />
+                            <MessageSquareText className="mr-2 h-4 w-4" />
                             Richiedi Consulenza
                         </Button>
                         <div className="flex flex-col gap-4 items-center text-sm font-medium text-muted-foreground">
@@ -252,3 +253,5 @@ export default function Header() {
     </header>
   );
 }
+
+    
