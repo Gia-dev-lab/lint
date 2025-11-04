@@ -124,7 +124,7 @@ export default function ProdottoPage() {
                     src={immagine}
                     alt={nome || "Immagine Prodotto"}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
               )}
