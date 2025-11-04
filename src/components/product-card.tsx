@@ -27,7 +27,7 @@ export function ProductCard({ product }: { product: any }) {
                 src={immagine}
                 alt={nome || 'Immagine Prodotto'}
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                className="object-contain transition-transform duration-300"
             />
             </div>
         )}
@@ -47,5 +47,3 @@ export function ProductCard({ product }: { product: any }) {
     </Link>
   );
 }
-
-    
