@@ -32,6 +32,7 @@ export const SparklesCore: React.FC<SparklesCoreProps> = ({
       animationDelay: string;
       animationDuration: string;
       translateX: string;
+      translateY: string;
     }[]
   >([]);
 
@@ -42,19 +43,20 @@ export const SparklesCore: React.FC<SparklesCoreProps> = ({
         return {
           id: i,
           x: Math.random() * 100,
-          y: Math.random() * 50, // Start in the top half
+          y: Math.random() * 100, // Random vertical position
           size: size,
           color: particleColor,
-          animationDelay: `${Math.random() * 4}s`,
-          animationDuration: `${Math.random() * 4 + 2}s`,
-          translateX: `${(Math.random() - 0.5) * 40}px`, // Random horizontal movement
+          animationDelay: `${Math.random() * 5}s`,
+          animationDuration: `${Math.random() * 5 + 3}s`,
+          translateX: `${(Math.random() - 0.5) * 20}px`,
+          translateY: `${(Math.random() - 0.5) * 20}px`,
         };
       });
       setSparkles(newSparkles);
     };
 
     generateSparkles();
-    const interval = setInterval(generateSparkles, 7000); 
+    const interval = setInterval(generateSparkles, 8000); 
 
     return () => clearInterval(interval);
   }, [particleDensity, minSize, maxSize, particleColor]);
@@ -65,9 +67,10 @@ export const SparklesCore: React.FC<SparklesCoreProps> = ({
         {sparkles.map((sparkle) => (
           <div
             key={sparkle.id}
-            className="absolute animate-water-drop"
+            className="absolute animate-sparkle-float"
             style={{
               '--translateX': sparkle.translateX,
+              '--translateY': sparkle.translateY,
               left: `${sparkle.x}%`,
               top: `${sparkle.y}%`,
               width: `${sparkle.size}px`,
