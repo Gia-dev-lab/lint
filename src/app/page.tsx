@@ -213,27 +213,29 @@ export default function Home() {
         </section>
         
         {/* Sezione Nuova Soluzioni Professionali */}
-        <section id="solutions" className="py-16 lg:py-24 bg-secondary">
-          <div className="container">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold">Esplora le Nostre Soluzioni Professionali</h2>
-              <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">
-                Trova rapidamente ciò di cui hai bisogno. Le nostre linee di attrezzature per pulizia professionale sono state selezionate per rispondere alle esigenze specifiche di ogni professionista del pulito.
-              </p>
+        <AnimateOnScroll>
+          <section id="solutions" className="py-16 lg:py-24 bg-secondary">
+            <div className="container">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold">Esplora le Nostre Soluzioni Professionali</h2>
+                <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">
+                  Trova rapidamente ciò di cui hai bisogno. Le nostre linee di attrezzature per pulizia professionale sono state selezionate per rispondere alle esigenze specifiche di ogni professionista del pulito.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {solutionCategories.map((category) => (
+                    <SolutionCategoryCard
+                        key={category.title}
+                        title={category.title}
+                        link={category.link}
+                        image={category.image}
+                        imageHint={category.imageHint}
+                    />
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {solutionCategories.map((category) => (
-                  <SolutionCategoryCard
-                      key={category.title}
-                      title={category.title}
-                      link={category.link}
-                      image={category.image}
-                      imageHint={category.imageHint}
-                  />
-              ))}
-            </div>
-          </div>
-        </section>
+          </section>
+        </AnimateOnScroll>
 
         {/* Sezione Prodotti Selezionati */}
         <AnimateOnScroll>
@@ -486,3 +488,4 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
     
 
     
+
