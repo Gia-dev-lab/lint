@@ -7,10 +7,11 @@ import { ProductCard } from "@/components/product-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { useState, useMemo, useEffect }from "react";
+import { useState, useMemo, useEffect, useCallback }from "react";
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { useDebounce } from "@/hooks/use-debounce";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 function ProductSkeleton() {
   return (
@@ -52,6 +53,7 @@ export default function ProductsClientPage() {
   
   const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '');
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  const activeCategory = searchParams.get('category') || 'all';
 
   const productsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
@@ -60,57 +62,117 @@ export default function ProductsClientPage() {
 
   const { data: products, isLoading: isLoadingProducts } = useCollection(productsQuery);
   
+   const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (value === "all") {
+        params.delete(name);
+      } else {
+        params.set(name, value);
+      }
+      return params.toString();
+    },
+    [searchParams]
+  );
+
+  const handleCategoryChange = (category: string) => {
+    router.push(`${pathname}?${createQueryString('category', category)}`);
+  };
+
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
-    if (searchTerm) {
-      params.set('q', searchTerm);
+    if (debouncedSearchTerm) {
+      params.set('q', debouncedSearchTerm);
     } else {
       params.delete('q');
     }
     router.replace(`${pathname}?${params.toString()}`);
-  }, [debouncedSearchTerm, pathname, router, searchParams, searchTerm]);
+  }, [debouncedSearchTerm, pathname, router, searchParams]);
 
+  const productCategories = useMemo(() => {
+    if (!products) return [];
+    const categories = new Set(products.map(p => p.categorie).filter(Boolean));
+    return ['all', ...Array.from(categories)];
+  }, [products]);
 
   const filteredProducts = useMemo(() => {
     if (!products) return [];
+    
+    let tempProducts = products;
+
+    // Filter by category
+    if (activeCategory !== 'all') {
+      tempProducts = tempProducts.filter(p => p.categorie === activeCategory);
+    }
+
+    // Filter by search term
     const lowercasedFilter = debouncedSearchTerm.toLowerCase();
-    return products.filter((product) => {
-      const { nome, categorie, SKU, descrizionebreve, metadesc } = product;
-      return (
-        nome?.toLowerCase().includes(lowercasedFilter) ||
-        categorie?.toLowerCase().includes(lowercasedFilter) ||
-        SKU?.toLowerCase().includes(lowercasedFilter) ||
-        stripHtml(descrizionebreve).toLowerCase().includes(lowercasedFilter) ||
-        stripHtml(metadesc).toLowerCase().includes(lowercasedFilter)
-      );
-    });
-  }, [products, debouncedSearchTerm]);
+    if (lowercasedFilter) {
+        tempProducts = tempProducts.filter((product) => {
+            const { nome, categorie, SKU, descrizionebreve, metadesc } = product;
+            return (
+                nome?.toLowerCase().includes(lowercasedFilter) ||
+                categorie?.toLowerCase().includes(lowercasedFilter) ||
+                SKU?.toLowerCase().includes(lowercasedFilter) ||
+                stripHtml(descrizionebreve).toLowerCase().includes(lowercasedFilter) ||
+                stripHtml(metadesc).toLowerCase().includes(lowercasedFilter)
+            );
+        });
+    }
+
+    return tempProducts;
+  }, [products, debouncedSearchTerm, activeCategory]);
 
   return (
     <>
-      <div className="mt-6 max-w-lg mx-auto relative mb-8">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            type="text"
-            placeholder="Cerca per nome, codice, categoria..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-9"
-          />
+      <div className="flex flex-col items-center gap-4 mb-8">
+        <div className="w-full max-w-lg relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Cerca per nome, codice, categoria..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-9"
+            />
+        </div>
+        <div className="flex flex-wrap justify-center items-center gap-2">
+            {productCategories.map(cat => (
+                <Button
+                    key={cat}
+                    variant={activeCategory === cat ? "default" : "outline"}
+                    onClick={() => handleCategoryChange(cat)}
+                    className="capitalize"
+                >
+                    {cat === 'all' ? 'Tutti' : cat}
+                </Button>
+            ))}
+            {activeCategory !== 'all' && (
+                <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => handleCategoryChange('all')}
+                className="flex items-center gap-1 text-muted-foreground"
+                >
+                <X size={14}/>
+                Azzera Filtro
+                </Button>
+            )}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {isLoadingProducts
-          ? Array.from({ length: 8 }).map((_, i) => <ProductSkeleton key={i} />)
+          ? Array.from({ length: 12 }).map((_, i) => <ProductSkeleton key={i} />)
           : filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
       </div>
        {!isLoadingProducts && filteredProducts.length === 0 && (
         <div className="text-center col-span-full py-12 bg-secondary/50 rounded-lg">
-          <p className="text-lg font-medium">Nessun prodotto trovato per "{searchTerm}"</p>
+          <p className="text-lg font-medium">Nessun prodotto trovato</p>
           <p className="text-muted-foreground mt-2">
-            Prova a modificare i termini della tua ricerca.
+            Prova a modificare i termini della tua ricerca o a selezionare un'altra categoria.
           </p>
         </div>
       )}
