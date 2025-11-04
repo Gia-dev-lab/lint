@@ -150,7 +150,7 @@ export default function Home() {
     <div className="flex flex-col">
       <main>
         {/* Sezione Eroe */}
-        <section className="relative w-full h-[70vh] flex items-center justify-center text-center text-foreground overflow-hidden">
+        <section className="relative w-full h-screen flex items-center justify-center text-center text-foreground overflow-hidden">
            {heroImage && (
             <Image
                 src={heroImage.imageUrl}
