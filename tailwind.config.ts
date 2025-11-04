@@ -97,9 +97,11 @@ export default {
           },
         },
         'water-drop': {
-            '0%': { transform: 'translateY(0px)', opacity: '0' },
-            '50%': { opacity: '1' },
-            '100%': { transform: 'translateY(80px)', opacity: '0' },
+            '0%': { transform: 'translateY(-20px) translateX(var(--translateX))', opacity: '0' },
+            '20%': { opacity: '0.8' },
+            '80%': { opacity: '1', transform: 'translateY(80px) translateX(var(--translateX)) scaleY(1) scaleX(1)' },
+            '95%': { transform: 'translateY(80px) translateX(var(--translateX)) scaleY(0.2) scaleX(3)', opacity: '0.5' },
+            '100%': { transform: 'translateY(80px) translateX(var(--translateX)) scaleY(0) scaleX(0)', opacity: '0' },
         },
       },
       animation: {
@@ -111,5 +113,3 @@ export default {
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config;
-
-    

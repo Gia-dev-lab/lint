@@ -31,6 +31,7 @@ export const SparklesCore: React.FC<SparklesCoreProps> = ({
       color: string;
       animationDelay: string;
       animationDuration: string;
+      translateX: string;
     }[]
   >([]);
 
@@ -46,6 +47,7 @@ export const SparklesCore: React.FC<SparklesCoreProps> = ({
           color: particleColor,
           animationDelay: `${Math.random() * 4}s`,
           animationDuration: `${Math.random() * 4 + 2}s`,
+          translateX: `${(Math.random() - 0.5) * 40}px`, // Random horizontal movement
         };
       });
       setSparkles(newSparkles);
@@ -65,6 +67,7 @@ export const SparklesCore: React.FC<SparklesCoreProps> = ({
             key={sparkle.id}
             className="absolute animate-water-drop"
             style={{
+              '--translateX': sparkle.translateX,
               left: `${sparkle.x}%`,
               top: `${sparkle.y}%`,
               width: `${sparkle.size}px`,
@@ -73,12 +76,10 @@ export const SparklesCore: React.FC<SparklesCoreProps> = ({
               borderRadius: '50%',
               animationDelay: sparkle.animationDelay,
               animationDuration: sparkle.animationDuration,
-            }}
+            } as React.CSSProperties}
           ></div>
         ))}
       </div>
     </div>
   );
 };
-
-    
