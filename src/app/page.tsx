@@ -26,6 +26,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ProductCard } from "@/components/product-card";
 import Autoplay from "embla-carousel-autoplay";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { cn } from "@/lib/utils";
 
 const heroImage = placeholderImages.find(img => img.id === 'hero-background');
 
@@ -100,6 +101,7 @@ export default function Home() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);
   const [activeTabImage, setActiveTabImage] = useState(ctaImageDefault);
+  const [isHeroImageBlurred, setIsHeroImageBlurred] = useState(true);
 
   const firestore = useFirestore();
   
@@ -115,10 +117,18 @@ export default function Home() {
   const { data: products, isLoading: isLoadingProducts } = useCollection(productsQuery);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const headlineInterval = setInterval(() => {
       setCurrentHeadlineIndex((prevIndex) => (prevIndex + 1) % animatedHeadlines.length);
-    }, 3000); // Cambia ogni 3 secondi
-    return () => clearInterval(interval);
+    }, 3000); 
+
+    const blurTimeout = setTimeout(() => {
+        setIsHeroImageBlurred(false);
+    }, 2500);
+
+    return () => {
+        clearInterval(headlineInterval);
+        clearTimeout(blurTimeout);
+    };
   }, []);
 
   const handleTabChange = (value: string) => {
@@ -146,7 +156,10 @@ export default function Home() {
                 src={heroImage.imageUrl}
                 alt={heroImage.description}
                 fill
-                className="object-cover -z-10"
+                className={cn(
+                    "object-cover -z-10 transition-all duration-1000",
+                    isHeroImageBlurred ? "blur-md" : "blur-0"
+                )}
                 data-ai-hint={heroImage.imageHint}
                 priority
             />
@@ -469,5 +482,7 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
     </Link>
   );
 }
+
+    
 
     
