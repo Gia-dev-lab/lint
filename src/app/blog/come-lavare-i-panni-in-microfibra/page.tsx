@@ -9,11 +9,7 @@ import { CheckCircle2, AlertTriangle, Droplets, Wind, Sparkles, ChevronRight, Sh
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 
-const heroImage = {
-    imageUrl: "https://images.unsplash.com/photo-1571211181312-38EC7a7a6b72?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    description: "Donna che mostra un pennello da detailing",
-    imageHint: "detailing brush"
-};
+const heroImage = placeholderImages.find(img => img.id === 'blog-hero-washing');
 
 const washingMachineSteps = [
     { text: "Separare i panni per tipo di sporco (es. molto sporchi, leggermente sporchi) e colore." },
