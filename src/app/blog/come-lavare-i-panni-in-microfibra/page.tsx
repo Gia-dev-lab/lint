@@ -68,7 +68,7 @@ export default function BlogPage() {
                         I panni in microfibra sono uno strumento indispensabile per ogni professionista del pulito, dal car detailing alle imprese di pulizie. Ma per mantenerli efficaci e duraturi, è fondamentale lavarli nel modo corretto. Un lavaggio sbagliato può compromettere le loro incredibili capacità di pulizia.
                     </p>
 
-                    <h2>Perché è importante lavare correttamente i panni in microfibra?</h2>
+                    <h2 className="text-3xl font-bold tracking-tight mt-16 mb-4">Perché è importante lavare correttamente i panni in microfibra?</h2>
                     <p>
                         La microfibra è composta da fibre sintetiche (poliestere e poliammide) migliaia di volte più sottili di un capello. Questa struttura unica crea una vasta superficie in grado di catturare e trattenere sporco, polvere e liquidi. Se non vengono lavati correttamente, le fibre si ostruiscono e il panno perde la sua efficacia, diventando semplicemente un pezzo di stoffa che sposta lo sporco invece di rimuoverlo.
                     </p>
@@ -92,7 +92,7 @@ export default function BlogPage() {
                         </Card>
                     </div>
 
-                    <h2>Lavaggio in Lavatrice: Step-by-Step</h2>
+                    <h2 className="text-3xl font-bold tracking-tight mt-16 mb-4">Lavaggio in Lavatrice: Step-by-Step</h2>
                     <p>Questo è il metodo più efficace per una pulizia profonda.</p>
                     <ul className="space-y-4">
                         {washingMachineSteps.map((step, index) => (
@@ -103,7 +103,7 @@ export default function BlogPage() {
                         ))}
                     </ul>
 
-                    <h2 className="mt-12">Lavaggio a Mano: Per Piccole Quantità</h2>
+                    <h2 className="text-3xl font-bold tracking-tight mt-16 mb-4">Lavaggio a Mano: Per Piccole Quantità</h2>
                     <p>Ideale per pulire pochi panni o per un lavaggio rapido.</p>
                      <ul className="space-y-4">
                         {handWashSteps.map((step, index) => (
@@ -114,7 +114,7 @@ export default function BlogPage() {
                         ))}
                     </ul>
                     
-                    <h2 className="mt-12">Errori Comuni da Evitare Assolutamente</h2>
+                    <h2 className="text-3xl font-bold tracking-tight mt-16 mb-4">Errori Comuni da Evitare Assolutamente</h2>
                     <p>Evitare questi errori è fondamentale per non rovinare i tuoi preziosi panni.</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                         {mistakesToAvoid.map((mistake, index) => (
@@ -149,7 +149,7 @@ export default function BlogPage() {
                         </div>
                     </div>
 
-                    <h2 className="mt-12">Conclusione</h2>
+                    <h2 className="text-3xl font-bold tracking-tight mt-16 mb-4">Conclusione</h2>
                     <p>
                         Lavare correttamente i panni in microfibra non è un'operazione complicata, ma richiede le giuste attenzioni. Seguendo questa guida, ti assicurerai che le tue attrezzature rimangano performanti a lungo, garantendoti risultati professionali ad ogni utilizzo e ottimizzando il tuo investimento.
                     </p>
