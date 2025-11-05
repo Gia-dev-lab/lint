@@ -360,7 +360,7 @@ export default function Home() {
           <section id="kit-configurator" className="py-20 lg:py-32 bg-secondary text-foreground">
               <div className="container">
                   <div className="grid md:grid-cols-2 gap-12 items-center">
-                      <Link href={activeTabImage.link} className="block group">
+                      <Link href={activeTabImage.link} className="block">
                           <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
                               {activeTabImage && (
                                   <Image
@@ -372,7 +372,7 @@ export default function Home() {
                                   />
 
                               )}
-                              <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                                   <h3 className="text-white text-xl font-bold text-center p-4">
                                       {activeTabImage?.description}
                                   </h3>
@@ -487,3 +487,5 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
     </Link>
   );
 }
+
+    
