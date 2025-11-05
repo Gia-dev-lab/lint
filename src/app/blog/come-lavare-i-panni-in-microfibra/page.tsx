@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -51,7 +52,7 @@ export default function BlogPage() {
                 )}
                 <div className="absolute inset-0 bg-background/70 -z-10" />
                 <AnimateOnScroll className="z-10 container max-w-4xl">
-                    <Badge variant="secondary" className="mb-4">Guida Pratica</Badge>
+                    <Badge variant="default" className="mb-4 text-sm py-1 px-4">Guida Pratica</Badge>
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
                         Come Lavare i Panni in Microfibra
                     </h1>
