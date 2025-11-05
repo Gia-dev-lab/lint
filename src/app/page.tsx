@@ -479,7 +479,7 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
           className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
           data-ai-hint={imageHint}
         />
-        <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/60"></div>
+        <div className="absolute inset-0 bg-primary/30 transition-colors duration-300 group-hover:bg-primary/50"></div>
         <div className="absolute inset-0 flex items-center justify-center p-4">
           <h3 className="text-2xl font-bold text-white text-center transition-transform duration-300 group-hover:scale-110">{title}</h3>
         </div>
@@ -487,5 +487,3 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
     </Link>
   );
 }
-
-    
