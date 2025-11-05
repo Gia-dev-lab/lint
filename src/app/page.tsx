@@ -367,7 +367,7 @@ export default function Home() {
                                       src={activeTabImage.imageUrl}
                                       alt={activeTabImage.description}
                                       fill
-                                      className="object-cover transition-transform duration-300 rotate-2 hover:rotate-0 hover:scale-105"
+                                      className="object-cover transition-transform duration-300 hover:scale-105 hover:rotate-2"
                                       data-ai-hint={activeTabImage.imageHint}
                                   />
 
