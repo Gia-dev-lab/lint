@@ -360,19 +360,19 @@ export default function Home() {
           <section id="kit-configurator" className="py-20 lg:py-32 bg-secondary text-foreground">
               <div className="container">
                   <div className="grid md:grid-cols-2 gap-12 items-center">
-                      <Link href={activeTabImage.link} className="block group">
+                      <Link href={activeTabImage.link} className="block">
                           <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
                               {activeTabImage && (
                                   <Image
                                       src={activeTabImage.imageUrl}
                                       alt={activeTabImage.description}
                                       fill
-                                      className="object-cover transition-transform duration-300 hover:scale-105 hover:rotate-2"
+                                      className="object-cover transition-transform duration-300 rotate-2 hover:rotate-0 hover:scale-105"
                                       data-ai-hint={activeTabImage.imageHint}
                                   />
 
                               )}
-                              <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                                   <h3 className="text-white text-xl font-bold text-center p-4">
                                       {activeTabImage?.description}
                                   </h3>
@@ -470,20 +470,22 @@ function ProductSkeleton() {
 
 function SolutionCategoryCard({ title, link, image, imageHint }: { title: string, link: string, image: string, imageHint?: string }) {
   return (
-    <Link href={link} className="block overflow-hidden rounded-lg shadow-lg">
+    <Link href={link} className="block overflow-hidden rounded-lg shadow-lg group">
       <div className="relative aspect-video w-full">
         <Image
           src={image}
           alt={title}
           fill
-          className="object-cover transition-transform duration-300 ease-in-out hover:scale-105"
+          className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
           data-ai-hint={imageHint}
         />
-        <div className="absolute inset-0 bg-primary/30 transition-colors duration-300 hover:bg-primary/50"></div>
+        <div className="absolute inset-0 bg-primary/30 transition-colors duration-300 group-hover:bg-primary/50"></div>
         <div className="absolute inset-0 flex items-center justify-center p-4">
-          <h3 className="text-2xl font-bold text-white text-center transition-transform duration-300 hover:scale-110">{title}</h3>
+          <h3 className="text-2xl font-bold text-white text-center transition-transform duration-300 group-hover:scale-110">{title}</h3>
         </div>
       </div>
     </Link>
   );
 }
+
+    
