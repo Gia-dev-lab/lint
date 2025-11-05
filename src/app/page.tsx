@@ -361,18 +361,18 @@ export default function Home() {
               <div className="container">
                   <div className="grid md:grid-cols-2 gap-12 items-center">
                       <Link href={activeTabImage.link} className="block">
-                          <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
+                          <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl group">
                               {activeTabImage && (
                                   <Image
                                       src={activeTabImage.imageUrl}
                                       alt={activeTabImage.description}
                                       fill
-                                      className="object-cover transition-transform duration-300 hover:scale-105 hover:rotate-2"
+                                      className="object-cover transition-transform duration-300 group-hover:scale-105"
                                       data-ai-hint={activeTabImage.imageHint}
                                   />
 
                               )}
-                              <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                              <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                   <h3 className="text-white text-xl font-bold text-center p-4">
                                       {activeTabImage?.description}
                                   </h3>
