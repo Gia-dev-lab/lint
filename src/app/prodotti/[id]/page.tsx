@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
-import { ArrowLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ChevronRight, Info } from "lucide-react";
 import Link from "next/link";
 import {
   Dialog,
@@ -42,6 +42,13 @@ function ProductDetailSkeleton() {
           <Skeleton className="h-10 w-3/4" />
           <Skeleton className="h-6 w-1/3" />
           <div className="space-y-2 pt-4">
+            <Skeleton className="h-5 w-full" />
+            <Skeleton className="h-5 w-full" />
+            <Skeleton className="h-5 w-4/5" />
+          </div>
+           <div className="space-y-2 pt-8">
+            <Skeleton className="h-8 w-1/3 mb-4" />
+            <Skeleton className="h-5 w-full" />
             <Skeleton className="h-5 w-full" />
             <Skeleton className="h-5 w-full" />
             <Skeleton className="h-5 w-4/5" />
@@ -96,7 +103,7 @@ export default function ProdottoPage() {
     );
   }
 
-  const { nome, immagine, descrizionebreve, categorie, SKU, metadesc } = product;
+  const { nome, immagine, descrizionebreve, descrizionecompleta, categorie, SKU } = product;
 
   return (
     <AnimateOnScroll>
@@ -108,7 +115,7 @@ export default function ProdottoPage() {
            {categorie && (
             <>
               <ChevronRight size={16} className="mx-1" />
-              <Link href={`/prodotti/panni-in-microfibra?tag=${categorie.toLowerCase()}`} className="hover:text-foreground">{categorie}</Link>
+              <Link href={`/prodotti?category=${encodeURIComponent(categorie)}`} className="hover:text-foreground capitalize">{categorie.toLowerCase()}</Link>
             </>
            )}
            <ChevronRight size={16} className="mx-1" />
@@ -116,7 +123,7 @@ export default function ProdottoPage() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-start">
-          <Card className="overflow-hidden">
+          <Card className="overflow-hidden sticky top-24">
             <CardContent className="p-0">
               {immagine && (
                 <div className="relative aspect-square w-full bg-secondary">
@@ -141,7 +148,7 @@ export default function ProdottoPage() {
             
             {SKU && <p className="text-lg text-muted-foreground">Codice: {SKU}</p>}
             
-            <div className="text-base text-foreground/80 space-y-4 pt-4" dangerouslySetInnerHTML={{ __html: descrizionebreve || metadesc || '' }} />
+            <div className="text-base text-foreground/80 space-y-4 pt-4 prose prose-sm dark:prose-invert" dangerouslySetInnerHTML={{ __html: descrizionebreve || '' }} />
             
             <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
               <DialogTrigger asChild>
@@ -156,6 +163,19 @@ export default function ProdottoPage() {
                 <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
               </DialogContent>
             </Dialog>
+            
+            {descrizionecompleta && (
+                <div className="pt-8 mt-8 border-t">
+                    <h2 className="text-2xl font-bold flex items-center gap-2 mb-4">
+                        <Info size={20} />
+                        Descrizione Dettagliata
+                    </h2>
+                    <div 
+                        className="prose prose-base dark:prose-invert max-w-none text-foreground/90"
+                        dangerouslySetInnerHTML={{ __html: descrizionecompleta }} 
+                    />
+                </div>
+            )}
           </div>
         </div>
       </div>

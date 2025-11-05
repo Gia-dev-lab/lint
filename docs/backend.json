@@ -18,6 +18,10 @@
           "type": "string",
           "description": "A short description of the product, may contain HTML."
         },
+        "descrizionecompleta": {
+          "type": "string",
+          "description": "A long and detailed description of the product, may contain HTML."
+        },
         "immagine": {
           "type": "string",
           "description": "URL of the product image.",
