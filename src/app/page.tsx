@@ -361,13 +361,13 @@ export default function Home() {
               <div className="container">
                   <div className="grid md:grid-cols-2 gap-12 items-center">
                       <Link href={activeTabImage.link} className="block group">
-                          <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-105 hover:-rotate-2">
+                          <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
                               {activeTabImage && (
                                   <Image
                                       src={activeTabImage.imageUrl}
                                       alt={activeTabImage.description}
                                       fill
-                                      className="object-cover"
+                                      className="object-cover transition-transform duration-300 hover:scale-105 hover:-rotate-2"
                                       data-ai-hint={activeTabImage.imageHint}
                                   />
 
