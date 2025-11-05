@@ -361,13 +361,13 @@ export default function Home() {
               <div className="container">
                   <div className="grid md:grid-cols-2 gap-12 items-center">
                       <Link href={activeTabImage.link}>
-                          <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl rotate-2">
+                          <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
                               {activeTabImage && (
                                   <Image
                                       src={activeTabImage.imageUrl}
                                       alt={activeTabImage.description}
                                       fill
-                                      className="object-cover transition-transform duration-300 hover:scale-105 hover:rotate-0"
+                                      className="object-cover transition-transform duration-300 hover:scale-105 hover:rotate-2"
                                       data-ai-hint={activeTabImage.imageHint}
                                   />
 
@@ -470,7 +470,7 @@ function ProductSkeleton() {
 
 function SolutionCategoryCard({ title, link, image, imageHint }: { title: string, link: string, image: string, imageHint?: string }) {
   return (
-    <Link href={link} className="block overflow-hidden rounded-lg shadow-lg">
+    <Link href={link} className="block overflow-hidden rounded-lg shadow-lg group">
       <div className="relative aspect-video w-full">
         <Image
           src={image}
@@ -479,7 +479,7 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
           className="object-cover transition-transform duration-300 ease-in-out hover:scale-105"
           data-ai-hint={imageHint}
         />
-        <div className="absolute inset-0 bg-primary/30 transition-colors duration-300 hover:bg-primary/50"></div>
+        <div className="absolute inset-0 bg-primary/30 transition-colors duration-300 group-hover:bg-primary/50"></div>
         <div className="absolute inset-0 flex items-center justify-center p-4">
           <h3 
             className="text-2xl font-bold text-white text-center"
