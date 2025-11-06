@@ -471,13 +471,13 @@ function ProductSkeleton() {
 
 function SolutionCategoryCard({ title, link, image, imageHint }: { title: string, link: string, image: string, imageHint: string }) {
     return (
-        <Link href={link} className="group block relative overflow-hidden rounded-lg shadow-lg">
+        <Link href={link} className="block relative overflow-hidden rounded-lg shadow-lg">
             <div className="relative w-full aspect-video">
                 <Image 
                     src={image}
                     alt={title} 
                     fill
-                    className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+                    className="object-cover"
                     data-ai-hint={imageHint}
                 />
             </div>
@@ -485,14 +485,6 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
                 <h3 className="text-2xl font-bold text-white" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
                     {title}
                 </h3>
-            </div>
-            {/* Overlay that reveals on hover */}
-            <div className="absolute inset-0 bg-black/50 p-6 flex flex-col items-center justify-center text-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <h3 className="text-2xl font-bold">{title}</h3>
-                <div className="mt-4 h-px w-16 bg-primary" />
-                <p className="mt-4 text-sm flex items-center gap-2">
-                    Scopri di più <ArrowRight size={16} />
-                </p>
             </div>
         </Link>
     );
