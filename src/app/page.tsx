@@ -471,33 +471,30 @@ function ProductSkeleton() {
 
 function SolutionCategoryCard({ title, link, image, imageHint }: { title: string, link: string, image: string, imageHint: string }) {
     return (
-      <Link href={link} className="block group" style={{ perspective: '1000px' }}>
+      <Link href={link} className="block group rounded-lg overflow-hidden shadow-lg">
         <Card 
-            className="overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl"
-            style={{ transformStyle: 'preserve-3d' }}
+            className="relative overflow-hidden w-full aspect-video border-0 rounded-lg"
         >
-          <div 
-            className="relative aspect-video w-full transition-transform duration-300 group-hover:[transform:rotateY(-10deg)_rotateX(10deg)_scale(1.05)]"
-          >
-            <Image 
-                src={image}
-                alt={title} 
-                fill
-                className="object-cover"
-                data-ai-hint={imageHint}
-            />
-            <div className="absolute inset-0 bg-black/40" />
-            <div className="absolute inset-0 flex items-center justify-center">
-                <h3 className="text-2xl font-bold text-white text-center" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
-                    {title}
-                </h3>
-            </div>
+          <Image 
+              src={image}
+              alt={title} 
+              fill
+              className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+              data-ai-hint={imageHint}
+          />
+          <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/20" />
+          <div className="absolute inset-0 flex flex-col items-center justify-end p-6 text-center">
+              <h3 className="text-2xl font-bold text-white transition-transform duration-300 ease-in-out group-hover:-translate-y-2" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.7)' }}>
+                  {title}
+              </h3>
+              <div className="w-12 h-12 mt-4 relative overflow-hidden">
+                <ArrowRight className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-white h-6 w-6 opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:left-0 group-hover:-translate-x-0" />
+                <ArrowRight className="absolute right-0 translate-x-full top-1/2 -translate-y-1/2 text-white h-6 w-6 opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:right-1/2 group-hover:translate-x-1/2" />
+              </div>
           </div>
         </Card>
       </Link>
     );
 }
-
-    
 
     
