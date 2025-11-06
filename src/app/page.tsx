@@ -58,7 +58,7 @@ const solutionCategories = [
     {
         title: "Panni Autolavaggio",
         link: "/prodotti/linea-self-car-wash",
-        image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Self-Wash.png",
+        image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2024/11/cat-linea-self.jpg",
         imageHint: "autolavaggio"
     },
     {
@@ -471,7 +471,7 @@ function ProductSkeleton() {
 
 function SolutionCategoryCard({ title, link, image, imageHint }: { title: string, link: string, image: string, imageHint: string }) {
     return (
-        <Link href={link} className="block relative overflow-hidden rounded-lg shadow-lg group">
+        <Link href={link} className="group block relative overflow-hidden rounded-lg shadow-lg">
             <div className="relative w-full aspect-video">
                 <Image 
                     src={image}
@@ -481,11 +481,11 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
                     data-ai-hint={imageHint}
                 />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-4 flex flex-col justify-end">
-                <h3 className="text-2xl font-bold text-white transition-transform duration-300 group-hover:-translate-y-2" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-4">
+                <h3 className="text-xl font-bold text-white" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
                     {title}
                 </h3>
-                 <div className="flex items-center text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="flex items-center text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-1">
                     <p className="text-sm font-semibold">Scopri di più</p>
                     <ArrowRight className="ml-2 h-4 w-4" />
                 </div>
@@ -493,4 +493,6 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
         </Link>
     );
 }
+    
+
     
