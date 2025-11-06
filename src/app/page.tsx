@@ -472,9 +472,7 @@ function ProductSkeleton() {
 function SolutionCategoryCard({ title, link, image, imageHint }: { title: string, link: string, image: string, imageHint: string }) {
     return (
       <Link href={link} className="block group rounded-lg overflow-hidden shadow-lg">
-        <Card 
-            className="relative overflow-hidden w-full aspect-video border-0 rounded-lg"
-        >
+        <div className="relative overflow-hidden w-full aspect-video border-0 rounded-lg bg-secondary">
           <Image 
               src={image}
               alt={title} 
@@ -482,17 +480,14 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
               className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
               data-ai-hint={imageHint}
           />
-          <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/20" />
-          <div className="absolute inset-0 flex flex-col items-center justify-end p-6 text-center">
-              <h3 className="text-2xl font-bold text-white transition-transform duration-300 ease-in-out group-hover:-translate-y-2" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.7)' }}>
+          <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/60" />
+          <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
+              <h3 className="text-2xl font-bold text-white flex items-center gap-2" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.7)' }}>
                   {title}
+                  <ArrowRight className="h-6 w-6 opacity-0 -translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0" />
               </h3>
-              <div className="w-12 h-12 mt-4 relative overflow-hidden">
-                <ArrowRight className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-white h-6 w-6 opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:left-0 group-hover:-translate-x-0" />
-                <ArrowRight className="absolute right-0 translate-x-full top-1/2 -translate-y-1/2 text-white h-6 w-6 opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:right-1/2 group-hover:translate-x-1/2" />
-              </div>
           </div>
-        </Card>
+        </div>
       </Link>
     );
 }
