@@ -471,14 +471,19 @@ function ProductSkeleton() {
 
 function SolutionCategoryCard({ title, link, image, imageHint }: { title: string, link: string, image: string, imageHint: string }) {
     return (
-      <Link href={link} className="block group">
-        <Card className="overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-xl group-hover:-translate-y-1">
-          <div className="relative aspect-video w-full">
+      <Link href={link} className="block group" style={{ perspective: '1000px' }}>
+        <Card 
+            className="overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl"
+            style={{ transformStyle: 'preserve-3d' }}
+        >
+          <div 
+            className="relative aspect-video w-full transition-transform duration-300 group-hover:[transform:rotateY(-10deg)_rotateX(10deg)_scale(1.05)]"
+          >
             <Image 
                 src={image}
                 alt={title} 
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                className="object-cover"
                 data-ai-hint={imageHint}
             />
             <div className="absolute inset-0 bg-black/40" />
@@ -492,5 +497,7 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
       </Link>
     );
 }
+
+    
 
     
