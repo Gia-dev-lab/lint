@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { testimonials } from "@/lib/data";
 import { placeholderImages } from "@/lib/data";
-import { CheckCircle2, Building, Car, Hotel, SprayCan, Wind, Sparkles, Layers, GlassWater, CookingPot } from 'lucide-react';
+import { CheckCircle2, Building, Car, Hotel, SprayCan, Wind, Sparkles, Layers, GlassWater, CookingPot, ArrowRight } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -37,43 +37,44 @@ const animatedHeadlines = [
 ];
 
 const solutionCategories = [
-  {
-    title: "Panni in Microfibra",
-    link: "/prodotti/panni-in-microfibra",
-    image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Panno-Microfibra.png",
-    imageHint: "panno",
-  },
-  {
-    title: "Accessori per Pulizia",
-    link: "/prodotti/accessori",
-    image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Accessori-Pulizia.png",
-    imageHint: "accessorio",
-  },
-  {
-    title: "Parti di Ricambio",
-    link: "/prodotti/ricambi",
-    image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Ricambi.png",
-    imageHint: "ricambio",
-  },
-  {
-    title: "Panni Autolavaggio",
-    link: "/prodotti/linea-self-car-wash",
-    image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2024/10/CARTA-BIANCA-SELF.webp",
-    imageHint: "autolavaggio",
-  },
-  {
-    title: "Detergenti",
-    link: "/prodotti/detergenti",
-    image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/Cat_Chimici.png",
-    imageHint: "detergente",
-  },
-  {
-    title: "Kit di Pulizia",
-    link: "/prodotti/kit-pulizia",
-    image: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/07/kit-1-moto-bike-scaled.jpg",
-    imageHint: "kit",
-  },
+    {
+        title: "Panni in Microfibra",
+        link: "/prodotti/panni-in-microfibra",
+        icon: <Layers size={48} />,
+        gradient: "from-blue-500 to-blue-700",
+    },
+    {
+        title: "Accessori per Pulizia",
+        link: "/prodotti/accessori",
+        icon: <Sparkles size={48} />,
+        gradient: "from-indigo-500 to-indigo-700",
+    },
+    {
+        title: "Parti di Ricambio",
+        link: "/prodotti/ricambi",
+        icon: <SprayCan size={48} />,
+        gradient: "from-purple-500 to-purple-700",
+    },
+    {
+        title: "Panni Autolavaggio",
+        link: "/prodotti/linea-self-car-wash",
+        icon: <Car size={48} />,
+        gradient: "from-sky-500 to-sky-700",
+    },
+    {
+        title: "Detergenti",
+        link: "/prodotti/detergenti",
+        icon: <GlassWater size={48} />,
+        gradient: "from-teal-500 to-teal-700",
+    },
+    {
+        title: "Kit di Pulizia",
+        link: "/prodotti/kit-pulizia",
+        icon: <CookingPot size={48} />,
+        gradient: "from-emerald-500 to-emerald-700",
+    },
 ];
+
 
 const ctaImageDefault = {
     imageUrl: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/08/Panno-Asciugatura-Auto-1200-GSM-BYSONT.png",
@@ -228,8 +229,8 @@ export default function Home() {
                         key={category.title}
                         title={category.title}
                         link={category.link}
-                        image={category.image}
-                        imageHint={category.imageHint}
+                        icon={category.icon}
+                        gradient={category.gradient}
                     />
                 ))}
               </div>
@@ -468,25 +469,35 @@ function ProductSkeleton() {
   );
 }
 
-function SolutionCategoryCard({ title, link, image, imageHint }: { title: string, link: string, image: string, imageHint?: string }) {
+function SolutionCategoryCard({ title, link, icon, gradient }: { title: string, link: string, icon: React.ReactNode, gradient: string }) {
   return (
-    <Link href={link} className="block overflow-hidden rounded-lg shadow-lg group">
-      <div className="relative aspect-video w-full">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          className="object-cover transition-transform duration-300 ease-in-out hover:scale-105"
-          data-ai-hint={imageHint}
-        />
-        <div className="absolute inset-0 bg-primary/30 transition-colors duration-300 group-hover:bg-primary/50"></div>
-        <div className="absolute inset-0 flex items-center justify-center p-4">
-          <h3 
-            className="text-2xl font-bold text-white text-center"
-            style={{textShadow: '1px 1px 3px rgba(0,0,0,0.5)'}}
-          >{title}</h3>
+    <Link href={link} className="block group" style={{ perspective: '1000px' }}>
+      <div className={cn(
+        "relative aspect-video w-full rounded-xl shadow-lg text-white p-6 flex flex-col justify-between overflow-hidden transition-all duration-300 ease-in-out transform-gpu",
+        "group-hover:shadow-2xl group-hover:scale-105 group-hover:[transform:rotateX(10deg)_rotateY(-10deg)]",
+        "bg-gradient-to-br",
+        gradient
+      )}>
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
+
+        {/* Main Icon */}
+        <div className="absolute -right-4 -bottom-4 text-white/10 transition-transform duration-500 ease-out group-hover:scale-125 group-hover:rotate-12">
+            {icon}
+        </div>
+        
+        <div className="relative">
+          <h3 className="text-2xl font-bold" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.3)' }}>
+            {title}
+          </h3>
+        </div>
+
+        <div className="relative self-end opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <ArrowRight size={24} />
         </div>
       </div>
     </Link>
   );
 }
+
+    
