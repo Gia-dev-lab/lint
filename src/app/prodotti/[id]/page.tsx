@@ -17,6 +17,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { QuoteRequestForm } from "@/components/quote-request-form";
 import { useEffect, useState } from "react";
@@ -248,6 +249,9 @@ export default function ProdottoPage() {
               <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
                   <DialogTitle>Richiesta per: {nome}</DialogTitle>
+                  <DialogDescription>
+                    Compila il modulo per ricevere un preventivo o parlare con un nostro esperto.
+                  </DialogDescription>
                 </DialogHeader>
                 <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
               </DialogContent>

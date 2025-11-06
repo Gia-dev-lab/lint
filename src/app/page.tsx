@@ -13,6 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { QuoteRequestForm } from "@/components/quote-request-form";
 import Link from "next/link";
@@ -202,6 +203,9 @@ export default function Home() {
                 <DialogContent className="sm:max-w-[425px] bg-background/90 backdrop-blur-lg">
                   <DialogHeader>
                     <DialogTitle>Richiedi un Preventivo Personalizzato</DialogTitle>
+                    <DialogDescription>
+                      Compila il modulo sottostante e ti ricontatteremo al più presto.
+                    </DialogDescription>
                   </DialogHeader>
                   <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
                 </DialogContent>
@@ -432,6 +436,9 @@ export default function Home() {
                               <DialogContent className="sm:max-w-[425px]">
                                   <DialogHeader>
                                       <DialogTitle>Richiedi una Consulenza o un Preventivo</DialogTitle>
+                                       <DialogDescription>
+                                        Compila il modulo per ricevere un preventivo o parlare con un nostro esperto.
+                                      </DialogDescription>
                                   </DialogHeader>
                                   <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
                               </DialogContent>
@@ -481,13 +488,15 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
                     data-ai-hint={imageHint}
                 />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-4">
-                <h3 className="text-xl font-bold text-white" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
-                    {title}
-                </h3>
-                <div className="flex items-center text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-1">
-                    <p className="text-sm font-semibold">Scopri di più</p>
-                    <ArrowRight className="ml-2 h-4 w-4" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-4">
+                 <div className="transition-transform duration-300 group-hover:-translate-y-2">
+                    <h3 className="text-xl font-bold text-white transition-opacity duration-300" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
+                        {title}
+                    </h3>
+                    <div className="flex items-center text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-1">
+                        <p className="text-sm font-semibold">Scopri di più</p>
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                    </div>
                 </div>
             </div>
         </Link>
