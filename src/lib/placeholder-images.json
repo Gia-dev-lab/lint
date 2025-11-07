@@ -44,9 +44,9 @@
     },
     {
       "id": "product-equipment-1",
-      "description": "A part for a cleaning machine",
-      "imageUrl": "https://images.unsplash.com/photo-1523559094051-53bac879eb80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYWNoaW5lJTIwcGFydHxlbnwwfHx8fDE3NjEyMTA0NjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "machine part"
+      "description": "Ricambi per Attrezzature Pulizia",
+      "imageUrl": "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/11/Ricambi-per-Attrezzature-Pulizia.png",
+      "imageHint": "ricambi attrezzature"
     },
     {
       "id": "product-kit-1",
