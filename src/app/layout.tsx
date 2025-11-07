@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
@@ -22,11 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it">
-      <Head>
+      <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet" />
-      </Head>
+      </head>
       <body className="font-body antialiased">
         <FirebaseClientProvider>
           <div className="flex flex-col min-h-screen">
