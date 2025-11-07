@@ -114,7 +114,11 @@ export default function PanniInMicrofibraClientPage() {
 
 
   const selectedCategoryLabel = filterCategories.find(c => c.tag === activeFilter)?.label || activeFilter;
-  const heroImage = placeholderImages.find(p => p.id === 'product-cloth-2');
+  const heroImage = {
+      imageUrl: "https://www.lintmicrofibercloths.it/wp-content/uploads/2024/10/Panno-Microfibra-Ultima-Generazione-DANY-auto.png",
+      description: "Panno in microfibra di ultima generazione",
+      imageHint: "panno microfibra"
+  }
 
   return (
     <div>
