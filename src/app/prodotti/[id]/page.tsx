@@ -213,7 +213,7 @@ export default function ProdottoPage() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-start">
-          <Card className="overflow-hidden sticky top-24">
+          <Card className="overflow-hidden md:sticky md:top-24">
             <CardContent className="p-0">
               {immagine && (
                 <div className="relative aspect-square w-full bg-secondary">
