@@ -101,6 +101,7 @@ const ctaImageHoreca = {
 
 export default function Home() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0);
   const [activeTabImage, setActiveTabImage] = useState(ctaImageDefault);
   const [isHeroImageBlurred, setIsHeroImageBlurred] = useState(true);
@@ -389,7 +390,7 @@ export default function Home() {
                           <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto md:mx-0">
                               Ogni settore ha esigenze uniche. Il nostro team di esperti è a tua disposizione per consigliarti le migliori attrezzature per ottimizzare il tuo lavoro.
                           </p>
-                          <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
+                          <Dialog open={isAuthOpen} onOpenChange={setIsAuthOpen}>
                             <Tabs defaultValue="cleaning" className="mt-6" onValueChange={handleTabChange}>
                               <TabsList className="grid w-full grid-cols-3">
                                   <TabsTrigger value="cleaning"><Building className="mr-2"/>Imprese</TabsTrigger>
@@ -493,10 +494,6 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
                     <h3 className="text-xl font-bold text-white transition-opacity duration-300" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
                         {title}
                     </h3>
-                    <div className="flex items-center text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-1">
-                        <p className="text-sm font-semibold">Scopri di più</p>
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                    </div>
                 </div>
             </div>
         </Link>
@@ -507,4 +504,5 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
     
 
     
+
 
