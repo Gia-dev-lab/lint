@@ -89,6 +89,12 @@
       "description": "Panno Asciugatura Auto 1200 GSM BYSONT | Maxi Formato Anti Graffio",
       "imageUrl": "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/08/Panno-Asciugatura-Auto-1200-GSM-BYSONT.png",
       "imageHint": "panno auto"
+    },
+    {
+      "id": "microfiber-hero",
+      "description": "Panno in microfibra di ultima generazione",
+      "imageUrl": "https://www.lintmicrofibercloths.it/wp-content/uploads/2024/10/Panno-Microfibra-Ultima-Generazione-DANY-auto.png",
+      "imageHint": "panno microfibra"
     }
   ]
 }
