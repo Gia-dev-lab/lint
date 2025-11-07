@@ -5,6 +5,7 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { FirebaseClientProvider } from '@/firebase/client-provider';
 import { CookieBanner } from '@/components/cookie-banner';
+import Head from 'next/head';
 
 export const metadata: Metadata = {
   title: 'Lint Professional Cleaning - Attrezzature per Pulizia Professionale',
@@ -21,11 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it">
-      <head>
+      <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet" />
-      </head>
+      </Head>
       <body className="font-body antialiased">
         <FirebaseClientProvider>
           <div className="flex flex-col min-h-screen">

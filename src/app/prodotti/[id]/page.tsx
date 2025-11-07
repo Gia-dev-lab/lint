@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useDoc, useFirestore, useMemoFirebase } from "@/firebase";
@@ -21,6 +22,7 @@ import {
 } from "@/components/ui/dialog";
 import { QuoteRequestForm } from "@/components/quote-request-form";
 import { useEffect, useState } from "react";
+import Head from 'next/head';
 
 // Funzione per rimuovere i tag HTML da una stringa
 const stripHtml = (html: string | undefined | null): string => {
@@ -31,6 +33,15 @@ const stripHtml = (html: string | undefined | null): string => {
   const doc = new DOMParser().parseFromString(html, 'text/html');
   return doc.body.textContent || "";
 };
+
+function JsonLd({ data }: { data: object }) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
 
 
 function ProductDetailSkeleton() {
@@ -163,11 +174,14 @@ export default function ProdottoPage() {
 
   const { data: product, isLoading } = useDoc(productRef);
   
+  const pageTitle = product?.rank_math_title || product?.nome || 'Prodotto';
+  const metaDescription = stripHtml(product?.metadesc || product?.descrizionebreve || '');
+
   useEffect(() => {
     if (product?.nome) {
-      document.title = `${product.nome} - Lint Professional Cleaning`;
+      document.title = `${pageTitle} - Lint Professional Cleaning`;
     }
-  }, [product]);
+  }, [product, pageTitle]);
 
   if (isLoading) {
     return <ProductDetailSkeleton />;
@@ -195,8 +209,31 @@ export default function ProdottoPage() {
   // Use the hardcoded description for SYMY (PAN103), otherwise use from Firestore
   const finalDescrizioneCompleta = SKU === 'PAN103' ? symyDescription : descrizionecompleta;
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": nome,
+    "image": immagine,
+    "description": stripHtml(descrizionebreve),
+    "sku": SKU,
+    "brand": {
+      "@type": "Brand",
+      "name": "Lint Professional Cleaning"
+    },
+    // Offerta non disponibile, quindi non includiamo "offers"
+  };
+
   return (
     <AnimateOnScroll>
+       <Head>
+        <title>{`${pageTitle} - Lint Professional Cleaning`}</title>
+        <meta name="description" content={metaDescription} />
+        <meta property="og:title" content={`${pageTitle} - Lint Professional Cleaning`} />
+        <meta property="og:description" content={metaDescription} />
+        {immagine && <meta property="og:image" content={immagine} />}
+        <meta property="og:type" content="product" />
+      </Head>
+      <JsonLd data={productJsonLd} />
       <div className="container py-10 md:py-16">
         <div className="mb-6 flex flex-wrap items-center text-sm text-muted-foreground">
           <Link href="/" className="hover:text-foreground">Home</Link>
