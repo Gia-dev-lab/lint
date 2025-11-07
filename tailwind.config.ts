@@ -106,16 +106,19 @@ export default {
           '0%, 100%': { transform: 'scale(1)', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.1)' },
           '50%': { transform: 'scale(1.02)', boxShadow: '0 25px 50px -12px rgb(0 0 0 / 0.15)' },
         },
+        'ken-burns': {
+          '0%': { transform: 'scale(1.1) translate(2%, -2%)', },
+          '100%': { transform: 'scale(1) translate(0, 0)', },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'sparkle-float': 'sparkle-float 6s ease-in-out infinite',
         'pulse-gentle': 'pulse-gentle 4s infinite ease-in-out',
+        'ken-burns': 'ken-burns 8s ease-out forwards',
       },
     },
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config;
-
-    
