@@ -229,13 +229,14 @@ export default function Home() {
                 </p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {solutionCategories.map((category) => (
+                {solutionCategories.map((category, i) => (
                     <SolutionCategoryCard
                         key={category.title}
                         title={category.title}
                         link={category.link}
                         image={category.image}
                         imageHint={category.imageHint}
+                        className={`animate-pulse-gentle [animation-delay:${i * 150}ms]`}
                     />
                 ))}
               </div>
@@ -437,7 +438,7 @@ export default function Home() {
                               <DialogContent className="sm:max-w-[425px]">
                                   <DialogHeader>
                                       <DialogTitle>Richiedi una Consulenza o un Preventivo</DialogTitle>
-                                       <DialogDescription>
+                                      <DialogDescription>
                                         Compila il modulo per ricevere un preventivo o parlare con un nostro esperto.
                                       </DialogDescription>
                                   </DialogHeader>
@@ -477,9 +478,9 @@ function ProductSkeleton() {
   );
 }
 
-function SolutionCategoryCard({ title, link, image, imageHint }: { title: string, link: string, image: string, imageHint: string }) {
+function SolutionCategoryCard({ title, link, image, imageHint, className }: { title: string, link: string, image: string, imageHint: string, className?: string }) {
     return (
-        <Link href={link} className="group block relative overflow-hidden rounded-lg shadow-lg">
+        <Link href={link} className={cn("group block relative overflow-hidden rounded-lg shadow-lg", className)}>
             <div className="relative w-full aspect-video">
                 <Image 
                     src={image}
@@ -506,3 +507,6 @@ function SolutionCategoryCard({ title, link, image, imageHint }: { title: string
     
 
 
+
+
+    

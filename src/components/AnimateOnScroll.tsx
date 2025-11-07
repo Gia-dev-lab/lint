@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useRef, useEffect, useState, ReactNode } from 'react';
@@ -46,7 +47,8 @@ export function AnimateOnScroll({
       ref={ref}
       data-visible={isVisible}
       className={cn(
-        'transition-all duration-700 ease-out group',
+        'transition-all duration-700 ease-out',
+        'group/animatescroll',
         isVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-8 blur-md',
         className
       )}
@@ -55,3 +57,5 @@ export function AnimateOnScroll({
     </div>
   );
 }
+
+    
