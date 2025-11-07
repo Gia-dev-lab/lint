@@ -50,8 +50,8 @@ export default function Header() {
   
   const navLinks: NavLink[] = [
     { href: "#solutions", label: "Soluzioni" },
-    { 
-      href: "/prodotti", 
+    {
+      href: "/prodotti",
       label: "Prodotti",
       children: [
         { href: "/prodotti/panni-in-microfibra", label: "Panni in Microfibra" },
@@ -62,7 +62,15 @@ export default function Header() {
         { href: "/prodotti/detergenti", label: "Detergenti" },
       ]
     },
-    { href: "#why-lint", label: "Perché Lint" },
+    {
+        href: "/chi-siamo",
+        label: "Azienda",
+        children: [
+            { href: "/chi-siamo", label: "Chi Siamo" },
+            { href: "#why-lint", label: "Perché Lint" },
+            { href: "/detailing-journey", label: "Detailing Journey" },
+        ]
+    }
   ];
 
   const handleSearchSubmit = (e: FormEvent) => {
@@ -90,9 +98,11 @@ export default function Header() {
                     <ChevronDown className="h-4 w-4" />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuItem asChild>
-                      <Link href={link.href}>Vedi Tutti</Link>
-                    </DropdownMenuItem>
+                    {link.href.startsWith('/') &&
+                      <DropdownMenuItem asChild>
+                        <Link href={link.href}>Vedi Tutti</Link>
+                      </DropdownMenuItem>
+                    }
                     {link.children.map((child) => (
                       <DropdownMenuItem key={child.href} asChild>
                         <Link href={child.href}>{child.label}</Link>
@@ -191,6 +201,7 @@ export default function Header() {
                                  </AccordionTrigger>
                                  <AccordionContent className="pl-4">
                                    <div className="grid gap-2">
+                                     {link.href.startsWith('/') &&
                                       <Link
                                         href={link.href}
                                         className="text-muted-foreground transition-colors hover:text-foreground"
@@ -198,6 +209,7 @@ export default function Header() {
                                       >
                                         Vedi Tutti
                                       </Link>
+                                     }
                                       {link.children.map((childLink) => (
                                         <Link
                                           key={childLink.href}
@@ -257,5 +269,3 @@ export default function Header() {
     </header>
   );
 }
-
-    
