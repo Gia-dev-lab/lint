@@ -99,7 +99,7 @@ export default function AccessoriClientPage() {
                 src={heroImage.imageUrl}
                 alt={heroImage.description}
                 fill
-                className="object-cover"
+                className="object-cover animate-ken-burns"
                 data-ai-hint={heroImage.imageHint}
             />
         )}

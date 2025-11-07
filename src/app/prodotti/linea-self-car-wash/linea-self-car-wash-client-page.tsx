@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
@@ -97,7 +98,7 @@ export default function LineaSelfCarWashClientPage() {
                 src={heroImage.imageUrl}
                 alt={heroImage.description}
                 fill
-                className="object-cover"
+                className="object-cover animate-ken-burns"
                 data-ai-hint={heroImage.imageHint}
             />
         )}
