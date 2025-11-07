@@ -11,7 +11,10 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { X } from "lucide-react";
+import { X, ChevronRight, Droplets, Wind, Sparkles, GlassWater } from "lucide-react";
+import { placeholderImages } from "@/lib/data";
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 
 const filterCategories = [
   { label: "Tutti", tag: "all" },
@@ -19,6 +22,29 @@ const filterCategories = [
   { label: "Asciugatura", tag: "asciugatura" },
   { label: "Multiuso", tag: "multiuso" },
   { label: "Interni Auto", tag: "interni auto" },
+];
+
+const featureHighlights = [
+    {
+        icon: <GlassWater className="h-8 w-8 text-primary" />,
+        title: "Per Vetri e Specchi",
+        description: "Trama ultra-fine per una pulizia senza aloni, anche solo con acqua."
+    },
+    {
+        icon: <Wind className="h-8 w-8 text-primary" />,
+        title: "Per Asciugatura",
+        description: "Altissima densità (GSM) e fibre a spirale per assorbire enormi quantità d'acqua."
+    },
+    {
+        icon: <Sparkles className="h-8 w-8 text-primary" />,
+        title: "Per Finitura e Polish",
+        description: "Pelo ultra-morbido e senza bordi (edgeless) per rimuovere cere e sigillanti in sicurezza."
+    },
+    {
+        icon: <Droplets className="h-8 w-8 text-primary" />,
+        title: "Multiuso e Igienizzanti",
+        description: "Struttura robusta per la pulizia quotidiana e trattamenti antibatterici."
+    }
 ];
 
 function ProductSkeleton() {
@@ -88,27 +114,61 @@ export default function PanniInMicrofibraClientPage() {
 
 
   const selectedCategoryLabel = filterCategories.find(c => c.tag === activeFilter)?.label || activeFilter;
+  const heroImage = placeholderImages.find(p => p.id === 'product-cloth-2');
 
   return (
     <div>
       <section className="relative py-20 md:py-32 bg-secondary text-foreground text-center">
         <div className="absolute inset-0 overflow-hidden">
-          <Image
-            src="https://www.lintmicrofibercloths.it/wp-content/uploads/2025/10/Consigli-pulizia-professionale-del-blog-LINT.png"
-            alt="Consigli per la pulizia professionale dal blog LINT"
-            fill
-            className="object-cover"
-            data-ai-hint="professional cleaning blog"
-          />
+          {heroImage && (
+            <Image
+              src={heroImage.imageUrl}
+              alt={heroImage.description}
+              fill
+              className="object-cover"
+              data-ai-hint={heroImage.imageHint}
+            />
+          )}
           <div className="absolute inset-0 bg-background/70" />
         </div>
         <AnimateOnScroll className="container relative">
+          <Badge variant="default" className="mb-4 text-sm py-1 px-4">La Nostra Selezione</Badge>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Panni in Microfibra Professionali</h1>
           <p className="mt-4 text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto">
             La migliore selezione di panni tecnici per ogni esigenza: massima efficacia, durata superiore e risultati senza compromessi per ogni superficie.
           </p>
         </AnimateOnScroll>
       </section>
+      
+       <AnimateOnScroll>
+        <section className="py-16 lg:py-24 bg-background">
+            <div className="container">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold">Non Tutte le Microfibre Sono Uguali</h2>
+                    <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">
+                        Ogni panno LINT è progettato con una struttura, densità (GSM) e composizione specifica per eccellere in un compito preciso. Scopri quale fa per te.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {featureHighlights.map((value) => (
+                        <Card key={value.title} className="text-center p-6 border-0 shadow-none bg-secondary/50">
+                           <div className="flex justify-center mb-4">{value.icon}</div>
+                           <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
+                           <p className="text-muted-foreground text-sm">{value.description}</p>
+                        </Card>
+                    ))}
+                </div>
+                 <div className="mt-12 text-center">
+                    <Button asChild variant="outline">
+                        <Link href="/blog/come-lavare-i-panni-in-microfibra">
+                            Scopri come mantenerli sempre efficaci <ChevronRight className="ml-2" />
+                        </Link>
+                    </Button>
+                 </div>
+            </div>
+        </section>
+      </AnimateOnScroll>
+
 
       <div className="container py-12">
         <div className="mb-8 flex flex-wrap justify-center items-center gap-2">
