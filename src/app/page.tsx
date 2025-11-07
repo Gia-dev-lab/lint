@@ -365,86 +365,88 @@ export default function Home() {
         {/* Final CTA Section */}
         <AnimateOnScroll>
           <section id="kit-configurator" className="py-20 lg:py-32 bg-secondary text-foreground">
-              <div className="container">
-                  <div className="grid md:grid-cols-2 gap-12 items-center">
-                      <Link href={activeTabImage.link}>
-                          <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
-                              {activeTabImage && (
-                                  <Image
-                                      src={activeTabImage.imageUrl}
-                                      alt={activeTabImage.description}
-                                      fill
-                                      className="object-cover transition-transform duration-300 hover:scale-105 hover:rotate-2"
-                                      data-ai-hint={activeTabImage.imageHint}
-                                  />
-
-                              )}
-                              <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                  <h3 className="text-white text-xl font-bold text-center p-4">
-                                      {activeTabImage?.description}
-                                  </h3>
-                              </div>
-                          </div>
-                      </Link>
-                      <div className="text-center md:text-left">
-                          <h2 className="text-3xl md:text-4xl font-bold">Trova la Soluzione Giusta per Te</h2>
-                          <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto md:mx-0">
-                              Ogni settore ha esigenze uniche. Il nostro team di esperti è a tua disposizione per consigliarti le migliori attrezzature per ottimizzare il tuo lavoro.
-                          </p>
-                          <Dialog open={isAuthOpen} onOpenChange={setIsAuthOpen}>
-                            <Tabs defaultValue="cleaning" className="mt-6" onValueChange={handleTabChange}>
-                              <TabsList className="grid w-full grid-cols-3">
-                                  <TabsTrigger value="cleaning"><Building className="mr-2"/>Imprese</TabsTrigger>
-                                  <TabsTrigger value="detailing"><Car className="mr-2"/>Detailing</TabsTrigger>
-                                  <TabsTrigger value="horeca"><Hotel className="mr-2"/>Ho.Re.Ca.</TabsTrigger>
-                              </TabsList>
-                              <TabsContent value="cleaning" className="p-4 bg-background/50 rounded-b-lg border border-t-0">
-                                  <p className="text-sm text-muted-foreground mb-4">Ottimizza i tempi e garantisci un pulito impeccabile in uffici, condomini e strutture sanitarie.</p>
+              <div className="container text-center md:text-left">
+                  <h2 className="text-3xl md:text-4xl font-bold">Trova la Soluzione Giusta per Te</h2>
+                  <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto md:mx-0">
+                      Ogni settore ha esigenze uniche. Il nostro team di esperti è a tua disposizione per consigliarti le migliori attrezzature per ottimizzare il tuo lavoro.
+                  </p>
+                  
+                  <div className="grid md:grid-cols-2 gap-12 items-center mt-8">
+                     <div>
+                        <Link href={activeTabImage.link}>
+                            <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
+                                {activeTabImage && (
+                                    <Image
+                                        src={activeTabImage.imageUrl}
+                                        alt={activeTabImage.description}
+                                        fill
+                                        className="object-cover transition-transform duration-300 hover:scale-105 hover:rotate-2"
+                                        data-ai-hint={activeTabImage.imageHint}
+                                    />
+                                )}
+                                <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <h3 className="text-white text-xl font-bold text-center p-4">
+                                        {activeTabImage?.description}
+                                    </h3>
+                                </div>
+                            </div>
+                        </Link>
+                      </div>
+                      <div>
+                        <Dialog open={isAuthOpen} onOpenChange={setIsAuthOpen}>
+                          <Tabs defaultValue="cleaning" className="w-full" onValueChange={handleTabChange}>
+                            <TabsList className="grid w-full grid-cols-3">
+                                <TabsTrigger value="cleaning"><Building className="mr-2"/>Imprese</TabsTrigger>
+                                <TabsTrigger value="detailing"><Car className="mr-2"/>Detailing</TabsTrigger>
+                                <TabsTrigger value="horeca"><Hotel className="mr-2"/>Ho.Re.Ca.</TabsTrigger>
+                            </TabsList>
+                            <TabsContent value="cleaning" className="p-4 bg-background/50 rounded-b-lg border border-t-0">
+                                <p className="text-sm text-muted-foreground mb-4">Ottimizza i tempi e garantisci un pulito impeccabile in uffici, condomini e strutture sanitarie.</p>
+                                <h4 className="font-semibold mb-2">Prodotti Consigliati:</h4>
+                                <ul className="space-y-2 text-sm text-muted-foreground list-inside mb-4">
+                                    <li className="flex items-center"><Layers className="w-4 h-4 mr-2 text-primary"/>Panni multiuso ad alta assorbenza</li>
+                                    <li className="flex items-center"><SprayCan className="w-4 h-4 mr-2 text-primary"/>Detergenti igienizzanti concentrati</li>
+                                    <li className="flex items-center"><Building className="w-4 h-4 mr-2 text-primary"/>Ricambi per attrezzature (mop, spazzole)</li>
+                                </ul>
+                                <DialogTrigger asChild>
+                                  <Button className="w-full">Richiedi Consulenza Specifica</Button>
+                                </DialogTrigger>
+                            </TabsContent>
+                            <TabsContent value="detailing" className="p-4 bg-background/50 rounded-b-lg border border-t-0">
+                                <p className="text-sm text-muted-foreground mb-4">Raggiungi la perfezione nella cura dell'auto, dalla decontaminazione alla finitura lucida.</p>
                                   <h4 className="font-semibold mb-2">Prodotti Consigliati:</h4>
-                                  <ul className="space-y-2 text-sm text-muted-foreground list-inside mb-4">
-                                      <li className="flex items-center"><Layers className="w-4 h-4 mr-2 text-primary"/>Panni multiuso ad alta assorbenza</li>
-                                      <li className="flex items-center"><SprayCan className="w-4 h-4 mr-2 text-primary"/>Detergenti igienizzanti concentrati</li>
-                                      <li className="flex items-center"><Building className="w-4 h-4 mr-2 text-primary"/>Ricambi per attrezzature (mop, spazzole)</li>
-                                  </ul>
-                                  <DialogTrigger asChild>
-                                    <Button className="w-full">Richiedi Consulenza Specifica</Button>
-                                  </DialogTrigger>
-                              </TabsContent>
-                              <TabsContent value="detailing" className="p-4 bg-background/50 rounded-b-lg border border-t-0">
-                                  <p className="text-sm text-muted-foreground mb-4">Raggiungi la perfezione nella cura dell'auto, dalla decontaminazione alla finitura lucida.</p>
-                                    <h4 className="font-semibold mb-2">Prodotti Consigliati:</h4>
-                                  <ul className="space-y-2 text-sm text-muted-foreground list-inside mb-4">
-                                      <li className="flex items-center"><Wind className="w-4 h-4 mr-2 text-primary"/>Panni per asciugatura ultra-assorbenti</li>
-                                      <li className="flex items-center"><Sparkles className="w-4 h-4 mr-2 text-primary"/>Applicatori per cere e sigillanti</li>
-                                      <li className="flex items-center"><SprayCan className="w-4 h-4 mr-2 text-primary"/>Sgrassatori e decontaminanti specifici</li>
-                                  </ul>
-                                  <DialogTrigger asChild>
-                                    <Button className="w-full">Richiedi Consulenza Specifica</Button>
-                                  </DialogTrigger>
-                              </TabsContent>
-                              <TabsContent value="horeca" className="p-4 bg-background/50 rounded-b-lg border border-t-0">
-                                  <p className="text-sm text-muted-foreground mb-4">Mantieni i più alti standard di igiene in cucine, sale e camere d'hotel, nel rispetto delle normative HACCP.</p>
-                                  <h4 className="font-semibold mb-2">Prodotti Consigliati:</h4>
-                                  <ul className="space-y-2 text-sm text-muted-foreground list-inside mb-4">
-                                      <li className="flex items-center"><Hotel className="w-4 h-4 mr-2 text-primary"/>Panni colore-codificati per aree di lavoro</li>
-                                      <li className="flex items-center"><CookingPot className="w-4 h-4 mr-2 text-primary"/>Detergenti per superfici a contatto con alimenti</li>
-                                      <li className="flex items-center"><GlassWater className="w-4 h-4 mr-2 text-primary"/>Sistemi per la pulizia di vetri e acciai</li>
-                                  </ul>
-                                  <DialogTrigger asChild>
-                                    <Button className="w-full">Richiedi Consulenza Specifica</Button>
-                                  </DialogTrigger>
-                              </TabsContent>
-                              </Tabs>
-                              <DialogContent className="sm:max-w-[425px]">
-                                  <DialogHeader>
-                                      <DialogTitle>Richiedi una Consulenza o un Preventivo</DialogTitle>
-                                      <DialogDescription>
-                                        Compila il modulo per ricevere un preventivo o parlare con un nostro esperto.
-                                      </DialogDescription>
-                                  </DialogHeader>
-                                  <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
-                              </DialogContent>
-                          </Dialog>
+                                <ul className="space-y-2 text-sm text-muted-foreground list-inside mb-4">
+                                    <li className="flex items-center"><Wind className="w-4 h-4 mr-2 text-primary"/>Panni per asciugatura ultra-assorbenti</li>
+                                    <li className="flex items-center"><Sparkles className="w-4 h-4 mr-2 text-primary"/>Applicatori per cere e sigillanti</li>
+                                    <li className="flex items-center"><SprayCan className="w-4 h-4 mr-2 text-primary"/>Sgrassatori e decontaminanti specifici</li>
+                                </ul>
+                                <DialogTrigger asChild>
+                                  <Button className="w-full">Richiedi Consulenza Specifica</Button>
+                                </DialogTrigger>
+                            </TabsContent>
+                            <TabsContent value="horeca" className="p-4 bg-background/50 rounded-b-lg border border-t-0">
+                                <p className="text-sm text-muted-foreground mb-4">Mantieni i più alti standard di igiene in cucine, sale e camere d'hotel, nel rispetto delle normative HACCP.</p>
+                                <h4 className="font-semibold mb-2">Prodotti Consigliati:</h4>
+                                <ul className="space-y-2 text-sm text-muted-foreground list-inside mb-4">
+                                    <li className="flex items-center"><Hotel className="w-4 h-4 mr-2 text-primary"/>Panni colore-codificati per aree di lavoro</li>
+                                    <li className="flex items-center"><CookingPot className="w-4 h-4 mr-2 text-primary"/>Detergenti per superfici a contatto con alimenti</li>
+                                    <li className="flex items-center"><GlassWater className="w-4 h-4 mr-2 text-primary"/>Sistemi per la pulizia di vetri e acciai</li>
+                                </ul>
+                                <DialogTrigger asChild>
+                                  <Button className="w-full">Richiedi Consulenza Specifica</Button>
+                                </DialogTrigger>
+                            </TabsContent>
+                            </Tabs>
+                            <DialogContent className="sm:max-w-[425px]">
+                                <DialogHeader>
+                                    <DialogTitle>Richiedi una Consulenza o un Preventivo</DialogTitle>
+                                    <DialogDescription>
+                                      Compila il modulo per ricevere un preventivo o parlare con un nostro esperto.
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
+                            </DialogContent>
+                        </Dialog>
                       </div>
                   </div>
               </div>
@@ -508,5 +510,7 @@ function SolutionCategoryCard({ title, link, image, imageHint, className }: { ti
 
 
 
+
+    
 
     
