@@ -198,7 +198,7 @@ export default function ProdottoPage() {
   return (
     <AnimateOnScroll>
       <div className="container py-10 md:py-16">
-        <div className="mb-6 flex items-center text-sm text-muted-foreground">
+        <div className="mb-6 flex flex-wrap items-center text-sm text-muted-foreground">
           <Link href="/" className="hover:text-foreground">Home</Link>
           <ChevronRight size={16} className="mx-1" />
           <Link href="/prodotti" className="hover:text-foreground">Prodotti</Link>
