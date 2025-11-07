@@ -49,7 +49,7 @@ export default function Header() {
   const router = useRouter();
   
   const navLinks: NavLink[] = [
-    { href: "#solutions", label: "Soluzioni" },
+    { href: "/#solutions", label: "Soluzioni" },
     {
       href: "/prodotti",
       label: "Prodotti",
@@ -67,7 +67,7 @@ export default function Header() {
         label: "Azienda",
         children: [
             { href: "/chi-siamo", label: "Chi Siamo" },
-            { href: "#why-lint", label: "Perché Lint" },
+            { href: "/#why-lint", label: "Perché Lint" },
             { href: "/detailing-journey", label: "Detailing Journey" },
         ]
     }
@@ -98,7 +98,7 @@ export default function Header() {
                     <ChevronDown className="h-4 w-4" />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    {link.href.startsWith('/') &&
+                    {link.href.startsWith('/') && !link.href.includes('#') &&
                       <DropdownMenuItem asChild>
                         <Link href={link.href}>Vedi Tutti</Link>
                       </DropdownMenuItem>
@@ -153,13 +153,13 @@ export default function Header() {
                 </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
+                  <DialogHeader>
                     <DialogTitle>Richiedi una Consulenza o un Preventivo</DialogTitle>
                     <DialogDescription>
-                    Compila il modulo per ricevere un preventivo o parlare con un nostro esperto.
-                  </DialogDescription>
-                </DialogHeader>
-                <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
+                      Compila il modulo per ricevere un preventivo o parlare con un nostro esperto.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
                 </DialogContent>
             </Dialog>
 
@@ -201,7 +201,7 @@ export default function Header() {
                                  </AccordionTrigger>
                                  <AccordionContent className="pl-4">
                                    <div className="grid gap-2">
-                                     {link.href.startsWith('/') &&
+                                     {link.href.startsWith('/') && !link.href.includes('#') &&
                                       <Link
                                         href={link.href}
                                         className="text-muted-foreground transition-colors hover:text-foreground"
