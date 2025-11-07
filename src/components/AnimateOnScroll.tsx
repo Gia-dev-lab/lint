@@ -16,7 +16,7 @@ export function AnimateOnScroll({
   threshold = 0.1,
 }: AnimateOnScrollProps) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [inView, setInView] = useState(false);
   
   useEffect(() => {
     const element = ref.current;
@@ -25,7 +25,7 @@ export function AnimateOnScroll({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-            setIsVisible(true);
+            setInView(true);
             observer.unobserve(element);
         }
       },
@@ -45,17 +45,15 @@ export function AnimateOnScroll({
   return (
     <div
       ref={ref}
-      data-visible={isVisible}
+      data-visible={inView}
       className={cn(
         'transition-all duration-700 ease-out',
         'group/animatescroll',
-        isVisible ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-8 blur-md',
+        inView ? 'opacity-100 translate-y-0 blur-0' : 'opacity-0 translate-y-8 blur-md',
         className
       )}
     >
-      {children}
+      {inView ? children : null}
     </div>
   );
 }
-
-    
