@@ -384,7 +384,7 @@ export default function Home() {
                                         data-ai-hint={activeTabImage.imageHint}
                                     />
                                 )}
-                                <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                     <h3 className="text-white text-xl font-bold text-center p-4">
                                         {activeTabImage?.description}
                                     </h3>
