@@ -374,13 +374,13 @@ export default function Home() {
                   <div className="grid md:grid-cols-2 gap-12 items-center mt-8">
                      <div>
                         <Link href={activeTabImage.link}>
-                            <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl">
+                            <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl group">
                                 {activeTabImage && (
                                     <Image
                                         src={activeTabImage.imageUrl}
                                         alt={activeTabImage.description}
                                         fill
-                                        className="object-cover transition-transform duration-300 hover:scale-105 hover:rotate-2"
+                                        className="object-cover transition-transform duration-500 ease-in-out group-data-[visible=true]:scale-100 group-data-[visible=true]:rotate-0 scale-105 -rotate-3"
                                         data-ai-hint={activeTabImage.imageHint}
                                     />
                                 )}
@@ -510,6 +510,8 @@ function SolutionCategoryCard({ title, link, image, imageHint, className }: { ti
 
 
 
+
+    
 
     
 
