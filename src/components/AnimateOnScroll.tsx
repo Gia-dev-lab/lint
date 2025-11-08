@@ -53,7 +53,7 @@ export function AnimateOnScroll({
         className
       )}
     >
-      {inView ? children : null}
+      {children}
     </div>
   );
 }
