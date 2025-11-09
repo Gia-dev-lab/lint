@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="container py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="flex flex-col gap-4">
-            <Logo />
+            <Logo className="text-primary"/>
             <p className="text-sm text-muted-foreground">
               Attrezzature per pulizia professionale. Soluzioni integrate per risultati impeccabili.
             </p>
