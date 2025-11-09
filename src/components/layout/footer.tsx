@@ -1,3 +1,4 @@
+
 import { Logo } from "@/components/icons";
 import Link from "next/link";
 import { Github, Twitter, Linkedin } from "lucide-react";
@@ -32,7 +33,7 @@ export default function Footer() {
             <Link href="/chi-siamo" className="text-sm text-muted-foreground hover:text-foreground">Chi Siamo</Link>
             <Link href="/detailing-journey" className="text-sm text-muted-foreground hover:text-foreground">Detailing Journey</Link>
             <Link href="/blog/come-lavare-i-panni-in-microfibra" className="text-sm text-muted-foreground hover:text-foreground">Blog</Link>
-            <Link href="#kit-configurator" className="text-sm text-muted-foreground hover:text-foreground">Contatti</Link>
+            <Link href="#contact-cta" className="text-sm text-muted-foreground hover:text-foreground">Contatti</Link>
             <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">Lavora con Noi</Link>
           </div>
           <div className="flex flex-col gap-2">

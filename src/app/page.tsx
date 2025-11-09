@@ -28,6 +28,7 @@ import { ProductCard } from "@/components/product-card";
 import Autoplay from "embla-carousel-autoplay";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils";
+import { KitConfigurator } from "@/components/kit-configurator";
 
 const heroImage = placeholderImages.find(img => img.id === 'hero-background');
 
@@ -244,9 +245,19 @@ export default function Home() {
           </section>
         </AnimateOnScroll>
 
+        {/* AI Kit Configurator Section */}
+        <AnimateOnScroll>
+            <section id="kit-configurator" className="py-16 lg:py-24 bg-background">
+                <div className="container">
+                    <KitConfigurator />
+                </div>
+            </section>
+        </AnimateOnScroll>
+
+
         {/* Sezione Prodotti Selezionati */}
         <AnimateOnScroll>
-          <section id="products" className="py-16 lg:py-24 bg-background">
+          <section id="products" className="py-16 lg:py-24 bg-secondary">
             <div className="container">
               <div className="text-center mb-12">
                  <h2 className="text-3xl md:text-4xl font-bold">Prodotti in Evidenza</h2>
@@ -267,7 +278,7 @@ export default function Home() {
         
         {/* Sezione Perché Scegliere Lint */}
         <AnimateOnScroll>
-          <section id="why-lint" className="py-16 lg:py-24 bg-secondary">
+          <section id="why-lint" className="py-16 lg:py-24 bg-background">
             <div className="container grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-4">
                 <h2 className="text-3xl md:text-4xl font-bold">Perché Scegliere Lint come Fornitore di Attrezzature per Pulizia Professionale</h2>
@@ -298,7 +309,7 @@ export default function Home() {
                   </li>
                 </ul>
               </div>
-               <div className="space-y-4 rounded-lg bg-background p-8 shadow-lg">
+               <div className="space-y-4 rounded-lg bg-secondary p-8 shadow-lg">
                   <h3 className="text-2xl font-bold">Ci Rivolgiamo ai Professionisti di Diversi Settori:</h3>
                   <ul className="space-y-2 text-muted-foreground">
                       <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-primary/80" /> Imprese di Pulizia e Facility Management</li>
@@ -315,7 +326,7 @@ export default function Home() {
 
         {/* Testimonials Section */}
         <AnimateOnScroll>
-          <section id="testimonials" className="py-16 lg:py-24 bg-background">
+          <section id="testimonials" className="py-16 lg:py-24 bg-secondary">
             <div className="container">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold">La Parola ai Nostri Clienti</h2>
@@ -364,7 +375,7 @@ export default function Home() {
 
         {/* Final CTA Section */}
         <AnimateOnScroll>
-          <section id="kit-configurator" className="py-20 lg:py-32 bg-secondary text-foreground">
+          <section id="contact-cta" className="py-20 lg:py-32 bg-background text-foreground">
               <div className="container text-center md:text-left">
                   <h2 className="text-3xl md:text-4xl font-bold">Trova la Soluzione Giusta per Te</h2>
                   <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto md:mx-0">
@@ -372,7 +383,7 @@ export default function Home() {
                   </p>
                   
                   <div className="grid md:grid-cols-2 gap-12 items-center mt-8">
-                     <div>
+                     <div className="group/animatescroll" data-visible="true">
                         <Link href={activeTabImage.link}>
                             <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-2xl group">
                                 {activeTabImage && (
@@ -400,7 +411,7 @@ export default function Home() {
                                 <TabsTrigger value="detailing"><Car className="mr-2"/>Detailing</TabsTrigger>
                                 <TabsTrigger value="horeca"><Hotel className="mr-2"/>Ho.Re.Ca.</TabsTrigger>
                             </TabsList>
-                            <TabsContent value="cleaning" className="p-4 bg-background/50 rounded-b-lg border border-t-0">
+                            <TabsContent value="cleaning" className="p-4 bg-secondary/50 rounded-b-lg border border-t-0">
                                 <p className="text-sm text-muted-foreground mb-4">Ottimizza i tempi e garantisci un pulito impeccabile in uffici, condomini e strutture sanitarie.</p>
                                 <h4 className="font-semibold mb-2">Prodotti Consigliati:</h4>
                                 <ul className="space-y-2 text-sm text-muted-foreground list-inside mb-4">
@@ -412,7 +423,7 @@ export default function Home() {
                                   <Button className="w-full">Richiedi Consulenza Specifica</Button>
                                 </DialogTrigger>
                             </TabsContent>
-                            <TabsContent value="detailing" className="p-4 bg-background/50 rounded-b-lg border border-t-0">
+                            <TabsContent value="detailing" className="p-4 bg-secondary/50 rounded-b-lg border border-t-0">
                                 <p className="text-sm text-muted-foreground mb-4">Raggiungi la perfezione nella cura dell'auto, dalla decontaminazione alla finitura lucida.</p>
                                   <h4 className="font-semibold mb-2">Prodotti Consigliati:</h4>
                                 <ul className="space-y-2 text-sm text-muted-foreground list-inside mb-4">
@@ -424,7 +435,7 @@ export default function Home() {
                                   <Button className="w-full">Richiedi Consulenza Specifica</Button>
                                 </DialogTrigger>
                             </TabsContent>
-                            <TabsContent value="horeca" className="p-4 bg-background/50 rounded-b-lg border border-t-0">
+                            <TabsContent value="horeca" className="p-4 bg-secondary/50 rounded-b-lg border border-t-0">
                                 <p className="text-sm text-muted-foreground mb-4">Mantieni i più alti standard di igiene in cucine, sale e camere d'hotel, nel rispetto delle normative HACCP.</p>
                                 <h4 className="font-semibold mb-2">Prodotti Consigliati:</h4>
                                 <ul className="space-y-2 text-sm text-muted-foreground list-inside mb-4">
