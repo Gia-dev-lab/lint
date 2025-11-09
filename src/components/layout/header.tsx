@@ -86,7 +86,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between gap-4">
         <div className="flex items-center gap-6">
-          <Link href="/" className="flex items-center gap-2 mr-4 text-primary">
+          <Link href="/" className="flex items-center gap-2 mr-4">
             <Logo />
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
@@ -188,7 +188,7 @@ export default function Header() {
                 </SheetTrigger>
                 <SheetContent side="left">
                   <div className="flex flex-col h-full">
-                     <Link href="/" className="flex items-center gap-2 text-lg font-semibold mb-4 text-primary" onClick={() => setIsMobileMenuOpen(false)}>
+                     <Link href="/" className="flex items-center gap-2 text-lg font-semibold mb-4" onClick={() => setIsMobileMenuOpen(false)}>
                         <Logo />
                     </Link>
                     <nav className="grid gap-2 text-lg font-medium mt-4">
