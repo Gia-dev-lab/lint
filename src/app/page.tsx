@@ -28,7 +28,6 @@ import { ProductCard } from "@/components/product-card";
 import Autoplay from "embla-carousel-autoplay";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils";
-import { KitConfigurator } from "@/components/kit-configurator";
 
 const heroImage = placeholderImages.find(img => img.id === 'hero-background');
 
@@ -245,19 +244,9 @@ export default function Home() {
           </section>
         </AnimateOnScroll>
 
-        {/* AI Kit Configurator Section */}
-        <AnimateOnScroll>
-            <section id="kit-configurator" className="py-16 lg:py-24 bg-background">
-                <div className="container">
-                    <KitConfigurator />
-                </div>
-            </section>
-        </AnimateOnScroll>
-
-
         {/* Sezione Prodotti Selezionati */}
         <AnimateOnScroll>
-          <section id="products" className="py-16 lg:py-24 bg-secondary">
+          <section id="products" className="py-16 lg:py-24 bg-background">
             <div className="container">
               <div className="text-center mb-12">
                  <h2 className="text-3xl md:text-4xl font-bold">Prodotti in Evidenza</h2>
@@ -278,7 +267,7 @@ export default function Home() {
         
         {/* Sezione Perché Scegliere Lint */}
         <AnimateOnScroll>
-          <section id="why-lint" className="py-16 lg:py-24 bg-background">
+          <section id="why-lint" className="py-16 lg:py-24 bg-secondary">
             <div className="container grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-4">
                 <h2 className="text-3xl md:text-4xl font-bold">Perché Scegliere Lint come Fornitore di Attrezzature per Pulizia Professionale</h2>
@@ -309,7 +298,7 @@ export default function Home() {
                   </li>
                 </ul>
               </div>
-               <div className="space-y-4 rounded-lg bg-secondary p-8 shadow-lg">
+               <div className="space-y-4 rounded-lg bg-background p-8 shadow-lg">
                   <h3 className="text-2xl font-bold">Ci Rivolgiamo ai Professionisti di Diversi Settori:</h3>
                   <ul className="space-y-2 text-muted-foreground">
                       <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-primary/80" /> Imprese di Pulizia e Facility Management</li>
