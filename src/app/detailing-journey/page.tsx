@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -55,6 +56,7 @@ const Step1 = ({ setStep }: { setStep: (step: Step) => void }) => (
     stepNumber={1}
     title="La Decontaminazione Esterna"
     description="Immagina una carrozzeria sporca di fango, polvere e insetti. La priorità è rimuovere la contaminazione superficiale in sicurezza. Come effettui il prelavaggio foam?"
+    image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/10/prelavaggio-auto.png", alt: "Prelavaggio foam auto", hint: "prelavaggio auto"}}
     choices={[
       { text: "Uso l'Idropulitrice", subtext: "Voglio una schiuma densa per minimizzare i graffi.", onClick: () => setStep('step2') },
       { text: "Uso Acqua e Aria Compressa", subtext: "Devo generare schiuma senza macchinari elettrici.", onClick: () => setStep('step3') }
@@ -67,6 +69,7 @@ const Step2 = ({ setStep }: { setStep: (step: Step) => void }) => (
         stepNumber={2}
         title="Meccanica Anti-Graffio (Percorso A)"
         description="Hai scelto il prelavaggio ad alta pressione. Dopo il risciacquo, come garantisci che il lavaggio manuale non crei swirls (graffi circolari)?"
+        image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/08/lavaggio-manuale-auto.png", alt: "Lavaggio manuale auto", hint: "lavaggio auto" }}
         choices={[
             { text: "Focus sui Dettagli", subtext: "Pulisco a fondo cerchi e angoli con accessori specifici.", onClick: () => setStep('result-a1') },
             { text: "Focus sulla Carrozzeria", subtext: "Uso il guanto più morbido e un sistema anti-contaminazione.", onClick: () => setStep('result-a2') }
@@ -79,6 +82,7 @@ const Step3 = ({ setStep }: { setStep: (step: Step) => void }) => (
         stepNumber={3}
         title="Lavorare Sulle Incrostazioni (Percorso B)"
         description="Sei nella fase di pulizia intensa. Lo sporco è ostinato o devi rigenerare la tua attrezzatura. Qual è la tua sfida più grande?"
+        image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/11/sporco-incrostato-auto.png", alt: "Sporco incrostato su auto", hint: "sporco auto"}}
         choices={[
             { text: "Rimuovere Sporco Incrostato", subtext: "Ho bisogno di uno sgrassatore forte e azione meccanica.", onClick: () => setStep('result-b1') },
             { text: "Rigenerare Panni e Rimuovere Calcare", subtext: "Devo ripristinare la morbidezza delle microfibre.", onClick: () => setStep('result-b2') }
@@ -91,6 +95,7 @@ const Step4 = ({ setStep }: { setStep: (step: Step) => void }) => (
         stepNumber={4}
         title="Pulizia e Finitura Interni"
         description="La cabina è il tuo biglietto da visita. Devi affrontare diverse superfici (pelle, plastica, schermi) senza graffiare. Qual è la tua priorità?"
+        image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/11/pulizia-interni-auto-dettagliata.png", alt: "Pulizia interni auto", hint: "pulizia interni" }}
         choices={[
             { text: "Tessuti e Pelle", subtext: "Devo pulire macchie profonde e agitare lo sporco.", onClick: () => setStep('result-c1') },
             { text: "Plastiche Lucide e Cruscotto", subtext: "Devo spolverare e rifinire senza lasciare micro-graffi.", onClick: () => setStep('result-c2') }
@@ -102,7 +107,8 @@ const Step5 = ({ setStep }: { setStep: (step: Step) => void }) => (
     <StepCard
         stepNumber={5}
         title="Asciugatura e Finitura Totale"
-        description="Hai finito di pulire. Ora la fase più delicata: asciugare carrozzeria e vetri per ottenere la massima brillantezza anti-alone. Qual è la superficie da finire?"
+        description="Hai finito di pulire. Ora la fase più delicata: asciugare carrozzeria e vetri per ottenere la massima brillantezza anti-alone. Quale superficie devi perfezionare?"
+        image={{ src: "https://www.lintmicrofibercloths.it/wp-content/uploads/2025/11/asciugatura-auto-detailing.png", alt: "Asciugatura finale auto", hint: "asciugatura auto"}}
         choices={[
             { text: "Carrozzeria", subtext: "Devo asciugare una grande superficie in una sola passata.", onClick: () => setStep('result-d1') },
             { text: "Vetri e Cromature", subtext: "Devo eliminare ogni alone, possibilmente senza detergenti.", onClick: () => setStep('result-d2') }
@@ -233,34 +239,44 @@ interface StepCardProps {
     title: string;
     description: string;
     choices: { text: string; subtext: string; onClick: () => void }[];
+    image: { src: string, alt: string, hint: string };
 }
 
-const StepCard = ({ stepNumber, title, description, choices }: StepCardProps) => (
+const StepCard = ({ stepNumber, title, description, choices, image }: StepCardProps) => (
     <AnimateOnScroll className="container py-12">
         <Card className="max-w-4xl mx-auto overflow-hidden shadow-2xl border-primary/20">
-            <CardHeader className="bg-secondary p-6">
-                <CardDescription>STEP {stepNumber}</CardDescription>
-                <CardTitle className="text-3xl text-primary">{title}</CardTitle>
-                <p className="text-muted-foreground pt-2">{description}</p>
-            </CardHeader>
-            <CardContent className="p-6">
-                <h3 className="font-semibold text-lg mb-4">Punto di Scelta:</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {choices.map((choice, index) => (
-                        <button
-                            key={index}
-                            onClick={choice.onClick}
-                            className="text-left p-6 border rounded-lg hover:bg-secondary transition-all duration-300 group hover:shadow-lg hover:-translate-y-1"
-                        >
-                            <p className="font-semibold text-primary text-lg">{choice.text}</p>
-                            <p className="text-sm text-muted-foreground mt-1">{choice.subtext}</p>
-                            <div className="flex justify-end mt-3">
-                                <ArrowRight className="w-5 h-5 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1" />
-                            </div>
-                        </button>
-                    ))}
+            <div className="grid md:grid-cols-2">
+                <div className="relative aspect-[4/3] w-full">
+                   <Image src={image.src} alt={image.alt} fill className="object-cover" data-ai-hint={image.hint} />
                 </div>
-            </CardContent>
+                <div className="flex flex-col">
+                    <CardHeader className="p-6">
+                        <CardDescription>STEP {stepNumber}</CardDescription>
+                        <CardTitle className="text-2xl lg:text-3xl text-primary">{title}</CardTitle>
+                        <p className="text-muted-foreground pt-2 text-base">{description}</p>
+                    </CardHeader>
+                    <CardContent className="p-6 pt-0 flex-grow flex flex-col justify-end">
+                        <div className="mt-auto">
+                            <h3 className="font-semibold text-lg mb-4">Punto di Scelta:</h3>
+                            <div className="grid grid-cols-1 gap-4">
+                                {choices.map((choice, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={choice.onClick}
+                                        className="text-left p-4 border rounded-lg hover:bg-secondary transition-all duration-300 group hover:shadow-lg hover:-translate-y-1"
+                                    >
+                                        <p className="font-semibold text-primary">{choice.text}</p>
+                                        <p className="text-sm text-muted-foreground mt-1">{choice.subtext}</p>
+                                        <div className="flex justify-end mt-2">
+                                            <ArrowRight className="w-5 h-5 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1" />
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </CardContent>
+                </div>
+            </div>
         </Card>
     </AnimateOnScroll>
 );
