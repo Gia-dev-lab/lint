@@ -98,7 +98,7 @@ export default function Header() {
                     <ChevronDown className="h-4 w-4" />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    {link.href.startsWith('/') && !link.href.includes('#') &&
+                    {link.href.startsWith('/') && !link.href.includes('#') && link.label === 'Prodotti' &&
                       <DropdownMenuItem asChild>
                         <Link href={link.href}>Vedi Tutti</Link>
                       </DropdownMenuItem>
@@ -201,7 +201,7 @@ export default function Header() {
                                  </AccordionTrigger>
                                  <AccordionContent className="pl-4">
                                    <div className="grid gap-2">
-                                     {link.href.startsWith('/') && !link.href.includes('#') &&
+                                     {link.href.startsWith('/') && !link.href.includes('#') && link.label === 'Prodotti' &&
                                       <Link
                                         href={link.href}
                                         className="text-muted-foreground transition-colors hover:text-foreground"
