@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
-import { ArrowLeft, ChevronRight, Info } from "lucide-react";
+import { ArrowLeft, ChevronRight, Info, MessageSquareText } from "lucide-react";
 import Link from "next/link";
 import {
   Dialog,
@@ -161,7 +161,8 @@ const symyDescription = `
 
 
 export default function ProdottoPage() {
-  const { id } = useParams();
+  const params = useParams();
+  const id = params?.id;
   const firestore = useFirestore();
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
 
@@ -235,6 +236,7 @@ export default function ProdottoPage() {
       </Head>
       <JsonLd data={productJsonLd} />
       <div className="container py-10 md:py-16">
+        {/* Breadcrumbs */}
         <div className="mb-6 flex flex-wrap items-center text-sm text-muted-foreground">
           <Link href="/" className="hover:text-foreground">Home</Link>
           <ChevronRight size={16} className="mx-1" />
@@ -249,22 +251,22 @@ export default function ProdottoPage() {
            <span className="text-foreground">{nome}</span>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-start">
-          <Card className="overflow-hidden md:sticky md:top-24">
-            <CardContent className="p-0">
-              {immagine && (
-                <div className="relative aspect-square w-full bg-secondary">
-                  <Image
-                    src={immagine}
-                    alt={nome || "Immagine Prodotto"}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-              )}
-            </CardContent>
-          </Card>
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-start pb-24 md:pb-0">
+          {/* Image */}
+          <div className="md:sticky md:top-24">
+            {immagine && (
+              <div className="relative aspect-square w-full bg-secondary rounded-lg overflow-hidden">
+                <Image
+                  src={immagine}
+                  alt={nome || "Immagine Prodotto"}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            )}
+          </div>
 
+          {/* Product Info */}
           <div className="space-y-4">
             {categorie && (
               <Badge variant="secondary" className="text-base">
@@ -279,7 +281,7 @@ export default function ProdottoPage() {
             
             <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
               <DialogTrigger asChild>
-                <Button size="lg" className="mt-6 w-full sm:w-auto">
+                <Button size="lg" className="mt-6 w-full sm:w-auto hidden md:inline-flex">
                   Richiedi Informazioni o Preventivo
                 </Button>
               </DialogTrigger>
@@ -309,6 +311,38 @@ export default function ProdottoPage() {
           </div>
         </div>
       </div>
+
+       {/* Sticky Mobile CTA Bar */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40">
+        <div className="container p-2 bg-background/90 border-t backdrop-blur-sm">
+            <div className="flex items-center justify-between gap-4">
+                <div className="flex-shrink-0">
+                    <p className="text-xs text-muted-foreground">Codice Prodotto</p>
+                    <p className="font-bold">{SKU || 'N/D'}</p>
+                </div>
+                <Dialog open={isQuoteOpen} onOpenChange={setIsQuoteOpen}>
+                    <DialogTrigger asChild>
+                        <Button className="w-full">
+                            <MessageSquareText className="mr-2"/>
+                            Richiedi Preventivo
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                        <DialogHeader>
+                            <DialogTitle>Richiesta per: {nome}</DialogTitle>
+                            <DialogDescription>
+                                Compila il modulo per ricevere un preventivo o parlare con un nostro esperto.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <QuoteRequestForm onSuccess={() => setIsQuoteOpen(false)} />
+                    </DialogContent>
+                </Dialog>
+            </div>
+        </div>
+      </div>
+
     </AnimateOnScroll>
   );
 }
+
+    
