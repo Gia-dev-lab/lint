@@ -19,7 +19,6 @@ import { QuoteRequestForm } from "@/components/quote-request-form";
 import Link from "next/link";
 import { useState, useEffect, useMemo, useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { SparklesCore } from "@/components/ui/sparkles";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { useCollection, useFirestore } from "@/firebase";
 import { collection, limit, query } from "firebase/firestore";
@@ -126,7 +125,7 @@ export default function Home() {
 
     const blurTimeout = setTimeout(() => {
         setIsHeroImageBlurred(false);
-    }, 2500);
+    }, 500);
 
     return () => {
         clearInterval(headlineInterval);
@@ -159,9 +158,10 @@ export default function Home() {
                 src={heroImage.imageUrl}
                 alt={heroImage.description}
                 fill
+                sizes="100vw"
                 className={cn(
                     "object-cover -z-10 transition-all duration-1000",
-                    isHeroImageBlurred ? "blur-md" : "blur-0"
+                    isHeroImageBlurred ? "blur-md scale-105" : "blur-0 scale-100"
                 )}
                 data-ai-hint={heroImage.imageHint}
                 priority
@@ -331,6 +331,7 @@ export default function Home() {
                               src={testimonial.image.imageUrl}
                               alt={testimonial.name}
                               fill
+                              sizes="48px"
                               className="object-cover"
                               data-ai-hint={testimonial.image.imageHint}
                             />
@@ -369,6 +370,7 @@ export default function Home() {
                                         src={activeTabImage.imageUrl}
                                         alt={activeTabImage.description}
                                         fill
+                                        sizes="(max-width: 768px) 100vw, 50vw"
                                         className="object-cover transition-transform duration-500 ease-in-out group-data-[visible=true]:scale-100 group-data-[visible=true]:rotate-0 scale-105 -rotate-3"
                                         data-ai-hint={activeTabImage.imageHint}
                                     />
@@ -477,6 +479,7 @@ function SolutionCategoryCard({ title, link, image, imageHint, className }: { ti
                     src={image}
                     alt={title} 
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                     data-ai-hint={imageHint}
                 />
@@ -506,3 +509,6 @@ function SolutionCategoryCard({ title, link, image, imageHint, className }: { ti
 
     
 
+
+
+    

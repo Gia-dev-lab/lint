@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -57,6 +58,7 @@ export default function ChiSiamoPage() {
             src={aboutHeroImage.imageUrl}
             alt={aboutHeroImage.description}
             fill
+            sizes="100vw"
             className="object-cover -z-10"
             data-ai-hint={aboutHeroImage.imageHint}
             priority
@@ -92,6 +94,7 @@ export default function ChiSiamoPage() {
                         src={placeholderImages.find(img => img.id === 'product-kit-1')?.imageUrl || ''} 
                         alt="Attrezzature professionali Lint"
                         fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover"
                         data-ai-hint="attrezzature pulizia"
                     />
@@ -144,6 +147,7 @@ export default function ChiSiamoPage() {
                                 src={member.image.imageUrl}
                                 alt={member.name}
                                 fill
+                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                 className="object-cover object-top"
                                 data-ai-hint={member.image.imageHint}
                             />
@@ -171,7 +175,7 @@ export default function ChiSiamoPage() {
               </p>
               <div className="mt-8 flex gap-4 justify-center">
                 <Button size="lg" asChild>
-                  <Link href="/#kit-configurator">Richiedi una Consulenza</Link>
+                  <Link href="/#contact-cta">Richiedi una Consulenza</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
                   <Link href="/prodotti">Esplora il Catalogo</Link>
@@ -183,3 +187,5 @@ export default function ChiSiamoPage() {
     </>
   );
 }
+
+    

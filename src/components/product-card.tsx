@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -27,6 +28,7 @@ export function ProductCard({ product }: { product: any }) {
                 src={immagine}
                 alt={nome || 'Immagine Prodotto'}
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                 className="object-contain transition-transform duration-300"
             />
             </div>
@@ -47,3 +49,5 @@ export function ProductCard({ product }: { product: any }) {
     </Link>
   );
 }
+
+    

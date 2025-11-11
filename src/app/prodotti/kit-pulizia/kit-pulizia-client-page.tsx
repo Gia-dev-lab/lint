@@ -98,6 +98,7 @@ export default function KitPuliziaClientPage() {
                 src={heroImage.imageUrl}
                 alt={heroImage.description}
                 fill
+                sizes="100vw"
                 className="object-cover animate-ken-burns"
                 data-ai-hint={heroImage.imageHint}
             />
@@ -161,3 +162,5 @@ export default function KitPuliziaClientPage() {
     </div>
   );
 }
+
+    

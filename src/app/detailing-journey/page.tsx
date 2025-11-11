@@ -247,7 +247,7 @@ const StepCard = ({ stepNumber, title, description, choices, image }: StepCardPr
         <Card className="max-w-4xl mx-auto overflow-hidden shadow-2xl border-primary/20">
             <div className="grid md:grid-cols-2">
                 <div className="relative aspect-[4/3] w-full">
-                   <Image src={image.src} alt={image.alt} fill className="object-cover" data-ai-hint={image.hint} />
+                   <Image src={image.src} alt={image.alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" data-ai-hint={image.hint} />
                 </div>
                 <div className="flex flex-col">
                     <CardHeader className="p-6">
@@ -303,7 +303,7 @@ const ResultCard = ({ title, actionTitle, actionDescription, image, products, ne
                 <div className="space-y-4">
                     <h3 className="font-semibold text-xl">{actionTitle}</h3>
                     <div className="relative aspect-[3/4] w-full rounded-lg overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
-                        <Image src={image.src} alt={image.alt} fill className="object-cover" data-ai-hint={image.hint} />
+                        <Image src={image.src} alt={image.alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" data-ai-hint={image.hint} />
                     </div>
                     <p className="text-muted-foreground">{actionDescription}</p>
                 </div>
@@ -371,3 +371,5 @@ export default function DetailingJourneyPage() {
     </div>
   );
 }
+
+    

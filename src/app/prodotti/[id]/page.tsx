@@ -260,6 +260,7 @@ export default function ProdottoPage() {
                   src={immagine}
                   alt={nome || "Immagine Prodotto"}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-contain"
                 />
               </div>
