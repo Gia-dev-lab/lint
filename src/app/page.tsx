@@ -168,17 +168,6 @@ export default function Home() {
             />
            )}
            <div className="absolute inset-0 bg-background/70 -z-10" />
-           <div className="w-full absolute inset-0 h-full">
-            <SparklesCore
-              id="tsparticlesfullpage"
-              background="transparent"
-              minSize={0.6}
-              maxSize={1.4}
-              particleDensity={100}
-              className="w-full h-full"
-              particleColor="hsl(var(--foreground))"
-            />
-          </div>
           <AnimateOnScroll className="z-10 container max-w-5xl">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
               Lint: L'Ecosistema Completo per la Pulizia Professionale.
@@ -516,3 +505,4 @@ function SolutionCategoryCard({ title, link, image, imageHint, className }: { ti
     
 
     
+
