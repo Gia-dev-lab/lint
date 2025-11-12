@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useFirestore, useCollection, useMemoFirebase } from "@/firebase";
@@ -126,6 +127,7 @@ export default function PanniInMicrofibraClientPage() {
               sizes="100vw"
               className="object-cover animate-ken-burns"
               data-ai-hint={heroImage.imageHint}
+              priority
             />
           )}
           <div className="absolute inset-0 bg-background/70" />
@@ -216,3 +218,5 @@ export default function PanniInMicrofibraClientPage() {
     </div>
   );
 }
+
+    
