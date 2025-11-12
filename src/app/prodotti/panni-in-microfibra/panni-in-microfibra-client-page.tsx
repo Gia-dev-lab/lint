@@ -1,12 +1,12 @@
 
 "use client";
 
-import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
-import { collection, query, where, Query } from "firebase/firestore";
+import { useFirestore } from "@/firebase";
+import { collection, query, where, getDocs, QuerySnapshot, DocumentData } from "firebase/firestore";
 import { ProductCard } from "@/components/product-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useMemo, useCallback } from "react";
+import { useMemo, useCallback, useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
@@ -76,6 +76,9 @@ export default function PanniInMicrofibraClientPage() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const activeFilter = searchParams.get("tag") || "all";
+  
+  const [products, setProducts] = useState<any[]>([]);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true);
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -93,24 +96,32 @@ export default function PanniInMicrofibraClientPage() {
   const handleFilterChange = (tag: string) => {
     router.push(pathname + '?' + createQueryString('tag', tag));
   };
-
-
-  const productsQuery = useMemoFirebase(() => {
-    if (!firestore) return null;
-    return query(collection(firestore, "prodotti"), where("categorie", "==", "Panni in Microfibra Professionali"));
+  
+  useEffect(() => {
+    async function fetchProducts() {
+        if (!firestore) return;
+        setIsLoadingProducts(true);
+        try {
+            const q = query(collection(firestore, "prodotti"), where("categorie", "==", "Panni in Microfibra Professionali"));
+            const querySnapshot = await getDocs(q);
+            const productsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setProducts(productsData);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        } finally {
+            setIsLoadingProducts(false);
+        }
+    }
+    fetchProducts();
   }, [firestore]);
 
-  const { data: products, isLoading: isLoadingProducts } = useCollection(productsQuery);
-  
+
   const filteredProducts = useMemo(() => {
-    if (!products) {
-      return [];
-    }
     if (activeFilter === "all") {
       return products;
     }
     return products.filter(product => 
-      product.tag && product.tag.toLowerCase().includes(activeFilter.toLowerCase())
+      product.tag && typeof product.tag === 'string' && product.tag.toLowerCase().includes(activeFilter.toLowerCase())
     );
   }, [products, activeFilter]);
 
