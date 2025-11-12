@@ -103,13 +103,15 @@ export default function PanniInMicrofibraClientPage() {
   const { data: products, isLoading: isLoadingProducts } = useCollection(productsQuery);
   
   const filteredProducts = useMemo(() => {
-    if (!products) return [];
-    if (activeFilter === "all") return products;
-    
+    if (!products) {
+      return [];
+    }
+    if (activeFilter === "all") {
+      return products;
+    }
     return products.filter(product => 
       product.tag && product.tag.toLowerCase().includes(activeFilter.toLowerCase())
     );
-
   }, [products, activeFilter]);
 
 
@@ -218,4 +220,3 @@ export default function PanniInMicrofibraClientPage() {
     </div>
   );
 }
-
