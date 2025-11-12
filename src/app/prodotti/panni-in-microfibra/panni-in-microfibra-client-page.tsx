@@ -107,7 +107,7 @@ export default function PanniInMicrofibraClientPage() {
     if (activeFilter === "all") return products;
     
     return products.filter(product => 
-      product.tag?.toLowerCase().includes(activeFilter.toLowerCase())
+      product.tag && product.tag.toLowerCase().includes(activeFilter.toLowerCase())
     );
 
   }, [products, activeFilter]);
@@ -219,4 +219,3 @@ export default function PanniInMicrofibraClientPage() {
   );
 }
 
-    
