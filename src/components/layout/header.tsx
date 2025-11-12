@@ -87,7 +87,7 @@ export default function Header() {
       <div className="container flex h-16 items-center justify-between gap-4">
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2 mr-4 text-primary">
-            <Logo />
+            <Logo className="h-8 w-auto" />
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
             {navLinks.map((link) =>
@@ -189,7 +189,7 @@ export default function Header() {
                 <SheetContent side="left">
                   <div className="flex flex-col h-full">
                      <Link href="/" className="flex items-center gap-2 text-lg font-semibold mb-4 text-primary" onClick={() => setIsMobileMenuOpen(false)}>
-                        <Logo />
+                        <Logo className="h-8 w-auto" />
                     </Link>
                     <nav className="grid gap-2 text-lg font-medium mt-4">
                         {navLinks.map((link) => (

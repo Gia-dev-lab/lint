@@ -27,6 +27,7 @@ import { ProductCard } from "@/components/product-card";
 import Autoplay from "embla-carousel-autoplay";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils";
+import { AuthForm } from "@/components/auth/auth-form";
 
 const heroImage = placeholderImages.find(img => img.id === 'hero-background');
 
