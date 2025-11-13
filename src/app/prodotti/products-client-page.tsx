@@ -45,6 +45,24 @@ const stripHtml = (html: string | undefined | null): string => {
     return doc.body.textContent || "";
 };
 
+const categoryDisplayMap: Record<string, string> = {
+    "Panni in Microfibra Professionali": "Panni in Microfibra",
+    "Accessori per la Pulizia Professionale e Detailing": "Accessori",
+    "Kit di Pulizia e Detailing Professionali": "Kit di Pulizia",
+    "Detergenti per Pulizia Professionale": "Detergenti",
+    "Ricambi Attrezzatura Pulizia": "Ricambi",
+    "Linea Self Car Wash": "Self Car Wash",
+};
+
+const categoryOrder = [
+    "Panni in Microfibra Professionali",
+    "Accessori per la Pulizia Professionale e Detailing",
+    "Detergenti per Pulizia Professionale",
+    "Kit di Pulizia e Detailing Professionali",
+    "Ricambi Attrezzatura Pulizia",
+    "Linea Self Car Wash",
+];
+
 export default function ProductsClientPage() {
   const firestore = useFirestore();
   const router = useRouter();
@@ -54,7 +72,7 @@ export default function ProductsClientPage() {
   const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '');
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
   
-  const productsQuery = useMemoFirebase(() => {
+  const productsQuery = useMemo(() => {
     if (!firestore) return null;
     return query(collection(firestore, "prodotti"));
   }, [firestore]);
@@ -88,12 +106,14 @@ export default function ProductsClientPage() {
       params.delete('q');
     }
     router.replace(`${pathname}?${params.toString()}`);
-  }, [debouncedSearchTerm, pathname, router, searchParams]);
+  }, [debouncedSearchTerm, pathname, router, createQueryString]);
 
   const productCategories = useMemo(() => {
     if (!products) return [];
     const categories = new Set(products.map(p => p.categorie).filter(Boolean));
-    return ['all', ...Array.from(categories)];
+    const sortedCategories = categoryOrder.filter(cat => categories.has(cat));
+    const otherCategories = [...categories].filter(cat => !categoryOrder.includes(cat));
+    return ['all', ...sortedCategories, ...otherCategories];
   }, [products]);
 
   const filteredProducts = useMemo(() => {
@@ -126,7 +146,7 @@ export default function ProductsClientPage() {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-4 mb-8">
+      <div className="flex flex-col items-center gap-6 mb-10">
         <div className="w-full max-w-lg relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
@@ -137,28 +157,31 @@ export default function ProductsClientPage() {
               className="w-full pl-9"
             />
         </div>
-        <div className="flex flex-wrap justify-center items-center gap-2">
-            {productCategories.map(cat => (
-                <Button
-                    key={cat}
-                    variant={activeCategory === cat ? "default" : "outline"}
-                    onClick={() => handleCategoryChange(cat)}
-                    className="capitalize"
-                >
-                    {cat === 'all' ? 'Tutti' : cat}
-                </Button>
-            ))}
-            {activeCategory !== 'all' && (
-                <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleCategoryChange('all')}
-                className="flex items-center gap-1 text-muted-foreground"
-                >
-                <X size={14}/>
-                Azzera Filtro
-                </Button>
-            )}
+        <div className="flex flex-col items-center gap-3 w-full">
+            <h3 className="text-sm font-medium text-muted-foreground">Filtra per categoria:</h3>
+            <div className="flex flex-wrap justify-center items-center gap-2">
+                {productCategories.map(cat => (
+                    <Button
+                        key={cat}
+                        variant={activeCategory === cat ? "default" : "outline"}
+                        onClick={() => handleCategoryChange(cat)}
+                        className="capitalize"
+                    >
+                        {cat === 'all' ? 'Tutti' : (categoryDisplayMap[cat] || cat)}
+                    </Button>
+                ))}
+                {activeCategory !== 'all' && (
+                    <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleCategoryChange('all')}
+                    className="flex items-center gap-1 text-muted-foreground"
+                    >
+                    <X size={14}/>
+                    Azzera Filtro
+                    </Button>
+                )}
+            </div>
         </div>
       </div>
 
