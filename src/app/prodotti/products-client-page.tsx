@@ -47,14 +47,13 @@ const stripHtml = (html: string | undefined | null): string => {
 
 export default function ProductsClientPage() {
   const firestore = useFirestore();
-  const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   
   const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '');
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
-  const activeCategory = searchParams.get('category') || 'all';
-
+  
   const productsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
     return query(collection(firestore, "prodotti"));
@@ -62,6 +61,8 @@ export default function ProductsClientPage() {
 
   const { data: products, isLoading: isLoadingProducts } = useCollection(productsQuery);
   
+  const activeCategory = searchParams.get('category') || 'all';
+
    const createQueryString = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString());

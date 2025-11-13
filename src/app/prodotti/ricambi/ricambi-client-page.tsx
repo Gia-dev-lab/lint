@@ -6,7 +6,7 @@ import { collection, query, where, Query } from "firebase/firestore";
 import { ProductCard } from "@/components/product-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";

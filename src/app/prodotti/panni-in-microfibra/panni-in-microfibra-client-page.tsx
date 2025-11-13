@@ -2,11 +2,11 @@
 "use client";
 
 import { useFirestore, useCollection, useMemoFirebase } from "@/firebase";
-import { collection, query, where, Query, getDocs } from "firebase/firestore";
+import { collection, query, where } from "firebase/firestore";
 import { ProductCard } from "@/components/product-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useMemo, useCallback, useState, useEffect } from "react";
+import { useMemo, useCallback } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
