@@ -2,11 +2,11 @@
 "use client";
 
 import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where } from "firebase/firestore";
 import { ProductCard } from "@/components/product-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useMemo, useCallback, useEffect, useState } from "react";
+import { useMemo, useCallback } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
@@ -135,7 +135,7 @@ export default function PanniInMicrofibraClientPage() {
         <AnimateOnScroll className="container relative">
           <Badge variant="default" className="mb-4 text-sm py-1 px-4">La Nostra Selezione</Badge>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Panni in Microfibra Professionali</h1>
-          <p className="mt-4 text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto">
+          <p className="mt-4 text-lg md:text-xl text-foreground/90 max-w-3xl mx-auto">
             La migliore selezione di panni tecnici per ogni esigenza: massima efficacia, durata superiore e risultati senza compromessi per ogni superficie.
           </p>
         </AnimateOnScroll>
