@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useFirestore, useCollection, useMemoFirebase } from "@/firebase";
+import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
 import { collection, query, where } from "firebase/firestore";
 import { ProductCard } from "@/components/product-card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -21,7 +21,8 @@ const filterCategories = [
   { label: "Vetri e Specchi", tag: "vetri" },
   { label: "Asciugatura", tag: "asciugatura" },
   { label: "Multiuso", tag: "multiuso" },
-  { label: "Interni Auto", tag: "interni auto" },
+  { label: "Finitura e Polish", tag: "finitura" },
+  { label: "Lucidatura", tag: "lucidatura" },
 ];
 
 const featureHighlights = [
