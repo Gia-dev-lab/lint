@@ -159,13 +159,6 @@ export default function PanniInMicrofibraClientPage() {
                         </Card>
                     ))}
                 </div>
-                 <div className="mt-12 text-center">
-                    <Button asChild variant="outline">
-                        <Link href="/blog/come-lavare-i-panni-in-microfibra">
-                            Scopri come mantenerli sempre efficaci <ChevronRight className="ml-2" />
-                        </Link>
-                    </Button>
-                 </div>
             </div>
         </section>
       </AnimateOnScroll>
@@ -215,6 +208,24 @@ export default function PanniInMicrofibraClientPage() {
           )}
         </AnimateOnScroll>
       </div>
+
+      <AnimateOnScroll>
+        <section className="py-16 border-t">
+          <div className="container text-center">
+            <h2 className="text-2xl font-semibold mb-4">Cura dei Tuoi Panni</h2>
+             <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
+                Un lavaggio corretto è fondamentale per mantenere le performance della microfibra.
+                Impara le tecniche professionali per far durare le tue attrezzature più a lungo.
+            </p>
+            <Button asChild variant="outline">
+                <Link href="/blog/come-lavare-i-panni-in-microfibra">
+                    Scopri come mantenerli sempre efficaci <ChevronRight className="ml-2" />
+                </Link>
+            </Button>
+          </div>
+        </section>
+      </AnimateOnScroll>
+
     </div>
   );
 }
