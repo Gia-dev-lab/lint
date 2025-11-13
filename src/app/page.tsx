@@ -183,7 +183,7 @@ export default function Home() {
                 </span>
               ))}
             </div>
-            <p className="mt-6 text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto">
+            <p className="mt-6 text-lg md:text-xl text-foreground/90 max-w-3xl mx-auto">
               Dalla microfibra tecnica ai ricambi essenziali, ti offriamo soluzioni integrate per elevare l'efficienza e il risultato del tuo lavoro.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
@@ -511,5 +511,7 @@ function SolutionCategoryCard({ title, link, image, imageHint, className }: { ti
     
 
 
+
+    
 
     
