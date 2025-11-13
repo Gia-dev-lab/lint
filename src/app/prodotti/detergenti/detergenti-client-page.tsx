@@ -62,7 +62,7 @@ export default function DetergentiClientPage() {
   
   const handleFilterChange = (tag: string) => {
     // We don't have filters for this page yet, so this function is ready for the future
-    // router.push(pathname + '?' + createQueryString('tag', tag));
+    // router.replace(pathname + '?' + createQueryString('tag', tag));
   };
 
 
@@ -161,5 +161,3 @@ export default function DetergentiClientPage() {
     </div>
   );
 }
-
-    

@@ -65,7 +65,7 @@ export default function AccessoriClientPage() {
   );
   
   const handleFilterChange = (tag: string) => {
-    router.push(pathname + '?' + createQueryString('tag', tag));
+    router.replace(pathname + '?' + createQueryString('tag', tag));
   };
 
 
@@ -161,5 +161,3 @@ export default function AccessoriClientPage() {
     </div>
   );
 }
-
-    

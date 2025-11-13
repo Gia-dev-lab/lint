@@ -76,7 +76,7 @@ export default function ProductsClientPage() {
   );
 
   const handleCategoryChange = (category: string) => {
-    router.push(`${pathname}?${createQueryString('category', category)}`);
+    router.replace(`${pathname}?${createQueryString('category', category)}`);
   };
 
   useEffect(() => {

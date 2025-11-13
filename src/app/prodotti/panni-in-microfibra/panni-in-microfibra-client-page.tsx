@@ -98,7 +98,7 @@ export default function PanniInMicrofibraClientPage() {
   );
   
   const handleFilterChange = (tag: string) => {
-    router.push(pathname + '?' + createQueryString('tag', tag));
+    router.replace(pathname + '?' + createQueryString('tag', tag));
   };
 
   const filteredProducts = useMemo(() => {
@@ -218,5 +218,3 @@ export default function PanniInMicrofibraClientPage() {
     </div>
   );
 }
-
-    
