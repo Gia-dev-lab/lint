@@ -2,11 +2,11 @@
 "use client";
 
 import { useCollection, useFirestore, useMemoFirebase } from "@/firebase";
-import { collection, query, where } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { ProductCard } from "@/components/product-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useMemo, useCallback } from "react";
+import { useMemo, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
@@ -22,7 +22,6 @@ const filterCategories = [
   { label: "Asciugatura", tag: "asciugatura" },
   { label: "Multiuso", tag: "multiuso" },
   { label: "Finitura e Polish", tag: "finitura" },
-  { label: "Lucidatura", tag: "lucidatura" },
 ];
 
 const featureHighlights = [
