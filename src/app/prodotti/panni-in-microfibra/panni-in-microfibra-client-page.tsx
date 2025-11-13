@@ -2,11 +2,11 @@
 "use client";
 
 import { useFirestore, useCollection, useMemoFirebase } from "@/firebase";
-import { collection, query, where, Query } from "firebase/firestore";
+import { collection, query, where, Query, getDocs } from "firebase/firestore";
 import { ProductCard } from "@/components/product-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { useMemo, useCallback } from "react";
+import { useMemo, useCallback, useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
@@ -76,7 +76,7 @@ export default function PanniInMicrofibraClientPage() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const activeFilter = searchParams.get("tag") || "all";
-  
+
   const productsQuery = useMemoFirebase(() => {
     if (!firestore) return null;
     return query(collection(firestore, "prodotti"), where("categorie", "==", "Panni in Microfibra Professionali"));
